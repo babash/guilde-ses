@@ -35,7 +35,7 @@ Chaque jeu dit ce qu'il fait réviser et pour quelle épreuve. Les fiches sont r
 
 ## Votre personnage
 
-Espèce (humain·e, elfes, faune, renardin·e, félin·e, saurien·ne, champignonnier·e, gélatineux·se, golem de mousse, spectre), corps, visage et coiffure sont libres et gratuits. Les textes sont en écriture inclusive ; on peut, si on le souhaite, préciser ses pronoms ou porter un drapeau des fiertés, sans que rien ne soit demandé.
+Nom, pronom, espèce (humain·e, elfes, faune, renardin·e, félin·e, saurien·ne, champignonnier·e, gélatineux·se, golem de mousse, spectre), corps, visage et coiffure sont libres et gratuits. Les textes s'adressent à vous selon le pronom choisi, en écriture inclusive s'il n'est pas précisé.
 
 Tenues, accessoires, familiers, gestes et animations de réussite ou d'erreur se gagnent en révisant : 2 écus par bonne réponse, 20 par quête du jour, 40 de prime pour les trois. Certains objets, comme les ailes spectrales ou le Bottin mondain, récompensent un haut fait. Pendant les jeux, le personnage et son familier réagissent à vos réponses.
 

@@ -14,8 +14,7 @@ const catDe=slot=>(CATS.find(c=>c[2].includes(slot))||CATS[0])[0];
 const SLOTS_OPTION=new Set(["jambes","tete","visage","oreilles","dos","main","famAcc"]);
 
 function sceneCanvas(cfg,o={}){const cv=el("canvas",{class:"scene-perso",role:"img","aria-label":o.label||"Votre personnage"});const sc=new Scene(cv,o);sc.setPerso(cfg);return{cv,sc};}
-function descPerso(){const p=S.perso;const E=ESPECES[p.espece]||ESPECES.humain;const pr=PRONOM_AFF();return `${p.nom||"Sans nom"}${pr?` (${pr})`:""}, ${E.l.toLowerCase()}`;}
-function badgePronoms(){const pr=PRONOM_AFF();return S.perso.badgePronoms&&pr?el("span",{class:"pronoms"},pr):null;}
+function descPerso(){const p=S.perso;const E=ESPECES[p.espece]||ESPECES.humain;return `${p.nom||"Sans nom"}, ${E.l.toLowerCase()}`;}
 function vignette(cfg,slot){const r=peindre(cfg,{}).c.toile();const tete=["tete","visage","oreilles","teinte"].includes(slot);const g=geom(cfg);
   const[sx,sy,sw,sh,k]=tete?[4,Math.max(0,g.hy-12),32,30,3]:[0,4,40,60,2];const cv=el("canvas",{width:sw*k,height:sh*k,"aria-hidden":"true"});const c=cv.getContext("2d");c.imageSmoothingEnabled=false;c.drawImage(r,sx,sy,sw,sh,0,0,sw*k,sh*k);return cv;}
 function vignetteFam(id,acc){const r=peindreFamilier(id,acc).toile();const cv=el("canvas",{width:70,height:75,"aria-hidden":"true"});const c=cv.getContext("2d");c.imageSmoothingEnabled=false;c.drawImage(r,0,0,70,75);return cv;}
@@ -44,15 +43,18 @@ function vLoge(main){
   const ap=el("div",{class:"cadre-nuit apercu",style:"padding:14px"},cv,nomL,el("div",{class:"rangee",style:"justify-content:center"},bG,bS,bE,bH));
   const ed=el("section",{class:"cadre pile"});const ong=el("nav",{class:"onglets","aria-label":"Réglages du personnage"});const pan=el("div",{class:"pile"});ed.append(ong,pan);
   main.append(el("div",{class:"loge"},ap,ed));
-  const maj=(redessine=true)=>{sauver();sc.setPerso(S.perso);majPerso();nomL.replaceChildren(...[S.perso.nom||"Sans nom",badgePronoms()].filter(Boolean));cv.setAttribute("aria-label","Aperçu : "+descPerso());if(redessine)panneau();};
+  const maj=(redessine=true)=>{sauver();sc.setPerso(S.perso);majPerso();majHud();nomL.replaceChildren(S.perso.nom||"Sans nom");cv.setAttribute("aria-label","Aperçu : "+descPerso());if(redessine)panneau();};
   const set=(k,v,red=true)=>{S.perso[k]=v;maj(red);};
   bH.onclick=()=>{const P=S.perso;const pick=a=>a[rint(a.length)];const E=pick(Object.keys(ESPECES));const own=slot=>ITEMS.filter(i=>i.slot===slot&&possede(i.id)).map(i=>i.v);
     Object.assign(P,{espece:E,peau:pick(ESPECES[E].peaux),silhouette:pick(["fine","moyenne","ronde"]),taille:pick(["petite","moyenne","grande"]),yeux:pick(Object.keys(YEUX)),iris:pick(Object.values(IRIS)),bouche:pick(Object.keys(BOUCHES)),coiffure:pick(Object.keys(COIFFURES)),teinte:pick(Object.keys(TEINTES_NAT).concat(own("teinte"))),haut:pick(own("haut")),hautC:pick(COULEURS_TENUE),bas:pick(own("bas")),basC:pick(COULEURS_TENUE),pieds:pick(own("pieds")),rousseur:R0()<.3,blush:R0()<.4});maj();};
-  let tab="identite";const TABS=[["identite","Identité"],["corps","Corps"],["visage","Visage"],["cheveux","Cheveux"],["tenue","Tenue"],["accessoires","Accessoires"],["badges","Pronoms et badges"],["familier","Familier"],["gestes","Gestes"]];
+  let tab="identite";const TABS=[["identite","Identité"],["corps","Corps"],["visage","Visage"],["cheveux","Cheveux"],["tenue","Tenue"],["accessoires","Accessoires"],["familier","Familier"],["gestes","Gestes"]];
   function onglets(){ong.replaceChildren(...TABS.map(([k,l])=>{const b=el("button",{type:"button",class:"puce","aria-pressed":String(k===tab)},l);b.onclick=()=>{tab=k;onglets();panneau();};return b;}));}
   function panneau(){const P=S.perso,E=ESPECES[P.espece]||ESPECES.humain;let c=[];
     if(tab==="identite"){const nom=el("input",{type:"text",id:"nom-perso",maxlength:"24",value:P.nom,placeholder:"Votre nom d'aventurier·e",autocomplete:"off"});nom.addEventListener("input",()=>set("nom",nom.value,false));
+      const lib=el("input",{type:"text",id:"pronom-libre",maxlength:"24",value:P.pronomLibre,placeholder:"par ex. ielle, al",autocomplete:"off"});lib.addEventListener("input",()=>set("pronomLibre",lib.value,false));
       c=[el("div",{class:"champ-texte"},el("label",{for:"nom-perso"},"Nom"),nom),
+        groupe("Pronom, pour que la guilde s'adresse à vous",PRONOMS,P.pronom,v=>set("pronom",v)),P.pronom==="libre"?el("div",{class:"champ-texte"},el("label",{for:"pronom-libre"},"Votre pronom"),lib):null,
+        el("p",{class:"petit doux"},"Avec il, les textes s'accordent au masculin, avec elle au féminin ; sinon, en écriture inclusive (« Apprenti·e », « Compagnon·ne »)."),
         groupe("Espèce",Object.entries(ESPECES).map(([k,e])=>[k,e.l]),P.espece,v=>{S.perso.espece=v;const pe=ESPECES[v].peaux;if(!pe.includes(S.perso.peau))S.perso.peau=pe[0];maj();}),
         E.jambes?el("p",{class:"avis"},E.jambes==="blob"?"Les gélatineux·ses n'ont pas de jambes : bas et chaussures restent invisibles.":"Les spectres flottent : bas et chaussures restent invisibles."):null];}
     if(tab==="corps")c=[groupe("Silhouette",[["fine","Fine"],["moyenne","Moyenne"],["ronde","Ronde"]],P.silhouette,v=>set("silhouette",v)),groupe("Taille",[["petite","Petite"],["moyenne","Moyenne"],["grande","Grande"]],P.taille,v=>set("taille",v)),
@@ -71,14 +73,6 @@ function vLoge(main){
       ["robe-mage","robe-bal","salopette","costume"].includes(P.haut)?el("p",{class:"petit doux"},"Cette tenue couvre aussi le bas du corps."):null,
       groupe("Bas",optsSlot("bas"),P.bas,v=>set("bas",v)),nuancier("Couleur du bas",COULEURS_TENUE,P.basC,(v,l)=>set("basC",v,!l)),groupe("Jambes",optsSlot("jambes","Sans collants"),P.jambes,v=>set("jambes",v)),groupe("Chaussures",optsSlot("pieds"),P.pieds,v=>set("pieds",v))];
     if(tab==="accessoires")c=[groupe("Tête",optsSlot("tete","Rien"),P.tete,v=>set("tete",v)),groupe("Visage",optsSlot("visage","Rien"),P.visage,v=>set("visage",v)),groupe("Oreilles",optsSlot("oreilles","Celles de l'espèce"),P.oreilles,v=>set("oreilles",v)),groupe("Dos",optsSlot("dos","Rien"),P.dos,v=>set("dos",v)),groupe("En main",optsSlot("main","Rien"),P.main,v=>set("main",v))];
-    if(tab==="badges"){const lib=el("input",{type:"text",id:"pronom-libre",maxlength:"24",value:P.pronomLibre,placeholder:"par ex. ielle, al",autocomplete:"off"});lib.addEventListener("input",()=>set("pronomLibre",lib.value,false));
-      c=[el("p",{class:"avis"},"Tout est facultatif ici. Sans rien préciser, les textes de la guilde restent en écriture inclusive (« Apprenti·e », « Compagnon·ne »)."),
-      groupe("Pronoms",PRONOMS,P.pronom,v=>set("pronom",v)),P.pronom==="libre"?el("div",{class:"champ-texte"},el("label",{for:"pronom-libre"},"Vos pronoms"),lib):null,
-      P.pronom?el("p",{class:"petit doux"},"Avec il, les textes s'accordent au masculin ; avec elle, au féminin ; sinon, en écriture inclusive."):null,
-      P.pronom?el("fieldset",{class:"reglage"},el("legend",{},"Affichage"),el("div",{class:"opts"},bascule("Montrer mes pronoms à côté du nom",P.badgePronoms,v=>set("badgePronoms",v)))):null,
-      groupe("Drapeau",[["","Aucun"],...Object.entries(DRAPEAUX).map(([k,d])=>[k,d.l])],P.drapeau,v=>{S.perso.drapeau=v;if(!v)S.perso.badge=false;maj();}),
-      P.drapeau?el("fieldset",{class:"reglage"},el("legend",{},"Affichage"),el("div",{class:"opts"},bascule("Badge du drapeau sur la poitrine",P.badge,v=>set("badge",v)))):null,
-      el("p",{class:"petit doux"},"La cape aux couleurs des fiertés (onglet Accessoires, dos) reprend ce drapeau, ou l'arc-en-ciel si aucun n'est choisi.")];}
     if(tab==="familier"){const nm=el("input",{type:"text",id:"nom-fam",maxlength:"20",value:P.famNom,placeholder:"Son nom",autocomplete:"off"});nm.addEventListener("input",()=>set("famNom",nm.value,false));
       c=[groupe("Familier",[["","Aucun"],...optsSlot("familier")],P.familier,v=>set("familier",v)),groupe("Accessoire du familier",optsSlot("famAcc","Rien"),P.famAcc,v=>set("famAcc",v)),el("div",{class:"champ-texte"},el("label",{for:"nom-fam"},"Nom du familier"),nm),el("p",{class:"petit doux"},"Pendant les jeux, le familier saute de joie quand vous réussissez et se cache quand vous vous trompez.")];}
     if(tab==="gestes")c=[groupe("Attitude (toucher le personnage)",optsSlot("attitude"),P.attitude,v=>{set("attitude",v);sc.jouer("attitude",v);}),groupe("Animation de réussite",optsSlot("succes"),P.succes,v=>{set("succes",v);sc.jouer("succes",v);}),groupe("Animation d'erreur",optsSlot("erreur"),P.erreur,v=>{set("erreur",v);sc.jouer("erreur",v);}),
@@ -129,7 +123,7 @@ function vQuetes(main){
 function carteAventurier(){const r=rang(),q=quetesDuJour();const{cv,sc}=sceneCanvas(S.perso,{W:56,H:68,s:2,cx:14,cy:2,fx:0,fy:52,fond:false,sol:false,label:"Votre personnage : "+descPerso()});cv.style.cursor="pointer";cv.onclick=()=>sc.jouer("attitude",S.perso.attitude);
   const k=cleJour(),fait=S.rituel[k];
   return el("section",{class:"cadre-nuit pile",style:"padding:14px"},el("span",{class:"oeil"},"Votre fiche d'aventurier·e"),
-    el("div",{class:"carte-perso"},cv,el("div",{class:"pile",style:"gap:6px"},el("div",{class:"nom-perso"},S.perso.nom||"Sans nom",badgePronoms()),el("div",{class:"pix",style:"color:#aab5dd"},`${nomRang(r.nom)} · ${r.xp} XP${r.suivant?` · encore ${r.reste} XP pour devenir ${nomRang(r.suivant)}`:""}`),
+    el("div",{class:"carte-perso"},cv,el("div",{class:"pile",style:"gap:6px"},el("div",{class:"nom-perso"},S.perso.nom||"Sans nom"),el("div",{class:"pix",style:"color:#aab5dd"},`${nomRang(r.nom)} · ${r.xp} XP${r.suivant?` · encore ${r.reste} XP pour devenir ${nomRang(r.suivant)}`:""}`),
       el("div",{class:"barre-xp"},el("i",{style:`width:${Math.round(100*r.ratio)}%`})),el("span",{class:"ecus"},sprite("piece",16),` ${fr(S.ecus)} écus`),
       el("div",{class:"mini-quetes"},q.ids.map((id,i)=>el("span",{},sprite(q.ok[i]?"gemme":"gemme0",14),`${QJ_ID[id].t} (${q.p[i]}/${QJ_ID[id].n})`))))),
     el("p",{class:"pix",style:"font-size:.92rem"},`Quête du jour : ${fait?`accomplie, ${fait.score} / ${fait.total}`:"à accomplir"}${serieActuelle()?` · ${serieActuelle()} jour${serieActuelle()>1?"s":""} d'affilée`:""}`),

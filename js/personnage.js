@@ -41,7 +41,7 @@ const ESPECES={
   golem:{l:"Golem de mousse",peaux:["#8f9493","#a89a88","#7a8088"],oreilles:"aucune",mousse:true,lueur:true,carre:true},
   spectre:{l:"Spectre",peaux:["#dfe8ff","#e8dfff","#d8f2ec"],oreilles:"rondes",jambes:"brume",translucide:.82,lueur:true,flotte:true},
 };
-const PRONOMS=[["","Non précisés"],["il","il"],["elle","elle"],["iel","iel"],["ael","ael"],["ol","ol"],["libre","autre…"]];
+const PRONOMS=[["","Non précisé"],["il","il"],["elle","elle"],["iel","iel"],["ael","ael"],["ol","ol"],["libre","autre…"]];
 const IRIS={brun:"#5a3a22",noisette:"#8a6a2a",vert:"#3f8a4a",bleu:"#3d6fd8",gris:"#7a8494",violet:"#7a4ac8",ambre:"#d99a1f",rouge:"#c03a3a",argent:"#cfe0ff",or:"#e8b84a"};
 const YEUX={ronds:"Ronds",amande:"En amande",rieurs:"Rieurs",endormis:"Mi-clos"};
 const BOUCHES={sourire:"Sourire",neutre:"Neutre",rire:"Rire",o:"Étonnée",mutin:"Mutine"};
@@ -52,24 +52,10 @@ const COULEURS_TENUE=["#4a6fa5","#3f8a5f","#8e3b4f","#7a5ad0","#2f2f3f","#e8e0d0
 const BARBES={aucune:"Aucune",courte:"Courte",longue:"Longue",moustache:"Moustache",bouc:"Bouc"};
 const FARDS={"":"Aucun","#e8b84a":"Or","#b48ae8":"Violet","#5ad8d0":"Turquoise","#f08ab8":"Rose"};
 const LEVRES={"":"Aucun","#1f1a24":"Noir","#c8243e":"Rouge","#7a2a8a":"Violet"};
-const DRAPEAUX={
-  progres:{l:"Arc-en-ciel inclusif",b:["#e40303","#ff8c00","#ffed00","#008026","#004dff","#750787"],chevron:["#ffffff","#f5a9b8","#5bcefa","#613915","#000000"]},
-  trans:{l:"Trans",b:["#5bcefa","#f5a9b8","#ffffff","#f5a9b8","#5bcefa"]},
-  nb:{l:"Non-binaire",b:["#fcf434","#ffffff","#9c59d1","#2c2c2c"]},
-  bi:{l:"Bi",b:["#d60270","#d60270","#9b4f96","#0038a8","#0038a8"]},
-  pan:{l:"Pan",b:["#ff218c","#ffd800","#21b1ff"]},
-  lesbienne:{l:"Lesbienne",b:["#d52d00","#ff9a56","#ffffff","#d362a4","#a30262"]},
-  gay:{l:"Gay",b:["#078d70","#26ceaa","#98e8c1","#ffffff","#7bade2","#5049cc","#3d1a78"]},
-  ace:{l:"Asexuel·le",b:["#000000","#a3a3a3","#ffffff","#800080"]},
-  aro:{l:"Aromantique",b:["#3da542","#a7d379","#ffffff","#a9a9a9","#000000"]},
-  inter:{l:"Intersexe",b:["#ffd800"],anneau:"#7902aa"},
-  fluide:{l:"Genderfluid",b:["#ff75a2","#ffffff","#be18d6","#000000","#333ebd"]},
-  agenre:{l:"Agenre",b:["#000000","#bcc4c7","#ffffff","#b7f684","#ffffff","#bcc4c7","#000000"]},
-};
 const PERSO0={nom:"",pronom:"",pronomLibre:"",espece:"humain",silhouette:"moyenne",taille:"moyenne",peau:"#e0ac80",yeux:"ronds",iris:"#5a3a22",bouche:"sourire",
   rousseur:false,vitiligo:false,grain:false,cicatrice:false,blush:false,barbe:"aucune",eyeliner:false,fard:"",levres:"",septum:false,arcade:false,boucles:false,
   coiffure:"court",teinte:"brun",haut:"tunique",hautC:"#4a6fa5",bas:"pantalon",basC:"#3a3450",jambes:"",pieds:"bottes",tete:"",visage:"",oreilles:"",dos:"",main:"",
-  drapeau:"",badge:false,badgePronoms:false,champi:"rouge",familier:"chat",famAcc:"",famNom:"",attitude:"saluer",succes:"confettis",erreur:"oups",compagnon:true};
+  champi:"rouge",familier:"chat",famAcc:"",famNom:"",attitude:"saluer",succes:"confettis",erreur:"oups",compagnon:true};
 
 /* ----- Géométrie du corps ----- */
 function geom(cfg){
@@ -118,9 +104,7 @@ function peindre(cfg,pose={}){
   /* ---------- arrière : ailes ---------- */
   if(cfg.dos==="ailes-spectrales"||cfg.dos==="ailes-fee"||cfg.dos==="ailes-chauve")peindreAiles(B,g,cfg.dos,pose.f||0);
   /* ---------- arrière : cape, sac, queue, cheveux longs, capuche ---------- */
-  if(cfg.dos==="cape-fiertes"){const D=DRAPEAUX[cfg.drapeau]||DRAPEAUX.progres;const h=g.legTop+7-ty;
-    for(let k=0;k<h;k++){const half=g.tw/2+2+Math.floor(k/4);const c=D.b[Math.min(D.b.length-1,Math.floor(k*D.b.length/h))];for(let x=CX-half;x<CX+half;x++)L.px(x,ty+k,x===CX-half||x===CX+half-1?fonce(c,.12):c);}
-    if(D.anneau){for(let a=0;a<12;a++){L.px(CX+Math.round(Math.cos(a/12*6.283)*3)-1,ty+h-6+Math.round(Math.sin(a/12*6.283)*3),D.anneau);}}}
+  if(cfg.dos==="cape"){const c="#3a2f6e",h=g.legTop+7-ty;for(let k=0;k<h;k++){const half=g.tw/2+2+Math.floor(k/4);for(let x=CX-half;x<CX+half;x++)L.px(x,ty+k,x===CX-half||x===CX+half-1?"#c9963b":k===h-1?fonce(c,.25):x<CX-half+3?clair(c,.12):c);}}
   if(cfg.dos==="sac-livres"){L.rect(g.tx0-1,ty+1,g.tw+2,8,"#7a5320");[["#c8453d",0],["#3f8a5f",2],["#3d6fd8",4]].forEach(([c,o])=>L.rect(g.tx1-4+o,ty-4+(o%4?1:0),2,5,c));L.rect(g.tx0-1,ty-2,2,3,"#e8b84a");}
   if(E.queue&&!g.sj)peindreQueue(L,g,E.queue,sk,pose.f||0);
   if(["long","frange","locs"].includes(coif)){for(let y=hy+2;y<=ty+7;y++){const w=y>ty+5?1:2;HR(x0-w,x0-1,y);HR(x1+1,x1+w,y);HR(x0,x1,y);}}
@@ -143,9 +127,8 @@ function peindre(cfg,pose={}){
   /* ---------- torse ---------- */
   L.rect(g.tx0,ty,g.tw,10,S_(sk));L.rect(CX-2,ty-1,4,1,S_(skS));
   peindreHaut(L,g,cfg,haut,hC,hS,hH,sk,S_);
-  if(cfg.badge&&cfg.drapeau){const D=DRAPEAUX[cfg.drapeau];const bx=g.tx0+1,by=ty+2;for(let j=0;j<4;j++)for(let i=0;i<4;i++){let c=D.b[Math.floor(j*D.b.length/4)];if(D.chevron&&i===0)c=D.chevron[j%5];if(D.anneau&&(i===1||i===2)&&(j===1||j===2))c=D.anneau;L.px(bx+i,by+j,c);}}
   if(cfg.dos==="sac-livres"){L.rect(g.tx0+1,ty,1,6,"#5a3d18");L.rect(g.tx1-1,ty,1,6,"#5a3d18");}
-  if(cfg.dos==="cape-fiertes"){L.px(g.tx0,ty,"#e8b84a");L.px(g.tx1,ty,"#e8b84a");}
+  if(cfg.dos==="cape"){L.px(g.tx0,ty,"#e8b84a");L.px(g.tx1,ty,"#e8b84a");}
   if(E.mousse){[[g.tx0,ty],[g.tx0+1,ty],[g.tx1,ty],[g.tx1-1,ty],[g.tx1,ty+1]].forEach(([x,y],i)=>L.px(x,y,i%2?"#7fbf4f":"#5f9a3f"));}
   /* ---------- bras ---------- */
   const{L:bl,R:br}=brasPose(g,pose.bras||"repos",pose.onde);
