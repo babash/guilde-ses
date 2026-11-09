@@ -30,12 +30,12 @@ Chaque jeu dit ce qu'il fait réviser et pour quelle épreuve. Les fiches sont r
 
 | | |
 |---|---|
-| ![Paires de runes](docs/img/paires.webp) **Les jeux** : chaque réponse affiche la fiche, sa source et le chapitre du programme. | ![La loge](docs/img/loge.webp) **La loge** : 12 espèces, coiffures, pronoms, drapeaux des fiertés, familiers. |
+| ![Paires de runes](docs/img/paires.webp) **Les jeux** : chaque réponse affiche la fiche, sa source et le chapitre du programme. | ![La loge](docs/img/loge.webp) **La loge** : 12 espèces, visages, coiffures, tenues, familiers. |
 | ![L'échoppe](docs/img/echoppe.webp) **L'échoppe** : tenues, accessoires, gestes et animations, à essayer avant d'acheter. | ![Quêtes et hauts faits](docs/img/quetes.webp) **Quêtes et hauts faits** : trois quêtes par jour, quatorze exploits. |
 
 ## Votre personnage
 
-Espèce (humain·e, elfes, faune, renardin·e, félin·e, saurien·ne, champignonnier·e, gélatineux·se, golem de mousse, spectre), corps, visage, coiffure, **pronoms** (il, elle, iel, ael, ol ou les vôtres) et **drapeaux des fiertés** sont libres et gratuits. Les textes du site s'accordent avec vos pronoms.
+Espèce (humain·e, elfes, faune, renardin·e, félin·e, saurien·ne, champignonnier·e, gélatineux·se, golem de mousse, spectre), corps, visage et coiffure sont libres et gratuits. Les textes sont en écriture inclusive ; on peut, si on le souhaite, préciser ses pronoms ou porter un drapeau des fiertés, sans que rien ne soit demandé.
 
 Tenues, accessoires, familiers, gestes et animations de réussite ou d'erreur se gagnent en révisant : 2 écus par bonne réponse, 20 par quête du jour, 40 de prime pour les trois. Certains objets, comme les ailes spectrales ou le Bottin mondain, récompensent un haut fait. Pendant les jeux, le personnage et son familier réagissent à vos réponses.
 

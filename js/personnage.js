@@ -41,7 +41,7 @@ const ESPECES={
   golem:{l:"Golem de mousse",peaux:["#8f9493","#a89a88","#7a8088"],oreilles:"aucune",mousse:true,lueur:true,carre:true},
   spectre:{l:"Spectre",peaux:["#dfe8ff","#e8dfff","#d8f2ec"],oreilles:"rondes",jambes:"brume",translucide:.82,lueur:true,flotte:true},
 };
-const PRONOMS=[["il","il"],["elle","elle"],["iel","iel"],["ael","ael"],["ol","ol"],["libre","autre…"]];
+const PRONOMS=[["","Non précisés"],["il","il"],["elle","elle"],["iel","iel"],["ael","ael"],["ol","ol"],["libre","autre…"]];
 const IRIS={brun:"#5a3a22",noisette:"#8a6a2a",vert:"#3f8a4a",bleu:"#3d6fd8",gris:"#7a8494",violet:"#7a4ac8",ambre:"#d99a1f",rouge:"#c03a3a",argent:"#cfe0ff",or:"#e8b84a"};
 const YEUX={ronds:"Ronds",amande:"En amande",rieurs:"Rieurs",endormis:"Mi-clos"};
 const BOUCHES={sourire:"Sourire",neutre:"Neutre",rire:"Rire",o:"Étonnée",mutin:"Mutine"};
@@ -66,10 +66,10 @@ const DRAPEAUX={
   fluide:{l:"Genderfluid",b:["#ff75a2","#ffffff","#be18d6","#000000","#333ebd"]},
   agenre:{l:"Agenre",b:["#000000","#bcc4c7","#ffffff","#b7f684","#ffffff","#bcc4c7","#000000"]},
 };
-const PERSO0={nom:"",pronom:"iel",pronomLibre:"",espece:"humain",silhouette:"moyenne",taille:"moyenne",peau:"#e0ac80",yeux:"ronds",iris:"#5a3a22",bouche:"sourire",
+const PERSO0={nom:"",pronom:"",pronomLibre:"",espece:"humain",silhouette:"moyenne",taille:"moyenne",peau:"#e0ac80",yeux:"ronds",iris:"#5a3a22",bouche:"sourire",
   rousseur:false,vitiligo:false,grain:false,cicatrice:false,blush:false,barbe:"aucune",eyeliner:false,fard:"",levres:"",septum:false,arcade:false,boucles:false,
   coiffure:"court",teinte:"brun",haut:"tunique",hautC:"#4a6fa5",bas:"pantalon",basC:"#3a3450",jambes:"",pieds:"bottes",tete:"",visage:"",oreilles:"",dos:"",main:"",
-  drapeau:"progres",badge:true,badgePronoms:true,champi:"rouge",familier:"chat",famAcc:"",famNom:"",attitude:"saluer",succes:"confettis",erreur:"oups",compagnon:true};
+  drapeau:"",badge:false,badgePronoms:false,champi:"rouge",familier:"chat",famAcc:"",famNom:"",attitude:"saluer",succes:"confettis",erreur:"oups",compagnon:true};
 
 /* ----- Géométrie du corps ----- */
 function geom(cfg){
