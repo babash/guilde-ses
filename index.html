@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>La Guilde des SES · réviser le CAPES externe de SES en jouant</title>
+<meta name="description" content="Mini-jeux sourcés pour réviser le CAPES externe de sciences économiques et sociales : auteurs, notions, dates, mécanismes, chiffres clés, et un atelier de rédaction.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 12 12%22 shape-rendering=%22crispEdges%22%3E%3Crect x=%222%22 y=%221%22 width=%228%22 height=%229%22 fill=%22%237a64e0%22/%3E%3Crect x=%224%22 y=%223%22 width=%224%22 height=%224%22 fill=%22%23e8b84a%22/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Alegreya:ital,wght@0,400;0,500;0,700;1,400&family=Cinzel:wght@500;700&family=Pixelify+Sans:wght@400;600&display=swap">
+<link rel="stylesheet" href="css/guilde.css">
+</head>
+<body>
+<header class="barre cadre-nuit">
+  <a class="blason" href="#accueil" aria-label="Accueil de la Guilde des SES"><span id="icone-blason"></span><div><b>La Guilde des SES</b><span>CAPES externe · SES</span></div></a>
+  <div class="espace"></div>
+  <div class="hud" id="hud" aria-label="Progression"></div>
+  <a class="bourse" id="bourse" href="#echoppe" aria-label="Écus : ouvrir l'échoppe"></a>
+  <button class="btn mini" id="btn-menu" aria-expanded="false" aria-controls="voile-menu">Menu</button>
+</header>
+<div class="voile-menu" id="voile-menu">
+  <div class="tiroir cadre-nuit" role="dialog" aria-label="Navigation">
+    <div class="rangee" style="justify-content:space-between"><span class="oeil">Carte de la guilde</span><button class="btn mini" id="btn-fermer">Fermer</button></div>
+    <nav id="nav-menu"></nav>
+    <button class="btn" id="btn-theme"></button>
+  </div>
+</div>
+<main id="main" tabindex="-1"></main>
+<footer class="pied" id="pied"></footer>
+<div class="vivant" aria-live="polite" id="annonce"></div>
+<div class="toasts" id="toasts"></div>
+<button class="compagnon" id="compagnon" type="button" hidden><canvas width="112" height="136"></canvas></button>
+<script src="js/donnees.js"></script>
+<script src="js/config.js"></script>
+<script src="js/jeux.js"></script>
+<script src="js/personnage.js"></script>
+<script src="js/economie.js"></script>
+<script src="js/pages-personnage.js"></script>
+<script src="js/atelier.js"></script>
+<script src="js/sauvegarde.js"></script>
+<script src="js/navigation.js"></script>
+</body>
+</html>

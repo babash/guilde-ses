@@ -1,0 +1,172 @@
+{
+ "chapitres": {
+  "2-intro": {
+   "t": "Comment les économistes, les sociologues et les politistes raisonnent-ils et travaillent-ils ?",
+   "court": "Raisonner en sciences sociales"
+  },
+  "2-E1": {
+   "t": "Comment crée-t-on des richesses et comment les mesure-t-on ?",
+   "court": "Créer et mesurer les richesses"
+  },
+  "2-E2": {
+   "t": "Comment se forment les prix sur un marché ?",
+   "court": "Formation des prix"
+  },
+  "2-S1": {
+   "t": "Comment devenons-nous des acteurs sociaux ?",
+   "court": "Devenir acteur social"
+  },
+  "2-S2": {
+   "t": "Comment s'organise la vie politique ?",
+   "court": "Organisation de la vie politique"
+  },
+  "2-RC": {
+   "t": "Quelles relations entre le diplôme, l'emploi et le salaire ?",
+   "court": "Diplôme, emploi, salaire"
+  },
+  "1-E1": {
+   "t": "Comment un marché concurrentiel fonctionne-t-il ?",
+   "court": "Marché concurrentiel"
+  },
+  "1-E2": {
+   "t": "Comment les marchés imparfaitement concurrentiels fonctionnent-ils ?",
+   "court": "Concurrence imparfaite"
+  },
+  "1-E3": {
+   "t": "Quelles sont les principales défaillances du marché ?",
+   "court": "Défaillances du marché"
+  },
+  "1-E4": {
+   "t": "Comment les agents économiques se financent-ils ?",
+   "court": "Financement des agents"
+  },
+  "1-E5": {
+   "t": "Qu'est-ce que la monnaie et comment est-elle créée ?",
+   "court": "Monnaie et création monétaire"
+  },
+  "1-S1": {
+   "t": "Comment la socialisation contribue-t-elle à expliquer les différences de comportement des individus ?",
+   "court": "Socialisation et différences de comportement"
+  },
+  "1-S2": {
+   "t": "Comment se construisent et évoluent les liens sociaux ?",
+   "court": "Liens sociaux"
+  },
+  "1-S3": {
+   "t": "Quels processus sociaux contribuent à la déviance ?",
+   "court": "Déviance"
+  },
+  "1-S4": {
+   "t": "Comment se forme et s'exprime l'opinion publique ?",
+   "court": "Opinion publique"
+  },
+  "1-S5": {
+   "t": "Voter : une affaire individuelle ou collective ?",
+   "court": "Vote"
+  },
+  "1-RC1": {
+   "t": "Comment l'assurance et la protection sociale contribuent-elles à la gestion des risques dans les sociétés développées ?",
+   "court": "Assurance et protection sociale"
+  },
+  "1-RC2": {
+   "t": "Comment les entreprises sont-elles organisées et gouvernées ?",
+   "court": "Organisation et gouvernance des entreprises"
+  },
+  "T-E1": {
+   "t": "Quels sont les sources et les défis de la croissance économique ?",
+   "court": "Croissance : sources et défis"
+  },
+  "T-E2": {
+   "t": "Quels sont les fondements du commerce international et de l'internationalisation de la production ?",
+   "court": "Commerce international"
+  },
+  "T-E3": {
+   "t": "Comment lutter contre le chômage ?",
+   "court": "Lutte contre le chômage"
+  },
+  "T-E4": {
+   "t": "Comment expliquer les crises financières et réguler le système financier ?",
+   "court": "Crises financières et régulation"
+  },
+  "T-E5": {
+   "t": "Quelles politiques économiques dans le cadre européen ?",
+   "court": "Politiques économiques européennes"
+  },
+  "T-S1": {
+   "t": "Comment est structurée la société française actuelle ?",
+   "court": "Structure sociale"
+  },
+  "T-S2": {
+   "t": "Quelle est l'action de l'École sur les destins individuels et sur l'évolution de la société ?",
+   "court": "École et destins sociaux"
+  },
+  "T-S3": {
+   "t": "Quels sont les caractéristiques contemporaines et les facteurs de la mobilité sociale ?",
+   "court": "Mobilité sociale"
+  },
+  "T-S4": {
+   "t": "Quelles mutations du travail et de l'emploi ?",
+   "court": "Mutations du travail et de l'emploi"
+  },
+  "T-S5": {
+   "t": "Comment expliquer l'engagement politique dans les sociétés démocratiques ?",
+   "court": "Engagement politique"
+  },
+  "T-RC1": {
+   "t": "Quelles inégalités sont compatibles avec les différentes conceptions de la justice sociale ?",
+   "court": "Inégalités et justice sociale"
+  },
+  "T-RC2": {
+   "t": "Quelle action publique pour l'environnement ?",
+   "court": "Action publique pour l'environnement"
+  },
+  "HP": {
+   "t": "Histoire de la pensée et épistémologie (attendus des épreuves du CAPES)",
+   "court": "Histoire de la pensée et épistémologie"
+  }
+ },
+ "programmes": {
+  "2": {
+   "l": "Programme de SES de seconde, BO spécial n° 1 du 22 janvier 2019",
+   "u": "https://www.education.gouv.fr/bo/19/Special1/MENE1901638A.htm"
+  },
+  "1": {
+   "l": "Programme de spécialité SES de première, BO spécial n° 1 du 22 janvier 2019",
+   "u": "https://www.education.gouv.fr/bo/19/Special1/MENE1901639A.htm"
+  },
+  "T": {
+   "l": "Programme de spécialité SES de terminale, BO spécial n° 8 du 25 juillet 2019",
+   "u": "https://www.education.gouv.fr/bo/19/Special8/MENE1921253A.htm"
+  },
+  "HP": {
+   "l": "Épreuves du CAPES externe bac + 5 (question d'histoire de la pensée ou d'épistémologie)",
+   "u": "https://www.devenirenseignant.gouv.fr/cid157421/epreuves-capes-externe-cafep-capes-section-sciences-economiques-sociales.html"
+  }
+ },
+ "officiel": {
+  "bac3": {
+   "l": "Les épreuves du CAPES externe bac + 3, section SES (devenirenseignant.gouv.fr)",
+   "u": "https://www.devenirenseignant.gouv.fr/les-epreuves-du-capes-externe-bac3-section-sciences-economiques-et-sociales-1465"
+  },
+  "bac5": {
+   "l": "Les épreuves du CAPES externe bac + 5, section SES (devenirenseignant.gouv.fr)",
+   "u": "https://www.devenirenseignant.gouv.fr/cid157421/epreuves-capes-externe-cafep-capes-section-sciences-economiques-sociales.html"
+  },
+  "programme2027": {
+   "l": "Programme du CAPES externe bac + 3 SES, session 2027 (PDF)",
+   "u": "https://www.devenirenseignant.gouv.fr/media/20686/download"
+  },
+  "programmes": {
+   "l": "Les programmes des concours du second degré, session 2027",
+   "u": "https://www.devenirenseignant.gouv.fr/les-programmes-des-concours-d-enseignants-du-second-degre-de-la-session-2027-1662"
+  },
+  "jury": {
+   "l": "Rapport du jury du CAPES externe SES bac + 5, session 2026 (PDF)",
+   "u": "https://www.devenirenseignant.gouv.fr/media/20823/download"
+  },
+  "eduscol": {
+   "l": "Éduscol : programmes et ressources en SES, voie générale et technologique",
+   "u": "https://eduscol.education.gouv.fr/5838/programmes-et-ressources-en-sciences-economiques-et-sociales-voie-gt"
+  }
+ }
+}
