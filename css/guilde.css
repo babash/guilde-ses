@@ -452,3 +452,6 @@ textarea.copie:focus{outline:3px solid var(--or);outline-offset:1px}
 .tab-stat th:first-child{text-align:left}
 .pieges{margin:0;padding-left:1.2rem;display:grid;gap:6px;font-size:.95rem}
 .pieges li.juste b{color:var(--juste)}
+.fiche .extrait{margin:4px 0 0;display:grid;gap:3px;background:#f6efdc;border-left:4px solid var(--or);padding:6px 10px}
+.fiche .extrait p{font-style:italic}
+.fiche .extrait small{font-size:.86rem;color:var(--encre-doux)}

@@ -159,8 +159,11 @@ function ficheEl(x,etat){
   else if(x.type==="date")box.append(el("h4",{},x.evenement),el("p",{class:"meta"},x.date),el("p",{},x.detail));
   else if(x.type==="chiffre")box.append(el("h4",{},x.indicateur),el("p",{},el("strong",{style:"font-size:1.2rem"},x.affichage),` · ${x.periode}${x.champ?", "+x.champ:""}`),x.precision?el("p",{class:"meta"},x.precision):null);
   else box.append(el("h4",{},x.titre),el("ol",{},x.etapes.map(s=>el("li",{},s))),x.hyp?el("p",{class:"meta"},el("b",{},"Hypothèses : "),x.hyp):null,x.limite?el("p",{class:"meta"},el("b",{},"Limite : "),x.limite):null);
+  if(x.cible)box.append(extraitEl(x.cible));
   box.append(sourcesEl(x));return box;
 }
+/* passage précis de la source : citation courte et lien qui ouvre la page sur ce passage */
+function extraitEl(c){return el("blockquote",{class:"extrait"},el("span",{class:"oeil"},"Le passage à lire"),el("p",{},`« ${c.x} »`),el("small",{},lienExt(c.u,"Ouvrir la source à ce passage ↗"),c.s?` · ${c.s}`:""));}
 function retourEl(juste,texte,fiches){reagir(juste);return el("div",{class:"pile"},el("p",{class:"verdict "+(juste?"juste":"faux")},texte,juste?el("span",{class:"gain"},"  +10 XP · +2 écus"):null),el("div",{class:"liste-fiches"},fiches));}
 
 /* ========== En-tête d'un jeu : ce que l'on apprend ========== */
