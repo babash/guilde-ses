@@ -327,6 +327,7 @@ function peindreObjet(L,F,g,t,m,f){if(!m)return;const[hx,hy]=m;const ty=g.ty;
     case "lanterne":L.px(hx,hy+1,"#3a3640");L.ligne(hx-1,hx+2,hy+2,"#3a3640");L.rect(hx-1,hy+3,4,3,"#ffd86a");L.px(hx-1,hy+3,"#3a3640");L.px(hx+2,hy+3,"#3a3640");L.ligne(hx-1,hx+2,hy+6,"#3a3640");halo(F,hx+.5,hy+4.5,4+f,"#ffe9a0");break;
     case "the":L.rect(hx-1,hy-2,4,3,"#fbf3e8");L.ligne(hx-1,hx+2,hy-2,"#b8702a");L.px(hx+3,hy-1,"#fbf3e8");L.px(hx,hy,"#7a9ad8");[[0,-4],[1,-5],[0,-6],[1,-7]].forEach(([dx,dy],i)=>F.px(hx+dx+((f+i)%2),hy+dy,alpha("#ffffff",.6-i*.1),false));break;
     case "baton":for(let y=g.hy-2;y<=g.G;y++)L.px(hx+1,y,y%5===0?"#5a3d18":"#7a5320");L.rect(hx,g.hy-1,3,1,"#e8b84a");L.carte(hx-1,g.hy-7,["..x..",".xyx.","xyyyx",".xyx.","..x.."],{x:"#7a64e0",y:"#cfe0ff"});halo(F,hx+1,g.hy-5,4+f,"#cfe0ff");break;
+    case "epee":{for(let y=hy-11;y<=hy-2;y++){L.px(hx+1,y,"#e4eaf4");L.px(hx+2,y,"#a9b4c8");}L.px(hx+1,hy-12,"#e4eaf4");L.ligne(hx-1,hx+4,hy-1,"#e8b84a");L.px(hx-1,hy-2,"#c9963b");L.px(hx+4,hy-2,"#c9963b");L.rect(hx+1,hy,2,2,"#6a3d1a");L.rect(hx+1,hy+2,2,1,"#e8b84a");break;}
     case "balance":{const o="#e8b84a",d="#9a6a1e";for(let y=hy-8;y<=hy;y++)L.px(hx+1,y,d);L.ligne(hx-4,hx+6,hy-8,o);[hx-4,hx+6].forEach(x=>{L.px(x,hy-7,d);L.px(x,hy-6,d);L.ligne(x-2,x+2,hy-5,o);L.ligne(x-1,x+1,hy-4,o);});L.px(hx+1,hy-9,o);break;}
   }}
 function halo(F,cx,cy,r,c){for(let y=Math.floor(cy-r);y<=Math.ceil(cy+r);y++)for(let x=Math.floor(cx-r);x<=Math.ceil(cx+r);x++){const d=Math.hypot(x-cx,y-cy);if(d<=r&&d>1.5)F.px(x,y,alpha(c,.12+.16*(1-d/r)),false);}}

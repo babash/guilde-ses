@@ -75,35 +75,39 @@ const SAVOIRS={
 };
 const JEUX={
  quete:{nom:"Quête du jour",icone:"epee",savoirs:["auteurs","notions","dates","chiffres","mecas"],fluff:"Chaque matin, le tableau de la guilde affiche une nouvelle quête.",regle:"Sept questions tirées de tout le programme, une de chaque sorte. Le tirage dépend de la date : il est le même pour tous ce jour-là. Revenez chaque jour pour allonger votre série.",epreuve:"Un entretien quotidien de toutes les connaissances des écrits et des oraux."},
- paires:{nom:"Paires de runes",icone:"gemme",fluff:"Les tablettes runiques vont par paires : retrouvez-les.",regle:"Retournez deux cartes. Si elles vont ensemble, elles restent ouvertes et la fiche correspondante s'affiche sous le plateau, avec sa source.",
-   modes:{auteurs:{l:"Auteur ↔ notion clé",savoirs:["auteurs"]},oeuvres:{l:"Œuvre ↔ année",savoirs:["auteurs","dates"]},notions:{l:"Notion ↔ définition",savoirs:["notions"]},dates:{l:"Événement ↔ année",savoirs:["dates"]}},def:"auteurs"},
- sceaux:{nom:"Les Trois Sceaux",icone:"cle",savoirs:["auteurs"],fluff:"Chaque coffre se ferme par trois sceaux : un nom, une idée, une année.",regle:"Touchez un auteur puis la notion qui lui correspond ; touchez une notion puis l'année de l'œuvre. Vérifiez quand les cinq chaînes sont tracées."},
- bibliotheque:{nom:"La Bibliothèque en désordre",icone:"livre",fluff:"Les ouvrages ont glissé des rayonnages. Remettez chacun à sa place.",regle:"Touchez un ouvrage, puis le rayonnage où il doit aller. Un ouvrage déjà rangé revient dans la pile si vous le touchez.",
-   modes:{courants:{l:"Par courant de pensée",savoirs:["auteurs"]},disciplines:{l:"Par discipline",savoirs:["auteurs","notions"]},periodes:{l:"Par période",savoirs:["auteurs","dates"]},niveaux:{l:"Par niveau du programme",savoirs:["notions","auteurs"]}},def:"courants"},
- grille:{nom:"La Grille du Scribe",icone:"plume",fluff:"Le scribe a laissé une grille à compléter dans la marge du registre.",regle:"Touchez une définition ou une case, puis écrivez. Les accents ne comptent pas. Un mot juste dévoile sa source.",
-   modes:{notions:{l:"Notions",savoirs:["notions"]},auteurs:{l:"Noms d'auteurs (orthographe)",savoirs:["auteurs"]}},def:"notions"},
- chronique:{nom:"La Chronique",icone:"sablier",fluff:"Les pages de la chronique ont été mélangées.",regle:"Classez du plus ancien (en haut) au plus récent à l'aide des flèches, puis vérifiez.",
-   modes:{mixte:{l:"Œuvres et événements",savoirs:["dates","auteurs"]},oeuvres:{l:"Œuvres",savoirs:["auteurs"]},evenements:{l:"Événements",savoirs:["dates"]}},def:"mixte"},
- duel:{nom:"Le Duel des Âges",icone:"epee",savoirs:["dates","auteurs"],fluff:"Deux parchemins s'affrontent : lequel est le plus ancien ?",regle:"Touchez le plus ancien des deux. À chaque victoire, les dates se rapprochent."},
- forge:{nom:"La Forge des Mécanismes",icone:"enclume",savoirs:["mecas"],fluff:"Un mécanisme se forge maillon par maillon.",regle:"Touchez les étapes dans l'ordre logique. Touchez une étape déjà placée pour la retirer."},
+ paires:{nom:"Paires de runes",icone:"gemme",fluff:"Les runes jumelles se ressemblent : ne les confondez pas.",regle:"Touchez une carte de gauche, puis celle de droite qui lui correspond. Une erreur est signalée aussitôt. Les cartes viennent du même chapitre ou de la même famille : elles se ressemblent à dessein.",
+   modes:{notions:{l:"Notions jumelles",savoirs:["notions"]},dates:{l:"Repères d'un chapitre",savoirs:["dates"]}},def:"notions"},
+ sceaux:{nom:"Les Trois Sceaux",icone:"cle",savoirs:["auteurs"],fluff:"Chaque coffre se ferme par trois sceaux : un auteur, une œuvre, une notion.",regle:"Reliez chaque auteur à son œuvre, puis chaque œuvre à sa notion clé. Les cinq auteurs travaillent sur les mêmes questions : c'est ce qui rend les sceaux difficiles à poser."},
+ bibliotheque:{nom:"La Bibliothèque en désordre",icone:"livre",fluff:"Les ouvrages de quelques auteurs voisins ont été mélangés. Rendez à chacun ce qui lui revient.",regle:"Touchez une carte, puis le rayonnage de l'auteur à qui elle revient. Les auteurs d'une partie sont proches (même chapitre, même époque ou même courant). Une carte déjà rangée revient dans la pile si vous la touchez.",
+   modes:{idees:{l:"Qui soutient quoi ?",savoirs:["auteurs"]},oeuvres:{l:"Qui a écrit quoi ?",savoirs:["auteurs"]}},def:"idees"},
+ grille:{nom:"La Grille du Scribe",icone:"plume",fluff:"Le scribe a laissé des mots fléchés dans la marge du registre.",regle:"Chaque case fléchée porte un numéro : l'indice correspondant s'affiche au-dessus de la grille. Touchez une case ou un indice, puis écrivez ; les flèches du clavier déplacent le curseur. Les accents ne comptent pas.",
+   modes:{notions:{l:"Notions",savoirs:["notions"]},auteurs:{l:"Concept → auteur",savoirs:["auteurs"]},oeuvres:{l:"Œuvre → auteur",savoirs:["auteurs"]}},def:"notions"},
+ chronique:{nom:"La Chronique",icone:"sablier",fluff:"Les pages de la chronique ont été mélangées.",regle:"Classez du plus ancien (en haut) au plus récent avec les flèches, puis vérifiez. Les pages viennent d'un même débat ou d'un même chapitre : l'ordre montre qui répond à qui.",
+   modes:{debats:{l:"Généalogie d'un débat",savoirs:["debats","auteurs","dates"]},chapitre:{l:"Un chapitre dans le temps",savoirs:["dates","auteurs"]}},def:"debats"},
+ duel:{nom:"Le Duel des Âges",icone:"epee",savoirs:["dates","auteurs"],fluff:"Une œuvre face à l'histoire : a-t-elle été écrite avant ou après l'événement ?",regle:"Dites si l'œuvre a paru avant ou après l'événement. À chaque victoire, les deux dates se rapprochent.",epreuve:"Contextualiser une théorie dans la dissertation : savoir dans quel monde elle a été écrite, et contre quoi."},
+ forge:{nom:"La Forge des Mécanismes",icone:"enclume",fluff:"Un mécanisme se forge maillon par maillon.",regle:"Ordonnez les étapes, ou trouvez le maillon faux glissé dans une chaîne. Chaque mécanisme s'accompagne de ses hypothèses et de sa limite principale, à citer dans la question de cours.",
+   modes:{ordre:{l:"Ordonner la chaîne",savoirs:["mecas"]},faux:{l:"Le maillon faux",savoirs:["mecas"]}},def:"ordre"},
  faussaire:{nom:"Le Faussaire",icone:"masque",savoirs:["auteurs","dates"],fluff:"Un faussaire a peut-être altéré ce parchemin.",regle:"L'œuvre (ou l'événement) est authentique. Touchez l'élément falsifié, ou déclarez le parchemin authentique."},
- enigme:{nom:"L'Énigme de la Tour",icone:"tour",savoirs:["auteurs"],fluff:"La gardienne de la tour décrit un savant : qui est-ce ?",regle:"Chaque indice supplémentaire coûte un point. Choisissez l'auteur dès que vous l'avez reconnu."},
+ enigme:{nom:"L'Énigme de la Tour",icone:"tour",savoirs:["auteurs"],fluff:"La gardienne de la tour énonce une thèse : qui l'a soutenue ?",regle:"Le premier indice est la thèse elle-même ; les suivants coûtent un point chacun (notion et courant, œuvre, initiales). Les candidats sont des auteurs proches."},
  balance:{nom:"La Balance du Marchand",icone:"balance",fluff:"Le marchand ne se laisse pas tromper sur les ordres de grandeur.",regle:"Choisissez la bonne valeur parmi quatre, ou dites si la vraie valeur est au-dessus ou en dessous de celle annoncée.",
    modes:{valeurs:{l:"Quatre valeurs",savoirs:["chiffres"]},"plus-moins":{l:"Au-dessus ou en dessous",savoirs:["chiffres"]}},def:"valeurs"},
- comptoir:{nom:"Le Comptoir du Trésorier",icone:"piece",savoirs:["calculs"],fluff:"Le trésorier vérifie chaque calcul avant de signer le registre.",regle:"Calculez puis saisissez votre résultat (virgule ou point). La solution détaillée s'affiche après validation."},
+ comptoir:{nom:"Le Comptoir du Trésorier",icone:"piece",fluff:"Le trésorier vérifie chaque calcul et chaque phrase de lecture avant de signer le registre.",regle:"Calculs : saisissez le résultat (virgule ou point), la solution détaillée suit. Lecture de tableaux : choisissez la phrase de lecture exacte parmi des pièges classiques.",
+   modes:{calculs:{l:"Calculs",savoirs:["calculs"]},lecture:{l:"Lecture de tableaux",savoirs:["calculs"]}},def:"calculs"},
  codex:{nom:"Le Codex",icone:"livre",savoirs:["auteurs","notions","dates","mecas","chiffres"],fluff:"Toutes les fiches de la guilde, avec leurs sources.",regle:"Recherchez une fiche, filtrez par type et ouvrez-la pour voir ses sources et son chapitre."},
 };
 const savoirsDe=(id,mode)=>{const j=JEUX[id];return j.modes?j.modes[mode].savoirs:j.savoirs;};
-const ORDRE_SAVOIRS=["auteurs","notions","dates","mecas","chiffres","calculs"];
+const ORDRE_SAVOIRS=["auteurs","notions","mecas","dates","chiffres","calculs"];
 const PLAN={
- auteurs:[["paires-auteurs"],["paires-oeuvres"],["sceaux"],["faussaire"],["enigme"],["bibliotheque-courants"],["grille-auteurs"],["chronique-oeuvres"]],
- notions:[["grille-notions"],["paires-notions"],["bibliotheque-disciplines"],["bibliotheque-niveaux"]],
- dates:[["chronique-evenements"],["duel"],["paires-dates"],["bibliotheque-periodes"]],
- mecas:[["forge"]],
+ auteurs:[["sceaux"],["bibliotheque-idees"],["bibliotheque-oeuvres"],["enigme"],["faussaire"],["grille-auteurs"],["grille-oeuvres"]],
+ notions:[["paires-notions"],["grille-notions"]],
+ dates:[["duel"],["chronique-chapitre"],["paires-dates"]],
+ mecas:[["forge-ordre"],["forge-faux"]],
  chiffres:[["balance-valeurs"],["balance-plus-moins"]],
- calculs:[["comptoir"]],
+ calculs:[["comptoir-calculs"],["comptoir-lecture"]],
 };
-function decoupe(h){for(const id of Object.keys(JEUX)){if(h===id)return{id,mode:JEUX[id].def||null};if(JEUX[id].modes&&h.startsWith(id+"-")){const m=h.slice(id.length+1);if(JEUX[id].modes[m])return{id,mode:m};}}return null;}
+/* anciennes adresses, redirigées vers les jeux refondus */
+const ALIAS={"paires-auteurs":"sceaux","paires-oeuvres":"bibliotheque-oeuvres","bibliotheque-courants":"bibliotheque-idees","bibliotheque-disciplines":"bibliotheque-idees","bibliotheque-niveaux":"bibliotheque-idees","bibliotheque-periodes":"chronique-chapitre","chronique-mixte":"chronique-debats","chronique-oeuvres":"chronique-chapitre","chronique-evenements":"chronique-chapitre"};
+function decoupe(h){h=ALIAS[h]||h;for(const id of Object.keys(JEUX)){if(h===id)return{id,mode:JEUX[id].def||null};if(JEUX[id].modes&&h.startsWith(id+"-")){const m=h.slice(id.length+1);if(JEUX[id].modes[m])return{id,mode:m};}}return null;}
 function libJeu(h){const d=decoupe(h);const j=JEUX[d.id];return{nom:j.nom,mode:d.mode&&j.modes?j.modes[d.mode].l:null,icone:j.icone};}
 
 /* ========== Périmètre ========== */
@@ -154,7 +158,7 @@ function ficheEl(x,etat){
   else if(x.type==="notion")box.append(el("h4",{},x.terme),el("p",{},x.def));
   else if(x.type==="date")box.append(el("h4",{},x.evenement),el("p",{class:"meta"},x.date),el("p",{},x.detail));
   else if(x.type==="chiffre")box.append(el("h4",{},x.indicateur),el("p",{},el("strong",{style:"font-size:1.2rem"},x.affichage),` · ${x.periode}${x.champ?", "+x.champ:""}`),x.precision?el("p",{class:"meta"},x.precision):null);
-  else box.append(el("h4",{},x.titre),el("ol",{},x.etapes.map(s=>el("li",{},s))));
+  else box.append(el("h4",{},x.titre),el("ol",{},x.etapes.map(s=>el("li",{},s))),x.hyp?el("p",{class:"meta"},el("b",{},"Hypothèses : "),x.hyp):null,x.limite?el("p",{class:"meta"},el("b",{},"Limite : "),x.limite):null);
   box.append(sourcesEl(x));return box;
 }
 function retourEl(juste,texte,fiches){reagir(juste);return el("div",{class:"pile"},el("p",{class:"verdict "+(juste?"juste":"faux")},texte,juste?el("span",{class:"gain"},"  +10 XP · +2 écus"):null),el("div",{class:"liste-fiches"},fiches));}
@@ -184,29 +188,53 @@ function majHud(){const r=rang();const n=serieActuelle();const bo=$("#bourse");i
 const court=x=>x.court||x.auteur;
 const estNobel=x=>/^Prix Nobel/.test(x.oeuvre||"");
 const libChrono=x=>x.type==="date"?x.evenement:(estNobel(x)?`Prix Nobel d'économie : ${court(x)}`:`« ${x.oeuvre} » (${court(x)})`);
-function qAuteur(r,items){const x=tirer(items,1,{r,pondere:r===R0})[0];const autres=tirer(items.filter(y=>court(y)!==court(x)),3,{r,pondere:false,cle:court});const ch=melange([x,...autres],r);return{sorte:"auteurs",prompt:"À quel auteur doit-on cette idée ?",citation:x.idee,choix:ch.map(court),bon:ch.indexOf(x),fiches:[x]};}
-function qNotion(r,items){const x=tirer(items,1,{r,pondere:r===R0})[0];const pool=items.filter(y=>y.terme!==x.terme);const memes=pool.filter(y=>y.disc===x.disc);const autres=tirer(memes.length>=3?memes:pool,3,{r,pondere:false,cle:y=>y.terme});const ch=melange([x,...autres],r);return{sorte:"notions",prompt:"Quelle notion correspond à cette définition ?",citation:x.def,choix:ch.map(y=>y.terme),bon:ch.indexOf(x),fiches:[x]};}
+/* ----- Fausses pistes plausibles : des fiches proches (même chapitre, même courant, même époque) ----- */
+const VIDES=new Set(["dans","pour","avec","sans","entre","sociale","social","sociaux","sociales","economique","politique","publique","public","theorie"]);
+const motsCles=t=>sansAccent(String(t).toLowerCase()).replace(/\(.*?\)/g," ").split(/[^a-z]+/).filter(m=>m.length>3&&!VIDES.has(m));
+const nomsDe=x=>new Set(String(x.court||x.auteur||"").split(/\s*(?:,|\bet\b|&)\s*/).map(t=>t.trim().split(/\s+/).pop()).filter(t=>t&&t!=="al."));
+const memeNom=(x,y)=>{const a=nomsDe(x);for(const n of nomsDe(y))if(a.has(n))return true;return false;};
+function proximite(x,y){let s=3*x.chap.filter(c=>y.chap.includes(c)).length;if(x.disc===y.disc)s+=1;
+  if(x.type==="auteur"&&y.type==="auteur"){if(x.courant&&x.courant===y.courant)s+=2;const d=Math.abs(x.annee-y.annee);s+=d<=20?1.5:d<=50?.6:0;}
+  else if(x.type==="notion"&&y.type==="notion"){const a=motsCles(x.terme),b=motsCles(y.terme);if(a.some(m=>b.includes(m)))s+=4;}
+  else if(x.annee&&y.annee){const d=Math.abs(x.annee-y.annee);s+=d<=15?1.5:d<=40?.6:0;}
+  return s;}
+function voisins(x,pool,k,{r=R0,cle=y=>y.id,exclure=null,bruit=1.5}={}){const vus=new Set([cle(x)]);const out=[];
+  const cand=pool.filter(y=>y!==x&&!(exclure&&exclure(y))).map(y=>({y,s:proximite(x,y)+r()*bruit})).sort((a,b)=>b.s-a.s);
+  for(const{y}of cand){const c=cle(y);if(vus.has(c))continue;vus.add(c);out.push(y);if(out.length===k)break;}return out;}
+/* masque le nom de l'auteur dans un texte, ou les mots du terme dans sa définition */
+function masquer(t,x){let s=String(t);[...nomsDe(x)].concat(String(x.auteur||"").split(/[\s,]+/)).filter(m=>m.length>3&&!/^(et|de|du|des|von|van)$/i.test(m)).forEach(m=>{s=s.split(m).join("…");});return s;}
+function masquerTerme(t,terme){const cles=motsCles(terme).map(m=>m.slice(0,Math.min(m.length,Math.max(6,m.length-2))));if(!cles.length)return t;return String(t).replace(/[A-Za-zÀ-ÿœŒ'’-]+/g,w=>{const n=sansAccent(w.toLowerCase()).replace(/^[a-z]['’]/,"");return cles.some(c=>n.startsWith(c))?"…":w;});}
+function qAuteur(r,items){const x=tirer(items,1,{r,pondere:r===R0})[0];const pool=items.length>=12?items:DB.auteurs;const autres=voisins(x,pool,3,{r,cle:court,exclure:y=>memeNom(x,y)});const ch=melange([x,...autres],r);return{sorte:"auteurs",prompt:"Quel auteur soutient cette thèse ?",citation:masquer(x.idee,x),choix:ch.map(court),bon:ch.indexOf(x),fiches:[x]};}
+function qNotion(r,items){const x=tirer(items,1,{r,pondere:r===R0})[0];const pool=items.length>=12?items:DB.notions;const autres=voisins(x,pool,3,{r,cle:y=>y.terme});const ch=melange([x,...autres],r);return{sorte:"notions",prompt:"Quelle notion correspond à cette définition ?",citation:masquerTerme(x.def,x.terme),choix:ch.map(y=>y.terme),bon:ch.indexOf(x),fiches:[x]};}
 function anneesProches(a,r,n=3){const s=new Set([a]);let g=0;while(s.size<n+1&&g<200){g++;const d=(1+rint(12,r))*(r()<.5?-1:1);const v=a+d;if(v>1500&&v<=2026)s.add(v);}return[...s];}
 function qDate(r,items){const x=tirer(items,1,{r,pondere:r===R0})[0];const ans=melange(anneesProches(x.annee,r),r);return{sorte:"dates",prompt:"En quelle année ?",citation:x.evenement,choix:ans.map(String),bon:ans.indexOf(x.annee),fiches:[x]};}
-function qDuel(r,items,gapMax=400){const a=tirer(items,1,{r,pondere:r===R0})[0];let c=items.filter(y=>y.annee!==a.annee&&Math.abs(y.annee-a.annee)<=gapMax);if(!c.length)c=items.filter(y=>y.annee!==a.annee);const b=c[rint(c.length,r)];const ch=melange([a,b],r);return{sorte:"dates",prompt:"Lequel est le plus ancien ?",choix:ch.map(libChrono),bon:ch[0].annee<ch[1].annee?0:1,fiches:ch,annees:ch.map(y=>y.anneeAff||y.annee)};}
+/* Duel : une œuvre face à un événement proche dans le temps (avant ou après ?) */
+function qDuel(r,items,gapMax=30){const O0=items.filter(y=>y.type==="auteur"&&!estNobel(y)),E0=items.filter(y=>y.type==="date");
+  const O=O0.length?O0:DB.auteurs.filter(y=>!estNobel(y)),E=E0.length>=3?E0:DB.dates;let a=null,e=null;
+  for(let g=0;g<60&&!e;g++){a=tirer(O,1,{r,pondere:r===R0})[0];const c=E.filter(v=>v.annee!==a.annee&&Math.abs(v.annee-a.annee)<=gapMax);if(c.length)e=c[rint(c.length,r)];}
+  if(!e){a=O[rint(O.length,r)];e=E.filter(v=>v.annee!==a.annee).sort((p,q)=>Math.abs(p.annee-a.annee)-Math.abs(q.annee-a.annee))[0];}
+  return{sorte:"dates",prompt:"Cette œuvre a-t-elle paru avant ou après l'événement ?",citation:`« ${a.oeuvre} » (${court(a)}) — par rapport à : ${e.evenement}`,choix:["Avant","Après"],bon:a.annee<e.annee?0:1,fiches:[a,e],oeuvre:a,evt:e};}
 function falsifier(x,r,pool){const alt=r()<0.68?["auteur","annee","concept"][rint(3,r)]:null;let aut=court(x),an=x.anneeAff||String(x.annee),con=x.concept;
-  if(alt==="auteur"){let c=pool.filter(y=>y.auteur!==x.auteur&&court(y)!==court(x)&&y.disc===x.disc);if(!c.length)c=pool.filter(y=>y.auteur!==x.auteur);aut=court(c[rint(c.length,r)]);}
-  if(alt==="annee"){let d=0;while(d===0)d=(2+rint(25,r))*(r()<.5?-1:1);let v=x.annee+d;if(v>2025)v=x.annee-Math.abs(d);an=String(v);}
-  if(alt==="concept"){const c=pool.filter(y=>y.concept!==x.concept&&y.auteur!==x.auteur);con=c[rint(c.length,r)].concept;}
+  const A=pool.filter(y=>y.type==="auteur"&&!estNobel(y)).length>=12?pool.filter(y=>y.type==="auteur"&&!estNobel(y)):DB.auteurs.filter(y=>!estNobel(y));
+  if(alt==="auteur"){const v=voisins(x,A,3,{r,cle:court,exclure:y=>memeNom(x,y)});aut=court(v[rint(v.length,r)]);}
+  if(alt==="annee"){const d=(6+rint(25,r))*(r()<.5?-1:1);let v=x.annee+d;if(v>2025)v=x.annee-Math.abs(d);an=String(v);}
+  if(alt==="concept"){const v=voisins(x,A,3,{r,cle:y=>y.concept,exclure:y=>memeNom(x,y)||y.concept===x.concept});con=v[rint(v.length,r)].concept;}
   return{alt,seg:{auteur:aut,annee:an,concept:con}};}
 function qFaussaire(r,items){const x=tirer(items,1,{r,pondere:r===R0})[0];const f=falsifier(x,r,items);return{sorte:"auteurs",prompt:"Ce parchemin est-il authentique ?",citation:`« ${x.oeuvre} » — ${f.seg.auteur}, ${f.seg.annee} — notion clé : ${f.seg.concept}.`,choix:["Authentique","Falsifié"],bon:f.alt?1:0,fiches:[x]};}
 function qMeca(r,items){const m=items[rint(items.length,r)];const i=rint(m.etapes.length-1,r);const bonne=m.etapes[i+1];const autres=melange(m.etapes.filter((s,j)=>j!==i&&j!==i+1),r).slice(0,3);const ch=melange([bonne,...autres],r);return{sorte:"mecas",prompt:`${m.titre} : quelle étape vient juste après celle-ci ?`,citation:m.etapes[i],choix:ch,bon:ch.indexOf(bonne),fiches:[m]};}
 function decimales(x){const s=String(x.valeur);return s.includes(".")?Math.min(3,s.split(".")[1].length):0;}
 function fmtC(v,d,x){const u=x.unite||"";if(!u||u==="indice"||u==="rapport")return fr(v,d);return fr(v,d)+NBSP+u;}
-function distracteurs(x,r){const v=x.valeur,d=decimales(x);const out=[];const vus=new Set([fmtC(v,d,x)]);for(const f of melange([0.45,0.6,0.75,1.3,1.6,2.1,2.8],r)){let w=v*f;if(/^%/.test(x.unite||"")&&w>100)w=Math.min(99,v+(100-v)*f/3);const s=fmtC(w,d,x);if(!vus.has(s)&&w!==0){vus.add(s);out.push(w);}if(out.length===3)break;}return out;}
-function qChiffre(r,items){const x=tirer(items,1,{r,pondere:r===R0})[0];const d=decimales(x);const vals=melange([x.valeur,...distracteurs(x,r)],r);return{sorte:"chiffres",prompt:`Quel est l'ordre de grandeur ? (${x.periode}${x.champ?", "+x.champ:""})`,citation:x.indicateur,choix:vals.map(v=>fmtC(v,d,x)),bon:vals.indexOf(x.valeur),fiches:[x]};}
+/* les fausses valeurs se rapprochent de la vraie quand le niveau monte (0 à 3) */
+const ECARTS=[[0.5,0.7,1.4,1.8,2.4],[0.6,0.78,1.25,1.5,1.9],[0.72,0.86,1.15,1.3,1.5],[0.8,0.9,1.1,1.2,1.3]];
+function distracteurs(x,r,niveau=1){const v=x.valeur,d=decimales(x);const out=[];const vus=new Set([fmtC(v,d,x)]);for(const f of melange(ECARTS[Math.max(0,Math.min(3,niveau))].concat([0.45,2.8]),r)){let w=v*f;if(/^%/.test(x.unite||"")&&w>100)w=Math.min(99,v+(100-v)*f/3);const s=fmtC(w,d,x);if(!vus.has(s)&&w!==0){vus.add(s);out.push(w);}if(out.length===3)break;}return out;}
+function qChiffre(r,items,niveau=1){const x=tirer(items,1,{r,pondere:r===R0})[0];const d=decimales(x);const vals=melange([x.valeur,...distracteurs(x,r,niveau)],r);return{sorte:"chiffres",prompt:`Quel est l'ordre de grandeur ? (${x.periode}${x.champ?", "+x.champ:""})`,citation:x.indicateur,choix:vals.map(v=>fmtC(v,d,x)),bon:vals.indexOf(x.valeur),fiches:[x]};}
 function rendreQCM(zone,q,onFin){
   zone.replaceChildren();
   const f0=q.fiches[0];
   const tags=el("div",{class:"tags"},el("span",{class:"etiquette"},sprite(SAVOIRS[q.sorte].icone,16),SAVOIRS[q.sorte].l),f0?el("span",{class:"etiquette"},`${NIVL[NIV(f0.chap[0])]} · ${CHAP[f0.chap[0]].court}`):null);
   const p=el("p",{class:"question"},q.prompt,q.citation?el("span",{class:"citation"},q.citation):null);
   const ch=el("div",{class:"choix"});const ret=el("div");
-  q.choix.forEach((c,i)=>{const b=el("button",{type:"button"},c);b.onclick=()=>{const ok=i===q.bon;[...ch.children].forEach((bb,j)=>{bb.disabled=true;if(j===q.bon)bb.classList.add("juste");});if(!ok)b.classList.add("faux","secousse");if(q.annees)[...ch.children].forEach((bb,j)=>bb.append(el("span",{class:"doux"},` (${q.annees[j]})`)));q.fiches.forEach(f=>noter(f.id,ok));ret.replaceChildren(retourEl(ok,ok?"Juste.":`Non : la bonne réponse était « ${q.choix[q.bon]} ».`,q.fiches.map(f=>ficheEl(f,ok?"juste":"faux"))));annonce(ok?"Bonne réponse":"Mauvaise réponse");onFin&&onFin(ok);};ch.append(b);});
+  q.choix.forEach((c,i)=>{const b=el("button",{type:"button"},c);b.onclick=()=>{const ok=i===q.bon;[...ch.children].forEach((bb,j)=>{bb.disabled=true;if(j===q.bon)bb.classList.add("juste");});if(!ok)b.classList.add("faux","secousse");if(q.annees)[...ch.children].forEach((bb,j)=>bb.append(el("span",{class:"doux"},` (${q.annees[j]})`)));(q.noter||q.fiches.map(f=>f.id)).forEach(id=>noter(id,ok));if(q.ev)emit(q.ev,{juste:ok});ret.replaceChildren(retourEl(ok,ok?"Juste.":`Non : la bonne réponse était « ${q.choix[q.bon]} ».`,q.fiches.map(f=>ficheEl(f,ok?"juste":"faux"))));if(q.extra)ret.firstChild.insertBefore(q.extra(ok),ret.firstChild.children[1]||null);annonce(ok?"Bonne réponse":"Mauvaise réponse");onFin&&onFin(ok);};ch.append(b);});
   zone.append(tags,p,ch,ret);
 }
 
@@ -262,16 +290,16 @@ function vAccueil(main){
   const scene=el("div",{class:"paysage"},el("div",{class:"titre-scene"},el("h1",{},"La Guilde des SES"),el("p",{},"Réviser le CAPES externe de sciences économiques et sociales")));
   main.append(scene);paysage(scene);
   const auj=new Date().toLocaleDateString("fr-FR",{weekday:"long",day:"numeric",month:"long"});
-  main.append(el("div",{class:"grille2"},
+  main.append(el("div",{class:"grille2"},el("div",{class:"pile"},
     el("section",{class:"cadre pile"},el("span",{class:"oeil"},"Bienvenue à la guilde"),el("h2",{},"Apprendre en jouant, et savoir ce que l'on apprend"),
-      el("p",{},"Chaque jeu entraîne un type de connaissance précis (auteurs, notions, dates, mécanismes, chiffres, calculs) et indique l'épreuve à laquelle il prépare. Chaque réponse renvoie à sa source et au chapitre du programme officiel."),
-      el("p",{class:"petit doux"},`${fr(TOUT.length)} fiches, dont ${fr(nbSourcees)} à source vérifiée. Programmes de SES de seconde, première et terminale, histoire de la pensée et épistémologie.`)),
-    carteAventurier()));
+      el("p",{},"Chaque jeu entraîne ce que le jury attend à ce niveau : relier un auteur à son œuvre et à sa thèse, distinguer des notions voisines, opposer des écoles de pensée, enchaîner un mécanisme, lire un tableau sans contresens. Chaque réponse renvoie à sa source et au chapitre du programme officiel."),
+      el("p",{class:"petit doux"},`${fr(TOUT.length)} fiches, dont ${fr(nbSourcees)} à source vérifiée. Programmes de SES de seconde, première et terminale, histoire de la pensée et épistémologie.`)),blocJoute()),
+    el("div",{class:"pile"},carteAventurier(),blocDevoir(true))));
   // Ce que vous révisez, et où
   const tab=el("section",{class:"pile"},el("div",{class:"cadre pile"},el("span",{class:"oeil"},"Le tableau des quêtes"),el("h2",{},"Ce que vous révisez, et où"),el("p",{},"Choisissez d'abord ce que vous voulez travailler : chaque panneau indique à quoi cela sert le jour du concours, puis les jeux qui l'entraînent."),el("p",{class:"petit"},lienExt(OFF.jury.u,"Rapport du jury 2026 ↗")," · ",lienExt(OFF.bac3.u,"Épreuves bac + 3 ↗")," · ",lienExt(OFF.bac5.u,"Épreuves bac + 5 ↗"))));
   const grille=el("div",{class:"tableau"});
   for(const s of ORDRE_SAVOIRS){const S_=SAVOIRS[s];const nb=S_.type?DB[S_.type].length:null;
-    grille.append(el("section",{class:"cadre savoir"},el("div",{class:"tete"},sprite(S_.icone,36),el("div",{},el("h3",{},S_.l),el("span",{class:"pix petit doux"},nb!=null?`${fr(nb)} fiches`:s==="redaction"?`${fr(SUJETS.length)} sujets, correction selon le jury`:"exercices générés à volonté"))),
+    grille.append(el("section",{class:"cadre savoir"},el("div",{class:"tete"},sprite(S_.icone,36),el("div",{},el("h3",{},S_.l),el("span",{class:"pix petit doux"},nb!=null?`${fr(nb)} fiches`:s==="redaction"?`${fr(SUJETS.length)} sujets, correction selon le jury`:s==="debats"?`${DEBATS.length} débats, ${DEBATS.reduce((a,j)=>a+j.positions.length,0)} positions d'écoles`:"exercices générés à volonté"))),
       el("p",{class:"usage"},el("b",{},"Utile pour : "),S_.usage),
       el("div",{class:"liens-jeux"},PLAN[s].map(([h])=>{const L=libJeu(h);return el("a",{class:"lien-jeu",href:"#"+h},sprite(L.icone,22),el("div",{},el("b",{},L.nom),L.mode?el("span",{},` · ${L.mode}`):null),el("span",{class:"fl"},"›"));}))));}
   tab.append(grille);main.append(tab);
@@ -306,16 +334,19 @@ function vChapitre(main,c){
   const par=t=>it.filter(x=>x.type===t);
   const types=[["auteur","auteurs"],["notion","notions"],["date","dates"],["meca","mecas"],["chiffre","chiffres"]].filter(([t])=>par(t).length);
   main.append(el("section",{class:"cadre pile"},el("span",{class:"oeil"},`Carte du programme · ${NIVL[nv]}`),el("h1",{},ch.court),el("p",{},el("b",{},nv==="HP"?"Attendus du concours : ":"Question du programme officiel : "),`« ${ch.t} »`),lienExt(PROG[nv].u,el("span",{class:"petit"},PROG[nv].l+" ↗"))));
-  const jeuxPour={auteurs:["paires-auteurs","sceaux","faussaire","enigme","bibliotheque-courants","chronique-oeuvres"],notions:["grille-notions","paires-notions","bibliotheque-disciplines"],dates:["chronique-evenements","duel","paires-dates"],mecas:["forge"],chiffres:["balance-valeurs"]};
+  const jeuxPour={auteurs:["sceaux","bibliotheque-idees","enigme","faussaire","grille-auteurs"],notions:["paires-notions","grille-notions"],dates:["chronique-chapitre","duel","paires-dates"],mecas:["forge-ordre","forge-faux"],chiffres:["balance-valeurs"]};
   const go=h=>{const b=el("a",{class:"lien-jeu",href:"#"+h},sprite(libJeu(h).icone,22),el("div",{},el("b",{},libJeu(h).nom),libJeu(h).mode?el("span",{},` · ${libJeu(h).mode}`):null),el("span",{class:"fl"},"›"));b.addEventListener("click",()=>{F.chap=c;F.niv.add(nv);sauverFiltres();});return b;};
   main.append(el("section",{class:"cadre pile"},el("h2",{},"Réviser ce chapitre"),el("p",{class:"petit doux"},"Ces liens limitent le jeu à ce chapitre. Le périmètre reste modifiable dans chaque jeu."),
     el("div",{class:"tableau"},types.map(([t,s])=>el("div",{class:"pile"},el("h3",{class:"rangee"},sprite(SAVOIRS[s].icone,24),`${SAVOIRS[s].l} (${par(t).length})`),el("div",{class:"liens-jeux"},jeuxPour[s].map(go)))))));
+  const dbs=typeof DEBATS!=="undefined"?DEBATS.filter(j=>j.chap.includes(c)):[];
+  if(dbs.length){const go=m=>{const a=el("a",{class:"btn mini",href:"#joute-"+m},JEUX.joute.modes[m].l);a.addEventListener("click",()=>{F.chap=c;F.niv.add(nv);sauverFiltres();});return a;};
+    main.append(el("section",{class:"cadre pile"},el("h2",{},"Les débats de ce chapitre"),el("p",{class:"petit doux"},"Les écoles en présence, leurs thèses et les objections qu'elles s'adressent."),...dbs.map(j=>carteDebat(j,{ouvert:false})),el("div",{class:"rangee"},go("ecoles"),go("riposte"),go("plan"))));}
   for(const[t,s]of types){const det=el("details",{class:"cadre"},el("summary",{style:"cursor:pointer;font-family:var(--f-titre);font-weight:700"},`${SAVOIRS[s].l} de ce chapitre (${par(t).length})`));det.addEventListener("toggle",()=>{if(det.open&&det.children.length===1)det.append(el("div",{class:"liste-fiches",style:"margin-top:10px"},par(t).sort((a,b)=>titreFiche(a).localeCompare(titreFiche(b),"fr")).map(x=>ficheEl(x))));});main.append(det);}
 }
 
 /* ========== Quête du jour ========== */
 function genQuete(k){const r=mulberry32(Number(k.replace(/-/g,"")));const A=DB.auteurs,chrono=A.filter(x=>!estNobel(x)).concat(DB.dates);
-  return[qAuteur(r,A),qNotion(r,DB.notions),qDate(r,DB.dates),DB.chiffres.length?qChiffre(r,DB.chiffres):qAuteur(r,A),qFaussaire(r,A.filter(x=>!estNobel(x))),qDuel(r,chrono,60),qMeca(r,DB.mecas)];}
+  return[qAuteur(r,A),qNotion(r,DB.notions),typeof qJoute==="function"?qJoute(r):qDate(r,DB.dates),DB.chiffres.length?qChiffre(r,DB.chiffres):qAuteur(r,A),qFaussaire(r,A.filter(x=>!estNobel(x))),qDuel(r,chrono),qMeca(r,DB.mecas)];}
 function vQuete(main){
   const k=cleJour();const qs=genQuete(k);let i=0,score=0;const deja=S.rituel[k];
   main.append(entete("quete",null,false));
@@ -332,26 +363,28 @@ function vQuete(main){
 
 /* ========== Paires de runes ========== */
 function vPaires(main,mode){
+  /* deux colonnes de cartes visibles : un élément et son correspondant, tirés d'une même famille pour qu'ils se ressemblent */
   const builds={
-    auteurs:()=>{const{items,elargi}=reserve(["auteurs"],8);const vus=new Set();const s=tirer(items,12,{cle:court}).filter(x=>{if(vus.has(x.concept))return false;vus.add(x.concept);return true;}).slice(0,6);return{elargi,deux:false,paires:s.map(x=>({x,a:["Auteur",court(x)],b:["Notion clé",x.concept]}))};},
-    oeuvres:()=>{const{items,elargi}=reserve(["auteurs"],8);const s=tirer(items.filter(x=>!estNobel(x)&&x.oeuvre.length<=64),6,{cle:x=>x.annee});return{elargi,deux:true,paires:s.map(x=>({x,a:["Œuvre",x.oeuvre],b:["Année",x.anneeAff||String(x.annee)]}))};},
-    notions:()=>{const{items,elargi}=reserve(["notions"],6);const s=tirer(items.filter(x=>x.def.length<=150),5,{cle:x=>x.terme});return{elargi,deux:true,paires:s.map(x=>({x,a:["Notion",x.terme],b:["Définition",x.def]}))};},
-    dates:()=>{const{items,elargi}=reserve(["dates"],8);const s=tirer(items,6,{cle:x=>x.annee});return{elargi,deux:false,paires:s.map(x=>({x,a:["Événement",x.evenement],b:["Année",String(x.annee)]}))};},
+    notions:()=>{const{items,elargi}=reserve(["notions"],8);const x=tirer(items.filter(y=>y.def.length<=200),1)[0];const v=voisins(x,(items.length>=12?items:DB.notions).filter(y=>y.def.length<=200),4,{cle:y=>y.terme});const L=[x,...v];
+      return{elargi,titre:"Reliez chaque notion à sa définition",gauche:"Notion",droite:"Définition",paires:L.map(y=>({x:y,a:y.terme,b:masquerTerme(y.def,y.terme)}))};},
+    dates:()=>{const{items,elargi}=reserve(["dates"],6);const x=tirer(items,1)[0];const v=voisins(x,items.length>=8?items:DB.dates,4,{cle:y=>y.annee});const L=[x,...v];
+      return{elargi,titre:"Reliez chaque événement à son année",gauche:"Événement",droite:"Année",paires:L.map(y=>({x:y,a:y.evenement,b:String(y.annee)}))};},
   };
   main.append(entete("paires",mode));const pf=panneauFiltres(()=>{majPerimetreEntete();partie();});const zone=el("section",{class:"cadre pile"});main.append(pf,zone);
   function partie(){
-    const{elargi,deux,paires}=builds[mode]();const cartes=melange(paires.flatMap((p,i)=>[{i,c:p.a},{i,c:p.b}]));
-    let ouvertes=[],trouves=0,essais=0,verrou=false;
-    const etat=el("p",{class:"score"},"Essais : ",el("b",{},"0"));const pl=el("div",{class:"plateau"+(deux?" deux":"")});const trouvees=el("div",{class:"liste-fiches"});const fin=el("div",{class:"rangee"});
-    cartes.forEach(c=>{const b=el("button",{class:"carte",type:"button","aria-label":"Carte retournée"},el("span",{class:"dedans"},el("span",{class:"dos"},sprite("gemme",30)),el("span",{class:"face"},el("small",{},c.c[0]),el("span",{},c.c[1]))));
-      b.onclick=()=>{if(verrou||b.classList.contains("visible"))return;b.classList.add("visible");b.setAttribute("aria-label",`${c.c[0]} : ${c.c[1]}`);ouvertes.push({b,c});
-        if(ouvertes.length===2){essais++;etat.lastChild.textContent=essais;const[x,y]=ouvertes;
-          if(x.c.i===y.c.i){[x,y].forEach(o=>{o.b.classList.add("trouvee");o.b.disabled=true;});trouves++;ouvertes=[];const p=paires[x.c.i];noter(p.x.id,true);trouvees.prepend(ficheEl(p.x,"juste"));annonce("Paire trouvée");reagir(true,{leger:true});
-            if(trouves===paires.length){etat.replaceChildren(`Toutes les paires réunies en ${essais} essais.`);emit("partie",{jeu:"paires",mode,score:paires.length,total:paires.length});setTimeout(()=>reagir(true),600);const nb=el("button",{class:"btn or"},"Nouvelle partie");nb.onclick=partie;fin.replaceChildren(nb);}}
-          else{verrou=true;[x,y].forEach(o=>o.b.classList.add("rate"));setTimeout(()=>{[x,y].forEach(o=>{o.b.classList.remove("visible","rate");o.b.setAttribute("aria-label","Carte retournée");});ouvertes=[];verrou=false;},1100);}}};
-      pl.append(b);});
-    const re=el("button",{class:"btn"},"Redistribuer");re.onclick=partie;
-    zone.replaceChildren(avisElargi(elargi),el("div",{class:"rangee",style:"justify-content:space-between"},etat,re),pl,fin,el("h3",{},"Paires réunies"),trouvees);
+    const g=builds[mode]();const n=g.paires.length;const A=melange(g.paires.map((p,i)=>i)),B=melange(g.paires.map((p,i)=>i));
+    let choisi=null,trouves=0,erreurs=0;const rate=new Set();const etat=el("p",{class:"score"},"Erreurs : ",el("b",{},"0"));const trouvees=el("div",{class:"liste-fiches"});const fin=el("div",{class:"rangee"});
+    const colA=el("div",{class:"col-paires"},el("span",{class:"oeil"},g.gauche)),colB=el("div",{class:"col-paires"},el("span",{class:"oeil"},g.droite));
+    const btA=A.map(i=>{const b=el("button",{class:"carte-p",type:"button"},g.paires[i].a);b.onclick=()=>clic("a",i,b);colA.append(b);return b;});
+    const btB=B.map(i=>{const b=el("button",{class:"carte-p def",type:"button"},g.paires[i].b);b.onclick=()=>clic("b",i,b);colB.append(b);return b;});
+    function clic(c,i,b){if(b.disabled)return;if(choisi&&choisi.c===c){choisi.b.classList.remove("choisi");if(choisi.b===b){choisi=null;return;}}
+      if(!choisi||choisi.c===c){choisi={c,i,b};b.classList.add("choisi");return;}
+      const[a,bb]=c==="a"?[{i,b},choisi]:[choisi,{i,b}];choisi.b.classList.remove("choisi");choisi=null;
+      if(a.i===bb.i){[a.b,bb.b].forEach(o=>{o.classList.add("trouvee");o.disabled=true;});trouves++;const p=g.paires[a.i];noter(p.x.id,!rate.has(a.i));trouvees.prepend(ficheEl(p.x,rate.has(a.i)?"faux":"juste"));annonce("Paire juste");reagir(true,{leger:true});
+        if(trouves===n){const parfait=erreurs===0;etat.replaceChildren(parfait?"Toutes les paires, sans une erreur.":`Toutes les paires, avec ${erreurs} erreur${erreurs>1?"s":""}.`);emit("partie",{jeu:"paires",mode,score:n-rate.size,total:n,parfait});setTimeout(()=>reagir(parfait),500);const nb=el("button",{class:"btn or"},"Nouvelle partie");nb.onclick=partie;fin.replaceChildren(nb);}}
+      else{erreurs++;rate.add(a.i);rate.add(bb.i);etat.lastChild.textContent=erreurs;[a.b,bb.b].forEach(o=>{o.classList.add("rate","secousse");setTimeout(()=>o.classList.remove("rate","secousse"),700);});annonce("Ces deux cartes ne vont pas ensemble");}}
+    const re=el("button",{class:"btn"},"Autre famille");re.onclick=partie;
+    zone.replaceChildren(avisElargi(g.elargi),el("div",{class:"rangee",style:"justify-content:space-between"},el("h3",{},g.titre),etat),el("div",{class:"plateau-p"},colA,colB),fin,re,el("h3",{},"Paires réunies"),trouvees);
   }
   partie();
 }
@@ -362,12 +395,14 @@ function vSceaux(main){
   main.append(entete("sceaux"));const pf=panneauFiltres(()=>{majPerimetreEntete();partie();});const zone=el("section",{class:"cadre pile"});main.append(pf,zone);
   function partie(){
     if(roSceaux)roSceaux.disconnect();
-    const{items,elargi}=reserve(["auteurs"],7);const vusC=new Set(),vusA=new Set();
-    const sel=tirer(items.filter(x=>!estNobel(x)),30,{cle:court}).filter(x=>{if(vusC.has(x.concept)||vusA.has(x.annee))return false;vusC.add(x.concept);vusA.add(x.annee);return true;}).slice(0,5);
+    const{items,elargi}=reserve(["auteurs"],7);const pool=(items.length>=12?items:DB.auteurs).filter(x=>!estNobel(x));
+    /* cinq auteurs voisins : même chapitre ou même courant, œuvres et notions distinctes */
+    const x0=tirer(pool,1)[0];const vusO=new Set([x0.oeuvre]),vusC=new Set([x0.concept]);
+    const sel=[x0,...voisins(x0,pool,12,{cle:court,exclure:y=>memeNom(x0,y)}).filter(y=>{if(vusO.has(y.oeuvre)||vusC.has(y.concept))return false;vusO.add(y.oeuvre);vusC.add(y.concept);return true;})].slice(0,5);
     const A=melange(sel),B=melange(sel),C=melange(sel);let lAB=new Map(),lBC=new Map(),choisi=null,verifie=false;
     const svg=document.createElementNS("http://www.w3.org/2000/svg","svg");svg.setAttribute("class","fils");
     const box=el("div",{class:"sceaux"});
-    const cols=[["Auteur",A,x=>court(x)],["Notion clé",B,x=>x.concept],["Année",C,x=>x.anneeAff||String(x.annee)]].map(([t,L,f],ci)=>el("div",{class:"col"},el("h4",{},t),L.map((x,i)=>{const b=el("button",{class:"noeud",type:"button"},f(x));b.onclick=()=>clic(ci,i);return b;})));
+    const cols=[["Auteur",A,x=>court(x)],["Œuvre",B,x=>`« ${x.oeuvre} »`],["Notion clé",C,x=>x.concept]].map(([t,L,f],ci)=>el("div",{class:"col"},el("h4",{},t),L.map((x,i)=>{const b=el("button",{class:"noeud"+(ci===1?" oeuvre":""),type:"button"},f(x));b.onclick=()=>clic(ci,i);return b;})));
     box.append(svg,...cols);const nd=(c,i)=>cols[c].children[i+1];
     const btnV=el("button",{class:"btn or",disabled:true},"Vérifier les sceaux");const btnN=el("button",{class:"btn"},"Nouveaux coffres");btnN.onclick=partie;const res=el("div",{class:"pile"});
     function clic(c,i){if(verifie)return;
@@ -384,69 +419,105 @@ function vSceaux(main){
 }
 
 /* ========== Bibliothèque ========== */
-const periode=a=>a<1850?"Avant 1850":a<1914?"1850 – 1913":a<1946?"1914 – 1945":a<1980?"1946 – 1979":"Depuis 1980";
 function vBiblio(main,mode){
+  /* trois ou quatre auteurs proches ; on range chez chacun ses thèses ou ses œuvres */
+  function groupe(){const{items,elargi}=reserve(["auteurs"],10);const pool=(items.length>=14?items:DB.auteurs).filter(x=>!estNobel(x));
+    const parNom={};pool.forEach(x=>{(parNom[court(x)]=parNom[court(x)]||[]).push(x);});
+    const x0=tirer(pool,1)[0];const autres=voisins(x0,pool,3,{cle:court,exclure:y=>memeNom(x0,y)});const noms=[x0,...autres].map(court);
+    return{elargi,noms,parNom};}
   const C={
-    disciplines:()=>{const{items,elargi}=reserve(["auteurs","notions"],10);const s=tirer(items,8,{cle:x=>x.id});const pres=Object.keys(DISC).filter(k=>s.some(x=>x.disc===k));return{elargi,cartes:s,rayons:pres.map(k=>({k,l:DISC[k]})),bon:x=>[x.disc],lab:x=>x.type==="auteur"?[court(x),x.concept]:[x.terme,"notion"]};},
-    courants:()=>{const{items,elargi}=reserve(["auteurs"],10);const par={};items.forEach(x=>{if(x.courant)(par[x.courant]=par[x.courant]||[]).push(x);});const cs=melange(Object.keys(par).filter(k=>new Set(par[k].map(court)).size>=3)).slice(0,3);let s=[];cs.forEach(c=>s.push(...tirer(par[c],3,{cle:court})));s=melange(s).slice(0,8);return{elargi,cartes:s,rayons:cs.map(k=>({k,l:k})),bon:x=>[x.courant],lab:x=>[court(x),`${x.concept} (${x.annee})`]};},
-    periodes:()=>{const{items,elargi}=reserve(["auteurs","dates"],10);const s=tirer(items.filter(x=>!estNobel(x)),8,{cle:x=>x.id});const ord=["Avant 1850","1850 – 1913","1914 – 1945","1946 – 1979","Depuis 1980"].filter(p=>s.some(x=>periode(x.annee)===p));return{elargi,cartes:s,rayons:ord.map(k=>({k,l:k})),bon:x=>[periode(x.annee)],lab:x=>x.type==="date"?[x.evenement,"événement"]:[`« ${x.oeuvre} »`,court(x)]};},
-    niveaux:()=>{const{items,elargi}=reserve(["notions","auteurs"],10);const s=tirer(items.filter(x=>x.niv.some(n=>n!=="HP")),8,{cle:x=>x.id});return{elargi,cartes:s,rayons:["2","1","T"].map(k=>({k,l:NIVL[k]})),bon:x=>x.niv,lab:x=>x.type==="auteur"?[court(x),x.concept]:[x.terme,"notion"]};},
+    idees:()=>{const g=groupe();const cartes=[];g.noms.forEach(n=>{const fs=melange(g.parNom[n]).slice(0,2);fs.forEach(x=>cartes.push({x,t:masquer(x.idee,x),s:"",k:n}));});return{elargi:g.elargi,cartes:melange(cartes),rayons:g.noms.map(k=>({k,l:k}))};},
+    oeuvres:()=>{const g=groupe();const cartes=[];g.noms.forEach(n=>{const vus=new Set();melange(g.parNom[n]).forEach(x=>{if(vus.has(x.oeuvre)||vus.size>=2)return;vus.add(x.oeuvre);cartes.push({x,t:`« ${x.oeuvre} »`,s:String(x.anneeAff||x.annee),k:n});});});return{elargi:g.elargi,cartes:melange(cartes),rayons:g.noms.map(k=>({k,l:k}))};},
   };
   main.append(entete("bibliotheque",mode));const pf=panneauFiltres(()=>{majPerimetreEntete();partie();});const zone=el("section",{class:"cadre pile"});main.append(pf,zone);
   function partie(){
     const g=C[mode]();const place=new Map();let choisi=null,fini=false;
     const res=el("div",{class:"pile"}),pile=el("div",{class:"reserve"}),et=el("div",{class:"etageres"});const jet=new Map();
-    g.cartes.forEach(x=>{const[t,s]=g.lab(x);const b=el("button",{class:`jeton d-${x.disc}`,type:"button"},t,el("small",{},s));b.onclick=()=>{if(fini)return;if(choisi&&choisi!==x&&place.has(x)){place.set(choisi,place.get(x));choisi=null;dessine();return;}if(place.has(x)){place.delete(x);dessine();return;}choisi=choisi===x?null:x;dessine();};jet.set(x,b);});
-    const ray=g.rayons.map(R=>{const z=el("div",{class:"etagere",role:"button",tabindex:"0","aria-label":"Rayonnage "+R.l},el("h4",{},R.l));const dep=e=>{if(fini||!choisi)return;if(e&&e.target.closest(".jeton"))return;place.set(choisi,R.k);choisi=null;dessine();};z.onclick=dep;z.onkeydown=e=>{if(e.key==="Enter"||e.key===" "){e.preventDefault();dep();}};return{R,z};});
+    g.cartes.forEach(c=>{const b=el("button",{class:`jeton d-${c.x.disc}${mode==="idees"?" long":""}`,type:"button"},c.t,el("small",{},c.s));b.onclick=()=>{if(fini)return;if(choisi&&choisi!==c&&place.has(c)){place.set(choisi,place.get(c));choisi=null;dessine();return;}if(place.has(c)){place.delete(c);dessine();return;}choisi=choisi===c?null:c;dessine();};jet.set(c,b);});
+    const ray=g.rayons.map(R=>{const z=el("div",{class:"etagere",role:"button",tabindex:"0","aria-label":"Rayonnage de "+R.l},el("h4",{},R.l));const dep=e=>{if(fini||!choisi)return;if(e&&e.target.closest(".jeton"))return;place.set(choisi,R.k);choisi=null;dessine();};z.onclick=dep;z.onkeydown=e=>{if(e.key==="Enter"||e.key===" "){e.preventDefault();dep();}};return{R,z};});
     et.append(...ray.map(o=>o.z));
-    const bV=el("button",{class:"btn or",disabled:true},"Vérifier le rangement"),bN=el("button",{class:"btn"},"Autres ouvrages");bN.onclick=partie;
-    function dessine(){pile.replaceChildren();ray.forEach(o=>{o.z.replaceChildren(o.z.firstChild);o.z.classList.toggle("cible",!!choisi);});g.cartes.forEach(x=>{const b=jet.get(x);b.style.boxShadow=choisi===x?"0 0 0 3px var(--mana)":"";if(place.has(x))ray.find(o=>o.R.k===place.get(x)).z.append(b);else pile.append(b);});if(!pile.children.length&&!fini)pile.append(el("p",{class:"petit doux"},"Pile vide : vous pouvez vérifier."));bV.disabled=place.size!==g.cartes.length||fini;}
-    bV.onclick=()=>{fini=true;let n=0;const fiches=[];g.cartes.forEach(x=>{const ok=g.bon(x).includes(place.get(x));if(ok)n++;noter(x.id,ok);const b=jet.get(x);b.classList.add(ok?"juste":"faux");if(!ok)b.append(el("small",{},"→ "+g.bon(x).map(k=>(g.rayons.find(R=>R.k===k)||{l:NIVL[k]||k}).l).join(" ou ")));fiches.push(ficheEl(x,ok?"juste":"faux"));});bV.disabled=true;ray.forEach(o=>o.z.classList.remove("cible"));emit("partie",{jeu:"bibliotheque",mode,score:n,total:g.cartes.length});res.replaceChildren(retourEl(n===g.cartes.length,`${n} ouvrage${n>1?"s":""} bien rangé${n>1?"s":""} sur ${g.cartes.length}.`,fiches));};
-    zone.replaceChildren(avisElargi(g.elargi),el("span",{class:"oeil"},"Pile d'ouvrages"),pile,el("span",{class:"oeil"},"Rayonnages"),et,el("div",{class:"rangee"},bV,bN),res);dessine();
+    const bV=el("button",{class:"btn or",disabled:true},"Vérifier le rangement"),bN=el("button",{class:"btn"},"Autres auteurs");bN.onclick=partie;
+    function dessine(){pile.replaceChildren();ray.forEach(o=>{o.z.replaceChildren(o.z.firstChild);o.z.classList.toggle("cible",!!choisi);});g.cartes.forEach(c=>{const b=jet.get(c);b.style.boxShadow=choisi===c?"0 0 0 3px var(--mana)":"";if(place.has(c))ray.find(o=>o.R.k===place.get(c)).z.append(b);else pile.append(b);});if(!pile.children.length&&!fini)pile.append(el("p",{class:"petit doux"},"Pile vide : vous pouvez vérifier."));bV.disabled=place.size!==g.cartes.length||fini;}
+    bV.onclick=()=>{fini=true;let n=0;const fiches=[];g.cartes.forEach(c=>{const ok=place.get(c)===c.k;if(ok)n++;noter(c.x.id,ok);const b=jet.get(c);b.classList.add(ok?"juste":"faux");if(!ok)b.append(el("small",{},"→ "+c.k));if(!fiches.some(f=>f.dataset.id===c.x.id)){const f=ficheEl(c.x,ok?"juste":"faux");f.dataset.id=c.x.id;fiches.push(f);}});bV.disabled=true;ray.forEach(o=>o.z.classList.remove("cible"));emit("partie",{jeu:"bibliotheque",mode,score:n,total:g.cartes.length});res.replaceChildren(retourEl(n===g.cartes.length,`${n} carte${n>1?"s":""} rangée${n>1?"s":""} chez le bon auteur, sur ${g.cartes.length}.`,fiches));};
+    zone.replaceChildren(avisElargi(g.elargi),el("span",{class:"oeil"},mode==="idees"?"Thèses à attribuer":"Œuvres à attribuer"),pile,el("span",{class:"oeil"},"Rayonnages"),et,el("div",{class:"rangee"},bV,bN),res);dessine();
   }
   partie();
 }
 
 /* ========== Grille du Scribe ========== */
-function genGrille(mots,r=R0,cible=11){
-  const N=19,G=Array.from({length:N},()=>Array(N).fill(null)),D=Array.from({length:N},()=>Array(N).fill(0));const places=[];
-  const peut=(w,rr,cc,dir)=>{const dr=dir?1:0,dc=dir?0:1;let inter=0;const er=rr-dr,ec=cc-dc,fr_=rr+dr*w.length,fc=cc+dc*w.length;if(rr<0||cc<0||fr_-dr>=N||fc-dc>=N)return -1;if(er>=0&&ec>=0&&G[er][ec])return -1;if(fr_<N&&fc<N&&G[fr_][fc])return -1;for(let k=0;k<w.length;k++){const r_=rr+dr*k,c_=cc+dc*k;const v=G[r_][c_];if(v){if(v!==w[k]||(D[r_][c_]&(dir?2:1)))return -1;inter++;}else{const a1=dir?[r_,c_-1]:[r_-1,c_],a2=dir?[r_,c_+1]:[r_+1,c_];if(a1[0]>=0&&a1[1]>=0&&G[a1[0]][a1[1]])return -1;if(a2[0]<N&&a2[1]<N&&G[a2[0]][a2[1]])return -1;}}return inter;};
-  const pose=(m,rr,cc,dir)=>{for(let k=0;k<m.w.length;k++){G[rr+(dir?k:0)][cc+(dir?0:k)]=m.w[k];D[rr+(dir?k:0)][cc+(dir?0:k)]|=(dir?2:1);}places.push({m,r:rr,c:cc,dir});};
-  const L=melange(mots,r).sort((a,b)=>b.w.length-a.w.length);const premier=L.find(m=>m.w.length<=13);if(!premier)return null;pose(premier,9,Math.floor((N-premier.w.length)/2),0);
-  for(const m of L){if(places.length>=cible)break;if(places.some(p=>p.m===m))continue;let best=null;for(const p of places)for(let a=0;a<p.m.w.length;a++)for(let b=0;b<m.w.length;b++){if(p.m.w[a]!==m.w[b])continue;const dir=p.dir?0:1;const rr=p.dir?p.r+a:p.r-b,cc=p.dir?p.c-b:p.c+a;const s=peut(m.w,rr,cc,dir);if(s>0&&(!best||s+r()*.5>best.s))best={rr,cc,dir,s};}if(best)pose(m,best.rr,best.cc,best.dir);}
-  let r0=N,r1=0,c0=N,c1=0;places.forEach(p=>{const e=p.dir?[p.r+p.m.w.length-1,p.c]:[p.r,p.c+p.m.w.length-1];r0=Math.min(r0,p.r);c0=Math.min(c0,p.c);r1=Math.max(r1,e[0]);c1=Math.max(c1,e[1]);});places.forEach(p=>{p.r-=r0;p.c-=c0;});
-  const H=r1-r0+1,W=c1-c0+1,g=Array.from({length:H},(_,i)=>G[i+r0].slice(c0,c1+1));let num=0;for(let i=0;i<H;i++)for(let k=0;k<W;k++){const ps=places.filter(p=>p.r===i&&p.c===k);if(ps.length){num++;ps.forEach(p=>p.n=num);}}
-  return{g,H,W,places};
+/* Mots fléchés : chaque mot part d'une case-flèche (à gauche pour ▸, au-dessus pour ▾).
+   On construit de nombreuses grilles au hasard et l'on garde la plus dense, dans un cadre de 13 × 13 au plus. */
+function genFleches(mots,{r=R0,essais=30,cible=14,max=13}={}){
+  const K=(a,b)=>a+","+b;let meilleure=null;
+  for(let e=0;e<essais;e++){
+    const G=new Map(),places=[];let r0=0,r1=0,c0=0,c1=0,croisements=0;
+    const peut=(w,rr,cc,d)=>{const dr=d,dc=1-d,L=w.length;const ir=rr-dr,ic=cc-dc;const avant=G.get(K(ir,ic));if(avant&&(avant.t==="L"||avant.cl[d]!=null))return -1;
+      const apres=G.get(K(rr+dr*L,cc+dc*L));if(apres&&apres.t==="L")return -1;
+      const nr0=Math.min(r0,ir,rr),nc0=Math.min(c0,ic,cc),nr1=Math.max(r1,rr+dr*(L-1)),nc1=Math.max(c1,cc+dc*(L-1));if(nr1-nr0+1>max||nc1-nc0+1>max)return -1;
+      let x=0;for(let k=0;k<L;k++){const a=rr+dr*k,b=cc+dc*k;const v=G.get(K(a,b));if(v){if(v.t!=="L"||v.ch!==w[k]||v.d&(1<<d))return -1;x++;}
+        else{const n1=G.get(d?K(a,b-1):K(a-1,b)),n2=G.get(d?K(a,b+1):K(a+1,b));if((n1&&n1.t==="L")||(n2&&n2.t==="L"))return -1;}}
+      return{x,aire:(nr1-nr0+1)*(nc1-nc0+1)};};
+    const pose=(m,rr,cc,d)=>{const dr=d,dc=1-d;const ir=rr-dr,ic=cc-dc;const ind=G.get(K(ir,ic))||{t:"I",cl:[null,null]};ind.cl[d]=places.length;G.set(K(ir,ic),ind);
+      for(let k=0;k<m.w.length;k++){const a=rr+dr*k,b=cc+dc*k;const v=G.get(K(a,b));if(v){v.d|=1<<d;croisements++;}else G.set(K(a,b),{t:"L",ch:m.w[k],d:1<<d});}
+      places.push({m,r:rr,c:cc,dir:d});r0=Math.min(r0,ir,rr);c0=Math.min(c0,ic,cc);r1=Math.max(r1,rr+dr*(m.w.length-1));c1=Math.max(c1,cc+dc*(m.w.length-1));};
+    const L=melange(mots,r);const premier=L.find(m=>m.w.length>=6&&m.w.length<=max-1)||L.find(m=>m.w.length<=max-1);if(!premier)return null;pose(premier,0,1,0);
+    for(let passe=0;passe<3&&places.length<cible;passe++){let ajout=false;
+      for(const m of L){if(places.length>=cible)break;if(places.some(p=>p.m===m))continue;let best=null;
+        for(const[key,v]of G){if(v.t!=="L")continue;const[a,b]=key.split(",").map(Number);for(let k=0;k<m.w.length;k++){if(m.w[k]!==v.ch)continue;for(const d of[0,1]){if(v.d&(1<<d))continue;const rr=a-d*k,cc=b-(1-d)*k;const q=peut(m.w,rr,cc,d);if(q===-1||q.x<1)continue;const sc=q.x*10-q.aire*0.08+r()*3;if(!best||sc>best.sc)best={rr,cc,d,sc};}}}
+        if(best){pose(m,best.rr,best.cc,best.d);ajout=true;}}
+      if(!ajout)break;}
+    const H=r1-r0+1,W=c1-c0+1,lettres=[...G.values()].filter(v=>v.t==="L").length;const score=places.length*12+croisements*5+40*lettres/(H*W);
+    if(!meilleure||score>meilleure.score)meilleure={score,G,places,r0,c0,H,W,croisements};}
+  const{G,places,r0,c0,H,W}=meilleure;const g=Array.from({length:H},()=>Array(W).fill(null));
+  for(const[key,v]of G){const[a,b]=key.split(",").map(Number);g[a-r0][b-c0]=v;}
+  places.forEach(p=>{p.r-=r0;p.c-=c0;});let n=0;for(let i=0;i<H;i++)for(let k=0;k<W;k++){const v=g[i][k];if(v&&v.t==="I"){v.n=++n;v.cl.forEach(pi=>{if(pi!=null)places[pi].n=n;});}}
+  return{g,H,W,places,croisements:meilleure.croisements};
 }
-function motsAuteurs(items){const vus=new Set();const out=[];for(const x of items){const nom=court(x);if(/\s|et al|'/.test(nom))continue;const w=sansAccent(nom).toUpperCase().replace(/[^A-Z]/g,"");if(w.length<4||w.length>13||vus.has(w))continue;vus.add(w);out.push({w,x,indice:`« ${x.oeuvre} » (${x.anneeAff||x.annee}) — ${x.concept}`,rep:nom});}return out;}
+function motsAuteurs(items,mode){const par={};for(const x of items){if(estNobel(x))continue;const nom=court(x);if(/\s|'|’/.test(nom))continue;const w=sansAccent(nom).toUpperCase().replace(/[^A-Z]/g,"");if(w.length<4||w.length>12)continue;(par[w]=par[w]||[]).push(x);}
+  return Object.entries(par).map(([w,L])=>{const x=L[rint(L.length)];const an=x.anneeAff||x.annee;const o=masquer(x.oeuvre,x);
+    return{w,x,id:x.id,indice:mode==="oeuvres"?`« ${o.length>70?o.slice(0,68)+"…":o} » (${an})`:`${masquer(x.concept,x)} (${an})`,rep:x.auteur};});}
 function vGrille(main,mode){
   main.append(entete("grille",mode));const pf=panneauFiltres(()=>{majPerimetreEntete();partie();});const zone=el("section",{class:"cadre pile"});main.append(pf,zone);
   function partie(){
     let mots,elargi;
-    if(mode==="auteurs"){const r=reserve(["auteurs"],14);elargi=r.elargi;mots=motsAuteurs(melange(r.items));}
-    else{const r=reserve(["notions"],14);elargi=r.elargi;const vus=new Set();mots=r.items.filter(x=>x.mot&&x.mot.length>=3&&x.mot.length<=13).filter(x=>{if(vus.has(x.mot))return false;vus.add(x.mot);return true;}).map(x=>({w:x.mot,x,indice:x.def,rep:x.terme}));}
-    mots.forEach(m=>m.id=m.x.id);
-    let G=null;for(let t=0;t<8;t++){const g=genGrille(tirer(mots,Math.min(40,mots.length)),R0,11);if(g&&(!G||g.places.length>G.places.length))G=g;if(G&&G.places.length>=9)break;}
+    if(mode==="notions"){const r=reserve(["notions"],16);elargi=r.elargi;const vus=new Set();mots=r.items.filter(x=>x.mot&&x.indice&&x.mot.length>=3&&x.mot.length<=12).filter(x=>{if(vus.has(x.mot))return false;vus.add(x.mot);return true;}).map(x=>({w:x.mot,x,id:x.id,indice:x.indice,rep:x.terme}));}
+    else{const r=reserve(["auteurs"],16);elargi=r.elargi;mots=motsAuteurs(r.items,mode);}
+    if(mots.length<6){const tout=mode==="notions"?DB.notions.filter(x=>x.mot&&x.indice&&x.mot.length<=12).map(x=>({w:x.mot,x,id:x.id,indice:x.indice,rep:x.terme})):motsAuteurs(DB.auteurs,mode);mots=tout;elargi=true;}
+    const G=genFleches(tirer(mots,Math.min(60,mots.length)),{essais:35,cible:18});
     if(!G){zone.replaceChildren(el("p",{},"Pas assez de mots dans ce périmètre."));return;}
-    const larg=Math.min(zone.clientWidth||340,640);const c=Math.max(24,Math.min(38,Math.floor((larg-8)/G.W)-2));
-    const grille=el("div",{class:"grille-mc",style:`--c:${c}px;grid-template-columns:repeat(${G.W},var(--c))`});const cells=[];let dir=0,actif=null;
-    const couvre=(p,i,k)=>p.dir?(k===p.c&&i>=p.r&&i<p.r+p.m.w.length):(i===p.r&&k>=p.c&&k<p.c+p.m.w.length);const pos=(p,i,k)=>p.dir?i-p.r:k-p.c;const cel=(p,n)=>p.dir?[p.r+n,p.c]:[p.r,p.c+n];
-    for(let i=0;i<G.H;i++){cells[i]=[];for(let k=0;k<G.W;k++){const v=G.g[i][k];if(!v){grille.append(el("div",{class:"case"}));cells[i][k]=null;continue;}
-      const inp=el("input",{type:"text",autocomplete:"off",autocapitalize:"characters",spellcheck:"false","aria-label":`Case ligne ${i+1}, colonne ${k+1}`});const d=el("div",{class:"case"},inp);const p=G.places.find(p=>p.r===i&&p.c===k);if(p)d.append(el("span",{class:"num"},p.n));cells[i][k]={d,inp,v};grille.append(d);
+    const larg=Math.min(zone.clientWidth||340,620);const c=Math.max(24,Math.min(40,Math.floor((larg-8)/G.W)-2));
+    const grille=el("div",{class:"grille-mf",style:`--c:${c}px;grid-template-columns:repeat(${G.W},var(--c))`});const cells=[];let actif=null,dir=0;
+    const cel=(p,n)=>p.dir?[p.r+n,p.c]:[p.r,p.c+n];const couvre=(p,i,k)=>p.dir?(k===p.c&&i>=p.r&&i<p.r+p.m.w.length):(i===p.r&&k>=p.c&&k<p.c+p.m.w.length);const pos=(p,i,k)=>p.dir?i-p.r:k-p.c;
+    const bandeau=el("p",{class:"bandeau-indice","aria-live":"polite"},"Touchez une case ou une case-flèche.");
+    const FL=["▸","▾"];
+    for(let i=0;i<G.H;i++){cells[i]=[];for(let k=0;k<G.W;k++){const v=G.g[i][k];
+      if(!v){grille.append(el("div",{class:"mf vide"}));cells[i][k]=null;continue;}
+      if(v.t==="I"){const b=el("button",{class:"mf fleche",type:"button","aria-label":`Indice ${v.n}`},el("span",{class:"num"},v.n),el("span",{class:"fl"},v.cl.map((pi,d)=>pi!=null?FL[d]:"").join("")));
+        b.onclick=()=>{const ps=v.cl.filter(pi=>pi!=null).map(pi=>G.places[pi]);const p=ps.length>1&&actif===ps[0]?ps[1]:ps[0];choisir(p,true);};grille.append(b);cells[i][k]=null;continue;}
+      const inp=el("input",{type:"text",autocomplete:"off",autocapitalize:"characters",spellcheck:"false",maxlength:"2","aria-label":`Case ligne ${i+1}, colonne ${k+1}`});const d=el("div",{class:"mf lettre"},inp);cells[i][k]={d,inp,v:v.ch};grille.append(d);
       inp.addEventListener("focus",()=>{try{inp.select();}catch(e){}const ps=G.places.filter(p=>couvre(p,i,k));if(!actif||!couvre(actif,i,k))actif=ps.find(p=>p.dir===dir)||ps[0];surligne();});
-      inp.addEventListener("click",()=>{const ps=G.places.filter(p=>couvre(p,i,k));if(ps.length>1&&actif&&couvre(actif,i,k)){actif=ps.find(p=>p!==actif);dir=actif.dir;surligne();}});
+      inp.addEventListener("click",()=>{const ps=G.places.filter(p=>couvre(p,i,k));if(ps.length>1&&actif&&couvre(actif,i,k)&&document.activeElement===inp&&inp.dataset.vu){actif=ps.find(p=>p!==actif);surligne();}inp.dataset.vu="1";});
+      inp.addEventListener("blur",()=>{delete inp.dataset.vu;});
       inp.addEventListener("input",()=>{const t=sansAccent(inp.value).toUpperCase().replace(/[^A-Z]/g,"");inp.value=t.slice(-1);d.classList.remove("ko");if(inp.value&&actif){const n=pos(actif,i,k);if(n<actif.m.w.length-1){const[a,b]=cel(actif,n+1);cells[a][b].inp.focus();}}controle();});
-      inp.addEventListener("keydown",e=>{if(e.key==="Backspace"&&!inp.value&&actif){const n=pos(actif,i,k);if(n>0){const[a,b]=cel(actif,n-1);cells[a][b].inp.focus();e.preventDefault();}}});}}
-    const lis=[];const resolus=new Set();const fin=el("div");
-    function surligne(){cells.flat().forEach(o=>o&&o.d.classList.remove("mot-actif"));if(actif){for(let n=0;n<actif.m.w.length;n++){const[a,b]=cel(actif,n);cells[a][b].d.classList.add("mot-actif");}dir=actif.dir;}lis.forEach(o=>o.li.classList.toggle("actif",o.p===actif));}
-    function controle(){G.places.forEach(p=>{if(resolus.has(p))return;for(let n=0;n<p.m.w.length;n++){const[a,b]=cel(p,n);if(cells[a][b].inp.value!==p.m.w[n])return;}resolus.add(p);noter(p.m.x.id,!p.revele);const o=lis.find(o=>o.p===p);o.li.classList.add("resolu");o.li.querySelector(".rep").replaceChildren(el("b",{}," — "+p.m.rep));o.li.append(sourcesEl(p.m.x));for(let n=0;n<p.m.w.length;n++){const[a,b]=cel(p,n);cells[a][b].d.classList.add("ok");}annonce("Mot trouvé : "+p.m.rep);emit("mot",{juste:!p.revele});reagir(true,{leger:true});if(resolus.size===G.places.length){fin.replaceChildren(el("p",{class:"verdict juste"},"Grille complète."));emit("partie",{jeu:"grille",mode});setTimeout(()=>reagir(true),500);}});}
+      inp.addEventListener("keydown",e=>{const mv={ArrowRight:[0,1,0],ArrowLeft:[0,-1,0],ArrowDown:[1,0,1],ArrowUp:[-1,0,1]}[e.key];
+        if(mv){e.preventDefault();dir=mv[2];const a=i+mv[0],b=k+mv[1];if(cells[a]&&cells[a][b]){const ps=G.places.filter(p=>couvre(p,a,b));actif=ps.find(p=>p.dir===dir)||ps[0];cells[a][b].inp.focus();surligne();}return;}
+        if(e.key==="Backspace"&&!inp.value&&actif){const n=pos(actif,i,k);if(n>0){const[a,b]=cel(actif,n-1);cells[a][b].inp.value="";cells[a][b].inp.focus();e.preventDefault();}}});}}
+    const lis=[];const resolus=new Set();const fin=el("div",{class:"pile"});
+    function choisir(p,focus){actif=p;dir=p.dir;surligne();if(focus){let n=0;for(;n<p.m.w.length;n++){const[a,b]=cel(p,n);if(!cells[a][b].inp.value)break;}const[a,b]=cel(p,Math.min(n,p.m.w.length-1));cells[a][b].inp.focus();}}
+    function surligne(){cells.flat().forEach(o=>o&&o.d.classList.remove("mot-actif"));if(actif){for(let n=0;n<actif.m.w.length;n++){const[a,b]=cel(actif,n);cells[a][b].d.classList.add("mot-actif");}dir=actif.dir;
+        bandeau.replaceChildren(el("b",{},`${actif.n} ${FL[actif.dir]} `),actif.m.indice,el("span",{class:"doux"},` (${actif.m.w.length} lettres)`));}
+      lis.forEach(o=>o.li.classList.toggle("actif",o.p===actif));}
+    function controle(){G.places.forEach(p=>{if(resolus.has(p))return;for(let n=0;n<p.m.w.length;n++){const[a,b]=cel(p,n);if(cells[a][b].inp.value!==p.m.w[n])return;}resolus.add(p);noter(p.m.x.id,!p.revele);
+      const o=lis.find(o=>o.p===p);o.li.classList.add("resolu");o.li.querySelector(".rep").replaceChildren(el("b",{}," — "+p.m.rep));o.li.append(sourcesEl(p.m.x));for(let n=0;n<p.m.w.length;n++){const[a,b]=cel(p,n);cells[a][b].d.classList.add("ok");}
+      annonce("Mot trouvé : "+p.m.rep);emit("mot",{juste:!p.revele});reagir(true,{leger:true});
+      if(resolus.size===G.places.length){const sans=G.places.filter(q=>!q.revele).length;fin.replaceChildren(el("p",{class:"verdict juste"},`Grille complète : ${sans} mot${sans>1?"s":""} sur ${G.places.length} trouvés sans aide.`));emit("partie",{jeu:"grille",mode,score:sans,total:G.places.length});setTimeout(()=>reagir(true),500);}});}
     const ind=el("div",{class:"indices"});
-    for(const[d,t]of[[0,"Horizontalement"],[1,"Verticalement"]]){const ol=el("ol");G.places.filter(p=>p.dir===d).sort((a,b)=>a.n-b.n).forEach(p=>{const li=el("li",{},el("b",{},p.n+". "),p.m.indice,el("span",{class:"doux petit"},` (${p.m.w.length})`),el("span",{class:"rep"}));li.onclick=e=>{if(e.target.closest("a"))return;actif=p;dir=p.dir;const[a,b]=cel(p,0);cells[a][b].inp.focus();surligne();};lis.push({p,li});ol.append(li);});if(ol.children.length)ind.append(el("div",{class:"pile"},el("h3",{},t),ol));}
-    const bV=el("button",{class:"btn"},"Vérifier les cases");bV.onclick=()=>cells.flat().forEach(o=>{if(o&&o.inp.value&&o.inp.value!==o.v)o.d.classList.add("ko");});
-    const bL=el("button",{class:"btn"},"Révéler une lettre");bL.onclick=()=>{const a=document.activeElement;const o=cells.flat().find(o=>o&&o.inp===a);if(o){o.inp.value=o.v;o.d.classList.remove("ko");controle();}else annonce("Touchez d'abord une case");};
-    const bM=el("button",{class:"btn"},"Révéler le mot");bM.onclick=()=>{if(!actif)return;actif.revele=true;for(let n=0;n<actif.m.w.length;n++){const[a,b]=cel(actif,n);cells[a][b].inp.value=actif.m.w[n];}controle();};
+    for(const[d,t]of[[0,"▸ Horizontalement"],[1,"▾ Verticalement"]]){const ol=el("ol");G.places.filter(p=>p.dir===d).sort((a,b)=>a.n-b.n).forEach(p=>{const li=el("li",{},el("b",{},p.n+". "),p.m.indice,el("span",{class:"doux petit"},` (${p.m.w.length})`),el("span",{class:"rep"}));li.onclick=e=>{if(e.target.closest("a"))return;choisir(p,true);};lis.push({p,li});ol.append(li);});if(ol.children.length)ind.append(el("div",{class:"pile"},el("h3",{},t),ol));}
+    const bV=el("button",{class:"btn"},"Vérifier les cases");bV.onclick=()=>{let n=0;cells.flat().forEach(o=>{if(o&&o.inp.value&&o.inp.value!==o.v){o.d.classList.add("ko");n++;}});annonce(n?`${n} case${n>1?"s":""} fausse${n>1?"s":""}`:"Aucune case fausse");};
+    const bL=el("button",{class:"btn"},"Révéler une lettre");bL.onmousedown=e=>e.preventDefault();bL.onclick=()=>{const a=document.activeElement;const o=cells.flat().find(o=>o&&o.inp===a);if(o){o.inp.value=o.v;o.d.classList.remove("ko");if(actif)actif.revele=true;controle();}else annonce("Touchez d'abord une case");};
+    const bM=el("button",{class:"btn"},"Révéler le mot");bM.onmousedown=e=>e.preventDefault();bM.onclick=()=>{if(!actif)return;actif.revele=true;for(let n=0;n<actif.m.w.length;n++){const[a,b]=cel(actif,n);cells[a][b].inp.value=actif.m.w[n];}controle();};
     const bN=el("button",{class:"btn or"},"Nouvelle grille");bN.onclick=partie;
-    zone.replaceChildren(avisElargi(elargi),el("div",{class:"mc"},el("div",{class:"pile"},grille,el("div",{class:"rangee"},bV,bL,bM,bN),fin),ind));
+    zone.replaceChildren(avisElargi(elargi),el("p",{class:"petit doux"},`${G.places.length} mots, ${G.croisements} croisements.`),el("div",{class:"mf-jeu"},el("div",{class:"pile"},bandeau,el("div",{class:"defile-mf"},grille),el("div",{class:"rangee"},bV,bL,bM,bN),fin),ind));
   }
   partie();
 }
@@ -454,15 +525,27 @@ function vGrille(main,mode){
 /* ========== Chronique ========== */
 function vChronique(main,mode){
   main.append(entete("chronique",mode));const pf=panneauFiltres(()=>{majPerimetreEntete();partie();});const zone=el("section",{class:"cadre pile"});main.append(pf,zone);
+  const date=x=>x.type==="date"||(x.type==="auteur"&&!estNobel(x));
+  function tirage(){
+    if(mode==="debats"){const{items,elargi}=debatsPerim(1);const j=tirer(items.map(d=>({id:d.id,d})),1)[0].d;const vus=new Set();let L=[];
+      j.positions.forEach(p=>fichesPos(p).forEach(x=>{if(date(x)&&!vus.has(x.annee)){vus.add(x.annee);L.push({x,p});}}));
+      if(L.length<5)melange(DB.dates.filter(d=>d.chap.some(c=>j.chap.includes(c)))).forEach(x=>{if(L.length<5&&!vus.has(x.annee)){vus.add(x.annee);L.push({x});}});
+      return{elargi,titre:j.q,j,L:melange(L).slice(0,6)};}
+    const{items,elargi}=reserve(["auteurs","dates"],8);const par={};items.filter(date).forEach(x=>x.chap.forEach(c=>{(par[c]=par[c]||[]).push(x);}));
+    let chs=Object.keys(par).filter(c=>new Set(par[c].map(x=>x.annee)).size>=5);
+    if(!chs.length){const tous={};DB.auteurs.concat(DB.dates).filter(date).forEach(x=>x.chap.forEach(c=>{(tous[c]=tous[c]||[]).push(x);}));Object.assign(par,tous);chs=Object.keys(tous).filter(c=>new Set(tous[c].map(x=>x.annee)).size>=5);}
+    const c=chs[rint(chs.length)];const vus=new Set();const L=melange(par[c]).filter(x=>{if(vus.has(x.annee))return false;vus.add(x.annee);return true;}).slice(0,6).map(x=>({x}));
+    return{elargi,titre:`${NIVL[NIV(c)]} · ${CHAP[c].court}`,c,L};}
   function partie(){
-    const types=mode==="oeuvres"?["auteurs"]:mode==="evenements"?["dates"]:["auteurs","dates"];const{items,elargi}=reserve(types,8);
-    const s=tirer(items.filter(x=>!estNobel(x)),6,{cle:x=>x.annee});let ordre=melange(s);if(ordre.every((x,i)=>i===0||ordre[i-1].annee<x.annee))ordre.reverse();
+    const g=tirage();let ordre=melange(g.L);if(ordre.every((o,i)=>i===0||ordre[i-1].x.annee<o.x.annee))ordre.reverse();
     let fini=false;const ul=el("ol",{class:"frise"}),res=el("div",{class:"pile"});
-    function dessine(){ul.replaceChildren(...ordre.map((x,i)=>{const up=el("button",{class:"btn mini","aria-label":"Monter",disabled:fini||i===0},"↑");up.onclick=()=>{[ordre[i-1],ordre[i]]=[ordre[i],ordre[i-1]];dessine();};const dn=el("button",{class:"btn mini","aria-label":"Descendre",disabled:fini||i===ordre.length-1},"↓");dn.onclick=()=>{[ordre[i+1],ordre[i]]=[ordre[i],ordre[i+1]];dessine();};
-      const li=el("li",{class:`d-${x.disc}`},el("span",{class:"rang-f"},i+1),el("div",{},libChrono(x)),fini?el("span",{class:"an"},x.anneeAff||x.annee):el("div",{class:"fleches"},up,dn));if(fini)li.classList.add([...ordre].sort((a,b)=>a.annee-b.annee)[i]===x?"juste":"faux");return li;}));}
-    const bV=el("button",{class:"btn or"},"Vérifier la chronique"),bN=el("button",{class:"btn"},"Nouvelles pages");bN.onclick=partie;
-    bV.onclick=()=>{fini=true;bV.disabled=true;dessine();const tri=[...ordre].sort((a,b)=>a.annee-b.annee);let n=0;ordre.forEach((x,i)=>{const ok=tri[i]===x;if(ok)n++;noter(x.id,ok);});emit("partie",{jeu:"chronique",mode,score:n,total:ordre.length});res.replaceChildren(retourEl(n===ordre.length,`${n} page${n>1?"s":""} à ${n>1?"leur":"sa"} place sur ${ordre.length}.`,tri.map(x=>ficheEl(x))));};
-    zone.replaceChildren(avisElargi(elargi),el("p",{class:"petit doux"},"Le plus ancien en haut."),ul,el("div",{class:"rangee"},bV,bN),res);dessine();
+    function dessine(){const tri=[...ordre].sort((a,b)=>a.x.annee-b.x.annee);ul.replaceChildren(...ordre.map((o,i)=>{const x=o.x;const up=el("button",{class:"btn mini","aria-label":"Monter",disabled:fini||i===0},"↑");up.onclick=()=>{[ordre[i-1],ordre[i]]=[ordre[i],ordre[i-1]];dessine();};const dn=el("button",{class:"btn mini","aria-label":"Descendre",disabled:fini||i===ordre.length-1},"↓");dn.onclick=()=>{[ordre[i+1],ordre[i]]=[ordre[i],ordre[i+1]];dessine();};
+      const li=el("li",{class:`d-${x.disc}`},el("span",{class:"rang-f"},i+1),el("div",{},libChrono(x),o.p?el("small",{class:"doux",style:"display:block"},o.p.ecole):x.type==="date"?el("small",{class:"doux",style:"display:block"},"Événement"):null),fini?el("span",{class:"an"},x.anneeAff||x.annee):el("div",{class:"fleches"},up,dn));if(fini)li.classList.add(tri[i]===o?"juste":"faux");return li;}));}
+    const bV=el("button",{class:"btn or"},"Vérifier la chronique"),bN=el("button",{class:"btn"},mode==="debats"?"Autre débat":"Autre chapitre");bN.onclick=partie;
+    bV.onclick=()=>{fini=true;bV.disabled=true;const tri=[...ordre].sort((a,b)=>a.x.annee-b.x.annee);let n=0;ordre.forEach((o,i)=>{const ok=tri[i]===o;if(ok)n++;noter(o.x.id,ok);});dessine();emit("partie",{jeu:"chronique",mode,score:n,total:ordre.length});
+      const fil=el("ol",{class:"fil-debat"},tri.map(o=>el("li",{},el("b",{},String(o.x.anneeAff||o.x.annee))," ",libChrono(o.x),o.p?el("span",{class:"doux"},` — ${o.p.ecole}`):null)));
+      res.replaceChildren(retourEl(n===ordre.length,`${n} page${n>1?"s":""} à ${n>1?"leur":"sa"} place sur ${ordre.length}.`,[]),el("div",{class:"pile"},el("span",{class:"oeil"},mode==="debats"?"Qui répond à qui":"Le chapitre dans l'ordre"),fil),g.j?carteDebat(g.j,{ouvert:false}):"",el("details",{},el("summary",{style:"cursor:pointer"},"Les fiches"),el("div",{class:"liste-fiches"},tri.map(o=>ficheEl(o.x)))));};
+    zone.replaceChildren(avisElargi(g.elargi),el("span",{class:"oeil"},mode==="debats"?"Le débat":"Le chapitre"),el("h2",{},g.titre),el("p",{class:"petit doux"},"Le plus ancien en haut."),ul,el("div",{class:"rangee"},bV,bN),res);dessine();
   }
   partie();
 }
@@ -472,31 +555,40 @@ function vDuel(main){
   let serie=0;const best=()=>S.best.eclipse||0;
   main.append(entete("duel"));const pf=panneauFiltres(()=>{majPerimetreEntete();manche();});const zone=el("section",{class:"cadre pile"});main.append(pf,zone);
   function manche(){
-    const{items,elargi}=reserve(["auteurs","dates"],6);const gap=Math.max(2,120-serie*14);const q=qDuel(R0,items.filter(x=>!estNobel(x)),gap);
+    const{items,elargi}=reserve(["auteurs","dates"],6);const gap=Math.max(3,30-serie*3);const q=qDuel(R0,items,gap);const a=q.oeuvre,e=q.evt;
     const sc=el("p",{class:"score"},"Victoires : ",el("b",{},serie),` · record : ${best()} · écart maximal : ${gap} ans`);
-    const duel=el("div",{class:"duel"}),res=el("div",{class:"pile"}),bas=el("div",{class:"rangee"});
-    const bt=q.fiches.map((x,i)=>{const b=el("button",{type:"button",class:`d-${x.disc}`},el("span",{class:"etiquette"},x.type==="date"?"Événement":"Œuvre"),el("span",{},libChrono(x)));b.onclick=()=>choix(i);return b;});
-    duel.append(bt[0],el("span",{class:"ou"},sprite("epee",28)),bt[1]);
-    function choix(i){const ok=i===q.bon;bt.forEach((b,k)=>{b.disabled=true;b.append(el("span",{class:"an"},q.annees[k]));if(k===q.bon)b.classList.add("juste");});if(!ok)bt[i].classList.add("faux","secousse");q.fiches.forEach(f=>noter(f.id,ok));
+    const cA=el("div",{class:`carte-duel d-${a.disc}`},el("span",{class:"etiquette"},"Œuvre"),el("span",{},libChrono(a))),cE=el("div",{class:`carte-duel d-${e.disc}`},el("span",{class:"etiquette"},"Événement"),el("span",{},e.evenement));
+    const duel=el("div",{class:"duel"},cA,el("span",{class:"ou"},sprite("sablier",28)),cE);const ch=el("div",{class:"choix deux"}),res=el("div",{class:"pile"}),bas=el("div",{class:"rangee"});
+    const bt=["Avant l'événement","Après l'événement"].map((t,i)=>{const b=el("button",{type:"button"},t);b.onclick=()=>choix(i);ch.append(b);return b;});
+    function choix(i){const ok=i===q.bon;bt.forEach((b,k)=>{b.disabled=true;if(k===q.bon)b.classList.add("juste");});if(!ok)bt[i].classList.add("faux","secousse");cA.append(el("span",{class:"an"},a.anneeAff||a.annee));cE.append(el("span",{class:"an"},e.annee));noter(a.id,ok);noter(e.id,ok);
       if(ok){serie++;if(serie>best()){S.best.eclipse=serie;sauver();}}else serie=0;emit("partie",{jeu:"duel",score:ok?1:0,total:1,serie});sc.replaceChildren("Victoires : ",el("b",{},serie),` · record : ${best()}`);
-      res.replaceChildren(retourEl(ok,ok?"Victoire.":"Défaite : l'autre était plus ancien.",q.fiches.map(f=>ficheEl(f))));const b=el("button",{class:"btn or"},ok?"Duel suivant":"Nouveau tournoi");b.onclick=manche;bas.replaceChildren(b);b.focus({preventScroll:true});}
-    zone.replaceChildren(avisElargi(elargi),sc,el("p",{class:"question"},"Lequel est le plus ancien ?"),duel,bas,res);
+      const ecart=Math.abs(a.annee-e.annee);res.replaceChildren(retourEl(ok,`${ok?"Victoire":"Défaite"} : « ${a.oeuvre} » paraît ${ecart} an${ecart>1?"s":""} ${a.annee<e.annee?"avant":"après"} l'événement.`,[ficheEl(a),ficheEl(e)]));const b=el("button",{class:"btn or"},ok?"Duel suivant":"Nouveau tournoi");b.onclick=manche;bas.replaceChildren(b);b.focus({preventScroll:true});}
+    zone.replaceChildren(avisElargi(elargi),sc,el("p",{class:"question"},"Cette œuvre a-t-elle paru avant ou après l'événement ?"),duel,ch,bas,res);
   }
   manche();
 }
 
 /* ========== Forge des Mécanismes ========== */
-function vForge(main){
-  main.append(entete("forge"));const pf=panneauFiltres(()=>{majPerimetreEntete();partie();});const zone=el("section",{class:"cadre pile"});main.append(pf,zone);
+function vForge(main,mode){
+  main.append(entete("forge",mode));const pf=panneauFiltres(()=>{majPerimetreEntete();partie();});const zone=el("section",{class:"cadre pile"});main.append(pf,zone);
   function partie(){
-    const{items,elargi}=reserve(["mecas"],1);const m=tirer(items,1)[0];let pris=[],fini=false;const mel=melange(m.etapes.map((t,i)=>({t,i})));if(mel.every((o,k)=>o.i===k))mel.reverse();
-    const chaine=el("ol",{class:"chaine"}),reste=el("div",{class:"pile"}),res=el("div",{class:"pile"});
-    const bV=el("button",{class:"btn or",disabled:true},"Vérifier la chaîne"),bN=el("button",{class:"btn"},"Autre mécanisme");bN.onclick=partie;
+    const{items,elargi}=reserve(["mecas"],1);const m=tirer(mode==="faux"?items.filter(x=>x.faux):items,1)[0]||tirer(DB.mecas,1)[0];const res=el("div",{class:"pile"});
+    const tete=[el("h2",{},m.titre),el("div",{class:"tags"},el("span",{class:"etiquette"},`${NIVL[NIV(m.chap[0])]} · ${CHAP[m.chap[0]].court}`))];
+    const bN=el("button",{class:"btn"},"Autre mécanisme");bN.onclick=partie;
+    if(mode==="faux"){const ch=el("ol",{class:"chaine"});let fini=false;
+      m.etapes.forEach((t,k)=>{const txt=k===m.faux.i?m.faux.t:t;const b=el("button",{class:"etape",type:"button"},el("span",{class:"n"},k+1),el("span",{},txt));b.onclick=()=>{if(fini)return;fini=true;const ok=k===m.faux.i;noter(m.id,ok);emit("partie",{jeu:"forge",mode,parfait:ok,score:ok?1:0,total:1});
+          [...ch.children].forEach((li,j)=>{const bb=li.firstChild;bb.disabled=true;if(j===m.faux.i){bb.classList.add("faux");bb.append(el("span",{class:"correction"},`Le bon maillon : ${m.etapes[j]}`));}});if(!ok)b.classList.add("secousse");
+          res.replaceChildren(retourEl(ok,ok?"Bien vu : ce maillon était faux.":`Non : le maillon faux était le n° ${m.faux.i+1}.`,[]),el("p",{class:"pourquoi"},el("b",{},"Pourquoi : "),m.faux.pourquoi),ficheEl(m,ok?"juste":"faux"));};
+        ch.append(el("li",{},b));});
+      zone.replaceChildren(avisElargi(elargi),...tete,el("p",{class:"question"},"Un maillon de cette chaîne est faux : lequel ?"),ch,res,el("div",{class:"rangee"},bN));return;}
+    let pris=[],fini=false;const mel=melange(m.etapes.map((t,i)=>({t,i})));if(mel.every((o,k)=>o.i===k))mel.reverse();
+    const chaine=el("ol",{class:"chaine"}),reste=el("div",{class:"pile"});
+    const bV=el("button",{class:"btn or",disabled:true},"Vérifier la chaîne");
     function dessine(){chaine.replaceChildren(...pris.map((o,k)=>{const b=el("button",{class:"etape",type:"button",disabled:fini},el("span",{class:"n"},k+1),el("span",{},o.t));if(fini)b.classList.add(o.i===k?"juste":"faux");b.onclick=()=>{pris.splice(k,1);dessine();};return el("li",{},b);}));
       reste.replaceChildren(...mel.filter(o=>!pris.includes(o)).map(o=>{const b=el("button",{class:"etape",type:"button"},el("span",{class:"n"},"·"),el("span",{},o.t));b.onclick=()=>{pris.push(o);dessine();};return b;}));
       if(!pris.length)chaine.append(el("li",{class:"petit doux"},"Touchez la première étape ci-dessous."));bV.disabled=pris.length!==m.etapes.length||fini;}
-    bV.onclick=()=>{fini=true;const n=pris.filter((o,k)=>o.i===k).length;const ok=n===m.etapes.length;noter(m.id,ok);emit("partie",{jeu:"forge",parfait:ok,score:n,total:m.etapes.length});dessine();res.replaceChildren(retourEl(ok,ok?"Chaîne parfaitement forgée.":`${n} maillon${n>1?"s":""} à ${n>1?"leur":"sa"} place sur ${m.etapes.length}.`,[ficheEl(m,ok?"juste":"faux")]));};
-    zone.replaceChildren(avisElargi(elargi),el("h2",{},m.titre),el("div",{class:"tags"},el("span",{class:"etiquette"},`${NIVL[NIV(m.chap[0])]} · ${CHAP[m.chap[0]].court}`)),el("span",{class:"oeil"},"Votre chaîne"),chaine,el("span",{class:"oeil"},"Maillons à placer"),reste,el("div",{class:"rangee"},bV,bN),res);dessine();
+    bV.onclick=()=>{fini=true;const n=pris.filter((o,k)=>o.i===k).length;const ok=n===m.etapes.length;noter(m.id,ok);emit("partie",{jeu:"forge",mode,parfait:ok,score:n,total:m.etapes.length});dessine();res.replaceChildren(retourEl(ok,ok?"Chaîne parfaitement forgée.":`${n} maillon${n>1?"s":""} à ${n>1?"leur":"sa"} place sur ${m.etapes.length}.`,[]),ficheEl(m,ok?"juste":"faux"));};
+    zone.replaceChildren(avisElargi(elargi),...tete,el("span",{class:"oeil"},"Votre chaîne"),chaine,el("span",{class:"oeil"},"Maillons à placer"),reste,el("div",{class:"rangee"},bV,bN),res);dessine();
   }
   partie();
 }
@@ -526,12 +618,12 @@ function vEnigme(main){
   function manche(){
     const{items,elargi}=reserve(["auteurs"],10);const gr={};items.forEach(x=>{(gr[x.auteur]=gr[x.auteur]||[]).push(x);});const noms=Object.keys(gr);const nom=noms[rint(noms.length)];const fs=gr[nom];const x=fs[rint(fs.length)];
     const ini=nom.split(/,| et /)[0].trim().split(/\s+/).map(s=>s[0]+".").join(" ");
-    const ind=[`Discipline : ${DISC[x.disc]}${x.courant?" ; courant ou école : "+x.courant:""}.`,`Une de ses œuvres de référence date des années ${Math.floor(x.annee/10)*10}.`,`Notion clé : ${x.concept}.`,`Œuvre : « ${x.oeuvre} ».`,`Initiales : ${ini}`];
+    const ind=[`Sa thèse : ${masquer(x.idee,x)}`,`Notion clé : ${x.concept}${x.courant?` · courant : ${x.courant}`:""}.`,`Œuvre : « ${masquer(x.oeuvre,x)} » (${x.anneeAff||x.annee}).`,`Initiales : ${ini}`];
     let vus=1,fini=false;const ul=el("ol",{class:"indices-enigme"});const dess=()=>ul.replaceChildren(...ind.map((t,i)=>el("li",{class:i<vus?"":"voile"},i<vus?t:`Indice ${i+1} encore scellé`)));
-    const autres=melange(noms.filter(n=>n!==nom&&gr[n][0].disc===x.disc)).slice(0,5);let g=0;while(autres.length<5&&g++<500){const n=noms[rint(noms.length)];if(n!==nom&&!autres.includes(n))autres.push(n);}
+    const autres=voisins(x,items.length>=12?items:DB.auteurs,5,{cle:y=>y.auteur,exclure:y=>memeNom(x,y)}).map(y=>y.auteur).filter(n=>gr[n]||DB.auteurs.some(y=>y.auteur===n));autres.forEach(n=>{if(!gr[n])gr[n]=DB.auteurs.filter(y=>y.auteur===n);});
     const opts=melange([nom,...autres]);const ch=el("div",{class:"choix"}),res=el("div",{class:"pile"}),bas=el("div",{class:"rangee"});
     const bI=el("button",{class:"btn"},"Briser un sceau (−1 point)");bI.onclick=()=>{if(vus<ind.length){vus++;dess();}if(vus>=ind.length)bI.disabled=true;};
-    opts.forEach(n=>{const b=el("button",{type:"button"},court(gr[n][0]));b.onclick=()=>{if(fini)return;fini=true;const ok=n===nom;const p=ok?Math.max(1,6-vus):0;total+=p;tours++;noter(x.id,ok);emit("partie",{jeu:"enigme",score:ok?1:0,total:1});[...ch.children].forEach((bb,i)=>{bb.disabled=true;if(opts[i]===nom)bb.classList.add("juste");});if(!ok)b.classList.add("faux");vus=ind.length;dess();bI.disabled=true;
+    opts.forEach(n=>{const b=el("button",{type:"button"},court(gr[n][0]));b.onclick=()=>{if(fini)return;fini=true;const ok=n===nom;const p=ok?Math.max(1,5-vus):0;total+=p;tours++;noter(x.id,ok);emit("partie",{jeu:"enigme",score:ok?1:0,total:1});[...ch.children].forEach((bb,i)=>{bb.disabled=true;if(opts[i]===nom)bb.classList.add("juste");});if(!ok)b.classList.add("faux");vus=ind.length;dess();bI.disabled=true;
       res.replaceChildren(retourEl(ok,ok?`Juste : ${p} point${p>1?"s":""}.`:`Non : c'était ${x.auteur}.`,fs.map(f=>ficheEl(f))));sc.replaceChildren("Points : ",el("b",{},total),` en ${tours} énigme${tours>1?"s":""}`);const nb=el("button",{class:"btn or"},"Énigme suivante");nb.onclick=manche;bas.replaceChildren(nb);nb.focus({preventScroll:true});};ch.append(b);});
     const sc=el("p",{class:"score"},"Points : ",el("b",{},total),` en ${tours} énigme${tours>1?"s":""}`);
     dess();zone.replaceChildren(avisElargi(elargi),sc,el("p",{class:"question"},"Qui suis-je ?"),ul,el("div",{class:"rangee"},bI),ch,bas,res);
@@ -541,13 +633,13 @@ function vEnigme(main){
 
 /* ========== Balance du Marchand ========== */
 function vBalance(main,mode){
-  let pts=0,tours=0;main.append(entete("balance",mode),el("p",{class:"petit cadre",style:"padding:6px 12px"},"Valeurs les plus récentes publiées au ",DATA.meta.date,", à revérifier avant de les citer. ",lienExt(OFF.jury.u,"Le jury demande de maîtriser ces ordres de grandeur ↗")));
+  let pts=0,tours=0,serie=0;const niveau=()=>Math.min(3,Math.floor(serie/2));main.append(entete("balance",mode),el("p",{class:"petit cadre",style:"padding:6px 12px"},"Valeurs les plus récentes publiées au ",DATA.meta.date,", à revérifier avant de les citer. ",lienExt(OFF.jury.u,"Le jury demande de maîtriser ces ordres de grandeur ↗")));
   const pf=panneauFiltres(()=>{majPerimetreEntete();manche();});const zone=el("section",{class:"cadre pile"});main.append(pf,zone);
   function manche(){
-    const{items,elargi}=reserve(["chiffres"],4);const sc=el("p",{class:"score"},"Score : ",el("b",{},pts),` / ${tours}`);const bas=el("div",{class:"rangee"}),z=el("div",{class:"pile"});
-    const suite=ok=>{tours++;if(ok)pts++;emit("partie",{jeu:"balance",mode,score:ok?1:0,total:1});sc.replaceChildren("Score : ",el("b",{},pts),` / ${tours}`);const b=el("button",{class:"btn or"},"Pesée suivante");b.onclick=manche;bas.replaceChildren(b);b.focus({preventScroll:true});};
-    if(mode==="valeurs")rendreQCM(z,qChiffre(R0,items),suite);
-    else{const x=tirer(items,1)[0];const d=decimales(x);let w=x.valeur*melange([0.55,0.7,0.82,1.2,1.4,1.8])[0];if(/^%/.test(x.unite||"")&&w>100)w=(x.valeur+100)/2;const haut=x.valeur>w;
+    const{items,elargi}=reserve(["chiffres"],4);const NIVB=["Large","Serré","Précis","Au plus juste"];const sc=el("p",{class:"score"},"Score : ",el("b",{},pts),` / ${tours} · exigence : ${NIVB[niveau()]}`);const bas=el("div",{class:"rangee"}),z=el("div",{class:"pile"});
+    const suite=ok=>{tours++;if(ok){pts++;serie++;}else serie=0;emit("partie",{jeu:"balance",mode,score:ok?1:0,total:1});sc.replaceChildren("Score : ",el("b",{},pts),` / ${tours} · exigence : ${NIVB[niveau()]}`);const b=el("button",{class:"btn or"},"Pesée suivante");b.onclick=manche;bas.replaceChildren(b);b.focus({preventScroll:true});};
+    if(mode==="valeurs")rendreQCM(z,qChiffre(R0,items,niveau()),suite);
+    else{const x=tirer(items,1)[0];const d=decimales(x);let w=x.valeur*melange([[0.6,0.75,1.3,1.6],[0.75,0.85,1.15,1.3],[0.85,0.92,1.08,1.15],[0.9,0.95,1.05,1.1]][niveau()])[0];if(fmtC(w,d,x)===fmtC(x.valeur,d,x))w=x.valeur*(w>x.valeur?1.12:0.88);if(/^%/.test(x.unite||"")&&w>100)w=(x.valeur+100)/2;const haut=x.valeur>w;
       const p=el("p",{class:"question"},`${x.indicateur} (${x.periode}${x.champ?", "+x.champ:""}) : la vraie valeur est-elle au-dessus ou en dessous de cette annonce ?`,el("span",{class:"citation"},fmtC(w,d,x)));
       const ch=el("div",{class:"choix"}),res=el("div");[["Au-dessus",true],["En dessous",false]].forEach(([l,v])=>{const b=el("button",{type:"button"},l);b.onclick=()=>{const ok=v===haut;[...ch.children].forEach(bb=>bb.disabled=true);b.classList.add(ok?"juste":"faux");noter(x.id,ok);res.replaceChildren(retourEl(ok,`${ok?"Juste":"Non"} : ${x.affichage}.`,[ficheEl(x,ok?"juste":"faux")]));suite(ok);};ch.append(b);});
       z.append(el("div",{class:"tags"},el("span",{class:"etiquette"},`${NIVL[NIV(x.chap[0])]} · ${CHAP[x.chap[0]].court}`)),p,ch,res);}
@@ -558,7 +650,43 @@ function vBalance(main,mode){
 
 /* ========== Comptoir du Trésorier ========== */
 const arr=(n,d)=>{const p=Math.pow(10,d);return Math.round(n*p)/p;};
-function vComptoir(main){
+/* ----- Lecture de tableaux : la phrase exacte parmi des pièges classiques (données fictives) ----- */
+const LECTURES=[
+  ()=>{const PCS=["Cadre","Profession intermédiaire","Employé ou ouvrier"];const L=[[45+rint(12),0,0],[22+rint(8),0,0],[8+rint(6),0,0]];L.forEach(l=>{l[1]=20+rint(15);l[2]=100-l[0]-l[1];});const i=rint(3),j=rint(2),v=L[i][j];
+    const posV=["sont cadres","exercent une profession intermédiaire"][j],posN=["cadres","de profession intermédiaire"][j],org=["cadre","de profession intermédiaire","employé ou ouvrier"][i];
+    const piege4=i===j?{t:`${100-v} % des hommes dont le père est ${org} ont connu une mobilité ascendante.`,p:"Les autres hommes de cette origine ont changé de catégorie, mais pas forcément vers le haut : il faut regarder dans quelle colonne ils se trouvent."}
+      :{t:`${v} % des hommes dont le père est ${org} sont restés dans la catégorie de leur père.`,p:"Ils occupent une autre catégorie que leur père : c'est de la mobilité. L'immobilité se lit sur la diagonale de la table."};
+    return{t:"Table de destinée",titre:"Position sociale des hommes de 35 à 59 ans selon celle de leur père (en %)",entetes:["Père ↓ / Fils →",...PCS,"Ensemble"],lignes:L.map((l,k)=>[PCS[k],...l.map(String),"100"]),
+      opts:[{t:`Sur 100 hommes dont le père est ${org}, ${v} ${posV}.`,ok:true,p:"Les pourcentages sont calculés en ligne : c'est une table de destinée, qui part de l'origine."},
+        {t:`Sur 100 hommes ${posN}, ${v} ont un père ${org}.`,p:"Ce serait une table de recrutement (pourcentages en colonne) : on partirait de la position, pas de l'origine."},
+        {t:`${v} % des hommes ${posV.replace(/^sont /,"sont ").replace(/^exercent/,"exercent")} et ont un père ${org}.`,p:"Ce serait une part dans l'ensemble des hommes (fréquence conjointe), pas une proportion parmi ceux d'une même origine."},
+        piege4]};},
+  ()=>{const a=arr(8+rint(30)/10,1),b=arr(a-1-rint(25)/10,1);const pts=arr(a-b,1),pc=arr((a-b)/a*100,1);
+    return{t:"Points et pourcentages",titre:"Taux de chômage au sens du BIT (en % de la population active)",entetes:["Année","2015","2025"],lignes:[["Taux de chômage",fr(a,1),fr(b,1)]],
+      opts:[{t:`Entre 2015 et 2025, le taux de chômage a baissé de ${fr(pts,1)} points.`,ok:true,p:"La différence entre deux taux s'exprime en points de pourcentage."},
+        {t:`Entre 2015 et 2025, le taux de chômage a baissé de ${fr(pts,1)} %.`,p:`Confusion entre points et pourcentage : en taux de variation, la baisse est de ${fr(pc,1)} %.`},
+        {t:`Entre 2015 et 2025, le nombre de chômeurs a baissé de ${fr(pc,1)} %.`,p:"Un taux peut baisser sans que le nombre de chômeurs baisse dans la même proportion : la population active a pu changer."},
+        {t:`En 2025, ${fr(b,1)} % de la population est au chômage.`,p:"Le taux de chômage se rapporte à la population active, pas à la population totale."}]};},
+  ()=>{const a=104+rint(10),b=a+8+rint(18);const vr=arr((b/a-1)*100,1);
+    return{t:"Indices",titre:"Indice des prix à la consommation (base 100 en 2015)",entetes:["Année","2015","2020","2025"],lignes:[["Indice","100",fr(a),fr(b)]],
+      opts:[{t:`Entre 2020 et 2025, les prix ont augmenté d'environ ${fr(vr,1)} %.`,ok:true,p:`${b} / ${a} − 1 ≈ ${fr(vr,1)} % : on rapporte les deux indices, on ne les soustrait pas.`},
+        {t:`Entre 2020 et 2025, les prix ont augmenté de ${b-a} %.`,p:`${b-a} est un écart en points d'indice ; il ne vaut un pourcentage que depuis l'année de base.`},
+        {t:`En 2025, les prix ont été multipliés par ${fr(b)} depuis 2015.`,p:`L'indice ${b} signifie une multiplication par ${fr(b/100,2)}, soit une hausse de ${b-100} %.`},
+        {t:`Entre 2015 et 2025, les prix ont augmenté de ${fr(b)} %.`,p:`Depuis la base, la hausse est de ${b} − 100 = ${b-100} %.`}]};},
+  ()=>{const d1=11800+rint(20)*100,me=Math.round(d1*1.9/100)*100,d9=Math.round(d1*3.4/100)*100;
+    return{t:"Déciles et médiane",titre:"Niveau de vie annuel des personnes (en euros)",entetes:["Indicateur","1er décile (D1)","Médiane","9e décile (D9)"],lignes:[["Niveau de vie",fr(d1),fr(me),fr(d9)]],
+      opts:[{t:`10 % des personnes ont un niveau de vie supérieur à ${fr(d9)} € par an.`,ok:true,p:"Le neuvième décile est le seuil au-dessus duquel se trouvent les 10 % les plus aisés."},
+        {t:`Les 10 % les plus aisés ont en moyenne un niveau de vie de ${fr(d9)} € par an.`,p:"Un décile est un seuil, pas une moyenne : la moyenne des 10 % les plus aisés est bien supérieure à D9."},
+        {t:`Le niveau de vie moyen est de ${fr(me)} € par an.`,p:"La médiane partage la population en deux moitiés ; la moyenne, tirée par les hauts revenus, est plus élevée."},
+        {t:`90 % des personnes ont un niveau de vie supérieur à ${fr(d9)} € par an.`,p:"C'est l'inverse : 90 % des personnes ont un niveau de vie inférieur à D9."}]};},
+  ()=>{const a=26+rint(8),b=a-6-rint(6),pts=a-b;
+    return{t:"Répartition",titre:"Répartition de l'emploi par catégorie socioprofessionnelle (en %)",entetes:["Catégorie","1982","2022"],lignes:[["Ouvriers",String(a),String(b)],["Autres catégories",String(100-a),String(100-b)],["Ensemble","100","100"]],
+      opts:[{t:`Entre 1982 et 2022, la part des ouvriers dans l'emploi a diminué de ${pts} points.`,ok:true,p:"Le tableau donne des parts : leur différence s'exprime en points."},
+        {t:`Entre 1982 et 2022, le nombre d'ouvriers a diminué de ${pts} %.`,p:"Le tableau ne donne pas d'effectifs : une part peut baisser alors que l'emploi total, et même le nombre d'ouvriers, augmente."},
+        {t:`Entre 1982 et 2022, la part des ouvriers a diminué de ${pts} %.`,p:`En taux de variation, la baisse de la part est de ${fr(arr(pts/a*100,1),1)} % ; ${pts} est un écart en points.`},
+        {t:`En 2022, ${b} % des ouvriers occupent un emploi.`,p:"Les pourcentages portent sur l'ensemble des emplois : ce sont des parts dans l'emploi, pas des taux d'emploi des ouvriers."}]};},
+];
+function vComptoir(main,mode){
   let pts=0,tours=0;
   const gens=[
     ()=>{const a=1800+rint(900),b=Math.round(a*(1+(rint(90)-25)/1000));return{t:"Taux de variation",e:`Le PIB d'un pays passe de ${fr(a)} à ${fr(b)} milliards d'euros. Calculez le taux de variation, en %, arrondi au dixième.`,rep:(b-a)/a*100,d:1,u:"%",sol:`(${fr(b)} − ${fr(a)}) / ${fr(a)} × 100 ≈ ${fr(arr((b-a)/a*100,1),1)} %`};},
@@ -572,10 +700,27 @@ function vComptoir(main){
     ()=>{const A=arr(28+rint(60)/10,1),B=arr(A*(5+rint(60)/10)/100,2);const g=B/A*100;return{t:"Proportion",e:`Sur une population active de ${fr(A,1)} millions de personnes, ${fr(B,2)} millions sont au chômage. Quel est le taux de chômage, en % (au dixième) ?`,rep:g,d:1,u:"%",sol:`${fr(B,2)} / ${fr(A,1)} × 100 ≈ ${fr(arr(g,1),1)} %`,ref:"n095"};},
     ()=>{const w=[1+rint(5),1+rint(5),1+rint(5)],s=[1500+rint(800),2200+rint(1200),3500+rint(2500)];const m=(w[0]*s[0]+w[1]*s[1]+w[2]*s[2])/(w[0]+w[1]+w[2]);return{t:"Moyenne pondérée",e:`Une entreprise compte ${w[0]} dizaines d'employés payés ${fr(s[0])} €, ${w[1]} dizaines de techniciens payés ${fr(s[1])} € et ${w[2]} dizaines de cadres payés ${fr(s[2])} € (salaires nets mensuels). Quel est le salaire moyen, en euros (à l'unité) ?`,rep:m,d:0,u:"€",sol:`(${w[0]} × ${fr(s[0])} + ${w[1]} × ${fr(s[1])} + ${w[2]} × ${fr(s[2])}) / ${w[0]+w[1]+w[2]} ≈ ${fr(Math.round(m))} €`};},
     ()=>{const c=[0.5,0.6,0.75,0.8,0.9][rint(5)];return{t:"Multiplicateur keynésien",e:`La propension marginale à consommer vaut ${fr(c,2)}. Quelle est la valeur du multiplicateur d'investissement (au dixième) ?`,rep:1/(1-c),d:1,u:"",sol:`k = 1 / (1 − ${fr(c,2)}) = ${fr(arr(1/(1-c),1),1)} : une dépense autonome de 1 accroît le revenu de ${fr(arr(1/(1-c),1),1)} dans le modèle simple (économie fermée, sans État).`,ref:"a016"};},
+    ()=>{const p=[0.54,0.23,0.31,0.22][rint(4)],nom={0.54:"La consommation des ménages",0.23:"L'investissement (FBCF)",0.31:"Les exportations",0.22:"La consommation publique"}[p];const t=arr((rint(60)-15)/10||1.2,1);return{t:"Contribution à la croissance",e:`${nom} représente ${fr(p*100)} % du PIB et augmente de ${fr(t,1)} % en volume. Quelle est sa contribution à la croissance du PIB, en points de pourcentage (au centième) ?`,rep:p*t,d:2,u:"points",sol:`Contribution = poids × taux de variation = ${fr(p,2)} × ${fr(t,1)} ≈ ${fr(arr(p*t,2),2)} point. C'est la part de la croissance du PIB due à cette composante.`};},
+    ()=>{const d1=10500+rint(30)*100,k=2.8+rint(14)/10,d9=Math.round(d1*k/100)*100;return{t:"Rapport interdécile",e:`Le premier décile de niveau de vie vaut ${fr(d1)} € par an et le neuvième ${fr(d9)} €. Quel est le rapport interdécile (au centième) ?`,rep:d9/d1,d:2,u:"",sol:`D9 / D1 = ${fr(d9)} / ${fr(d1)} ≈ ${fr(arr(d9/d1,2),2)} : le plancher des 10 % les plus aisés est ${fr(arr(d9/d1,2),2)} fois plus élevé que le plafond des 10 % les plus modestes.`,ref:"n169"};},
+    ()=>{const a=40+rint(25),b=8+rint(12);const or=(a/(100-a))/(b/(100-b));return{t:"Rapport des chances (odds ratio)",e:`${a} % des fils de cadres sont cadres, contre ${b} % des fils d'ouvriers. Quel est le rapport des chances relatives d'être cadre plutôt que non cadre (au dixième) ?`,rep:or,d:1,u:"",sol:`(${a} / ${100-a}) / (${b} / ${100-b}) ≈ ${fr(arr(or,1),1)}. Ce n'est pas ${fr(a)} / ${fr(b)} = ${fr(arr(a/b,1),1)} : ce rapport de proportions dépend de la structure des emplois, l'odds ratio mesure la fluidité.`,ref:"n153"};},
+    ()=>{const n1=arr(6+rint(20)/10,1),t1=arr(20+rint(30)/10,1),n2=arr(n1*(0.7+rint(20)/100),1),t2=arr(t1*(1.1+rint(20)/100),1);const g=n2/t2*100-n1/t1*100;return{t:"Variation d'une part",e:`Les ouvriers occupaient ${fr(n1,1)} millions d'emplois sur ${fr(t1,1)} millions ; ils en occupent ${fr(n2,1)} millions sur ${fr(t2,1)} millions. De combien de points leur part dans l'emploi a-t-elle varié (au dixième, signe compris) ?`,rep:g,d:1,u:"points",sol:`${fr(arr(n2/t2*100,1),1)} % − ${fr(arr(n1/t1*100,1),1)} % ≈ ${fr(arr(g,1),1)} point(s). Le nombre a varié de ${fr(arr((n2/n1-1)*100,1),1)} % : une part et un effectif n'évoluent pas au même rythme.`};},
+    ()=>{const a=104+rint(14),b=a+6+rint(20);return{t:"Changement de base",e:`Un indice base 100 en 2010 vaut ${a} en 2015 et ${b} en 2025. Que vaut-il en 2025 si l'on prend 2015 comme base 100 (au dixième) ?`,rep:b/a*100,d:1,u:"",sol:`${b} / ${a} × 100 ≈ ${fr(arr(b/a*100,1),1)} : la hausse entre 2015 et 2025 est de ${fr(arr((b/a-1)*100,1),1)} %, et non de ${b-a} %.`};},
+    ()=>{const ta=68+rint(10),u=5+rint(6),te=arr(ta*(1-u/100),1);const g=(ta-te)/ta*100;return{t:"Taux de chômage",e:`Dans une population en âge de travailler, le taux d'activité est de ${fr(ta)} % et le taux d'emploi de ${fr(te,1)} %. Quel est le taux de chômage, en % (au dixième) ?`,rep:g,d:1,u:"%",sol:`Taux de chômage = chômeurs / actifs = (${fr(ta)} − ${fr(te,1)}) / ${fr(ta)} × 100 ≈ ${fr(arr(g,1),1)} %. L'écart ${fr(arr(ta-te,1),1)} point est la part des chômeurs dans la population totale, pas le taux de chômage.`,ref:"n095"};},
+    ()=>{const r=1+rint(5),dq=arr(r*(0.3+rint(16)/10),1);const e=dq/r;return{t:"Élasticité-revenu",e:`Le revenu des ménages augmente de ${r} % et leurs dépenses de loisirs de ${fr(dq,1)} %. Quelle est l'élasticité-revenu de ces dépenses (au centième) ?`,rep:e,d:2,u:"",sol:`e = ${fr(dq,1)} / ${r} ≈ ${fr(arr(e,2),2)}. ${e>1?"Supérieure à 1 : un bien supérieur, dont le coefficient budgétaire augmente avec le revenu.":"Entre 0 et 1 : un bien normal, dont le coefficient budgétaire baisse quand le revenu augmente (loi d'Engel)."}`,ref:"a238"};},
+    ()=>{const q=arr(1+rint(40)/10,1),n=arr(rint(25)/10-0.5,1);const g=((1+q/100)/(1+n/100)-1)*100;return{t:"Productivité",e:`La production augmente de ${fr(q,1)} % et l'emploi de ${fr(n,1)} %. De combien varie la productivité par tête, en % (au centième) ?`,rep:g,d:2,u:"%",sol:`(1 + ${fr(q/100,3)}) / (1 + ${fr(n/100,3)}) − 1 ≈ ${fr(arr(g,2),2)} % (approximation : ${fr(q,1)} − ${fr(n,1)} = ${fr(arr(q-n,1),1)} point).`,ref:"n015"};}
   ];
-  main.append(entete("comptoir",null,false),el("p",{class:"petit cadre",style:"padding:6px 12px"},lienExt(PROG["2"].u,"Programme de seconde : objectifs sur les données quantitatives ↗")," · ",lienExt(OFF.bac3.u,"Épreuves bac + 3 : exploitation d'un document statistique ↗")));
+  main.append(entete("comptoir",mode,false),el("p",{class:"petit cadre",style:"padding:6px 12px"},lienExt(PROG["2"].u,"Programme de seconde : objectifs sur les données quantitatives ↗")," · ",lienExt(OFF.bac3.u,"Épreuves bac + 3 : exploitation d'un document statistique ↗")));
   const zone=el("section",{class:"cadre pile"});main.append(zone);
+  function lecture(){const g=LECTURES[rint(LECTURES.length)]();const sc=el("p",{class:"score"},"Score : ",el("b",{},pts),` / ${tours}`);const res=el("div",{class:"pile"}),bas=el("div",{class:"rangee"});
+    const tab=el("div",{class:"defile"},el("table",{class:"tab-stat"},el("caption",{},g.titre),el("thead",{},el("tr",{},g.entetes.map(t=>el("th",{},t)))),el("tbody",{},g.lignes.map(l=>el("tr",{},l.map((c,k)=>k?el("td",{},c):el("th",{},c)))))));
+    const opts=melange(g.opts);const ch=el("div",{class:"choix"});
+    opts.forEach(o=>{const b=el("button",{type:"button",class:"long"},o.t);b.onclick=()=>{const ok=!!o.ok;tours++;if(ok){pts++;S.xp=(S.xp||0)+10;sauver();majHud();}emit("calcul",{juste:ok});emit("partie",{jeu:"comptoir",mode,score:ok?1:0,total:1});reagir(ok);
+      [...ch.children].forEach((bb,k)=>{bb.disabled=true;if(opts[k].ok)bb.classList.add("juste");});if(!ok)b.classList.add("faux","secousse");
+      res.replaceChildren(el("p",{class:"verdict "+(ok?"juste":"faux")},ok?"Juste.":"Non.",ok?el("span",{class:"gain"},"  +10 XP · +2 écus"):null),el("ul",{class:"pieges"},opts.map(oo=>el("li",{class:oo.ok?"juste":""},el("b",{},oo.ok?"Exact : ":"Piège : "),oo.t,el("span",{class:"doux"},` — ${oo.p}`)))));
+      sc.replaceChildren("Score : ",el("b",{},pts),` / ${tours}`);const nb=el("button",{class:"btn or"},"Tableau suivant");nb.onclick=manche;bas.replaceChildren(nb);nb.focus({preventScroll:true});};ch.append(b);});
+    zone.replaceChildren(sc,el("span",{class:"oeil"},g.t),tab,el("p",{class:"petit doux"},"Données fictives, construites pour l'exercice."),el("p",{class:"question"},"Quelle phrase de lecture est exacte ?"),ch,res,bas);}
   function manche(){
+    if(mode==="lecture"){lecture();return;}
     const q=gens[rint(gens.length)]();const sc=el("p",{class:"score"},"Score : ",el("b",{},pts),` / ${tours}`);
     const inp=el("input",{type:"text",inputmode:"decimal",id:"saisie-calcul","aria-label":"Votre résultat",autocomplete:"off"});const bV=el("button",{class:"btn or"},"Valider");const res=el("div",{class:"pile"}),bas=el("div",{class:"rangee"});
     const valider=()=>{const v=parseFloat(inp.value.replace(/\s/g,"").replace("%","").replace(",","."));if(isNaN(v)){annonce("Saisissez un nombre");inp.focus();return;}

@@ -30,7 +30,37 @@ def donnees():
     doublons = sorted({i for i in ids if ids.count(i) > 1})
     if doublons:
         sys.exit(f"Identifiants en double : {', '.join(doublons)}")
+    d["joutes"] = lire("joutes.json")
+    verifier_joutes(d["joutes"], set(ids), set(d["chapitres"]))
     return d
+
+
+def verifier_joutes(joutes, ids, chapitres):
+    """Chaque débat renvoie à des fiches et à des chapitres qui existent ; le plan est valide."""
+    erreurs, vus = [], set()
+    for j in joutes:
+        if j["id"] in vus:
+            erreurs.append(f"{j['id']} : identifiant en double")
+        vus.add(j["id"])
+        n = len(j["positions"])
+        if n < 3:
+            erreurs.append(f"{j['id']} : moins de trois positions")
+        for c in j["chap"]:
+            if c not in chapitres:
+                erreurs.append(f"{j['id']} : chapitre inconnu {c}")
+        for k, p in enumerate(j["positions"]):
+            for f in p["fiches"]:
+                if f not in ids:
+                    erreurs.append(f"{j['id']}, position {k} : fiche inconnue {f}")
+            for champ in ("ecole", "these", "arg", "objection"):
+                if not p.get(champ):
+                    erreurs.append(f"{j['id']}, position {k} : champ {champ} vide")
+        if "plan" in j:
+            pl = j["plan"]
+            if len(pl) != 3 or len(set(pl)) != 3 or any(i >= n for i in pl) or not j.get("logique"):
+                erreurs.append(f"{j['id']} : plan invalide")
+    if erreurs:
+        sys.exit("Joutes :\n  " + "\n  ".join(erreurs))
 
 
 def ecrire_donnees(d):
@@ -39,7 +69,8 @@ def ecrire_donnees(d):
     (RACINE / "js" / "donnees.js").write_text(js, "utf-8")
     n = sum(len(d[cle]) for _, cle in FICHES)
     v = sum(1 for _, cle in FICHES for x in d[cle] if x.get("verif"))
-    print(f"js/donnees.js : {n} fiches, dont {v} à source vérifiée ({round(100 * v / n)} %).")
+    print(f"js/donnees.js : {n} fiches, dont {v} à source vérifiée ({round(100 * v / n)} %), "
+          f"{len(d['joutes'])} débats pour la Joute des écoles.")
 
 
 def version_claude():

@@ -4,7 +4,7 @@
    ===================================================================== */
 "use strict";
 /* ========== Navigation ========== */
-const VUES={atelier:vAtelier,quete:vQuete,paires:vPaires,sceaux:vSceaux,bibliotheque:vBiblio,grille:vGrille,chronique:vChronique,duel:vDuel,forge:vForge,faussaire:vFaussaire,enigme:vEnigme,balance:vBalance,comptoir:vComptoir,codex:vCodex};
+const VUES={atelier:vAtelier,joute:vJoute,quete:vQuete,paires:vPaires,sceaux:vSceaux,bibliotheque:vBiblio,grille:vGrille,chronique:vChronique,duel:vDuel,forge:vForge,faussaire:vFaussaire,enigme:vEnigme,balance:vBalance,comptoir:vComptoir,codex:vCodex};
 let vueCourante="accueil";
 function construireMenu(){
   const nav=$("#nav-menu");nav.replaceChildren(el("a",{href:"#accueil"},sprite("blason",20),"Accueil de la guilde"));

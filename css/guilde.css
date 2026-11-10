@@ -386,3 +386,69 @@ textarea.copie:focus{outline:3px solid var(--or);outline-offset:1px}
 .plume-anim{width:48px;height:48px;image-rendering:pixelated}
 .historique details{background:#fffaf0;border:2px solid var(--parch-3);border-radius:3px;padding:4px 12px}
 .historique summary{cursor:pointer;padding:6px 0;display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap}
+
+/* ----- Joute des écoles ----- */
+.vedette{border-color:var(--or);box-shadow:0 0 0 3px rgba(232,184,74,.35),inset 0 0 0 2px var(--or)}
+.tete-debat{display:grid;gap:6px}
+.joute blockquote.these{margin:0;display:grid;gap:6px;background:#fffaf0;border-left:6px solid var(--mana);padding:10px 14px;color:var(--encre);font-size:1.08rem}
+.joute blockquote.these b{font-family:var(--f-titre)}
+.joute blockquote.these small{font-size:.92rem;color:var(--encre-doux)}
+.choix button.long{font-size:.95rem;line-height:1.4}
+.carte-debat{background:rgba(255,250,240,.6);border:2px solid var(--parch-3);border-radius:3px;padding:8px 12px;color:var(--encre)}
+.carte-debat>summary{cursor:pointer;font-family:var(--f-titre);font-weight:700;padding:4px 0}
+.positions{display:grid;gap:10px;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));margin:8px 0}
+.position{display:grid;gap:5px;align-content:start;background:#fffaf0;border:2px solid var(--parch-3);border-top:5px solid var(--mana);border-radius:3px;padding:10px 12px}
+.position.vise{border-color:var(--or);border-top-color:var(--or);box-shadow:0 0 0 2px rgba(232,184,74,.4)}
+.position .objection{border-top:1px dashed var(--parch-3);padding-top:5px}
+.fiches-pos summary{cursor:pointer;font-size:.9rem;color:var(--encre-doux)}
+.plan-debat{display:grid;gap:6px;border-top:2px solid var(--parch-3);padding-top:8px;margin-top:4px}
+.plan-debat ol{margin:0;padding-left:1.3rem;display:grid;gap:4px}
+.plan-slots{list-style:none;margin:0;padding:0;display:grid;gap:6px}
+.plan-slots .etape .n{min-width:8.5em;font-size:.95rem}
+.devoir-semaine{border-left:6px solid var(--or)}
+.devoir-semaine.fait{border-left-color:var(--juste)}
+
+/* ----- Mots fléchés ----- */
+.mf-jeu{display:grid;gap:16px}
+@media (min-width:900px){.mf-jeu{grid-template-columns:auto minmax(260px,1fr);align-items:start}}
+.defile-mf{overflow-x:auto;padding:2px}
+.grille-mf{display:grid;gap:2px;justify-content:start;background:var(--encre);padding:2px;border:3px solid var(--encre);border-radius:3px;width:max-content}
+.mf{width:var(--c);height:var(--c);position:relative}
+.mf.vide{background:#3b3157}
+.mf.fleche{font:inherit;border:0;padding:0;cursor:pointer;background:#ead9ae;color:var(--encre);display:flex;flex-direction:column;align-items:center;justify-content:center;line-height:1}
+.mf.fleche .num{font-family:var(--f-pixel);font-size:max(10px,calc(var(--c)*.3))}
+.mf.fleche .fl{font-size:max(11px,calc(var(--c)*.36));color:var(--or-sombre);letter-spacing:-1px}
+.mf.fleche:hover{background:#f6e7bd}
+.mf.lettre input{display:block;width:100%;height:100%;text-align:center;text-transform:uppercase;font-family:var(--f-pixel);font-size:max(16px,calc(var(--c)*.55));padding:0;border:0;border-radius:0;background:#fffaf0;color:var(--encre);caret-color:var(--mana)}
+.mf.lettre input:focus{outline:none;background:#e4dcff;box-shadow:inset 0 0 0 3px var(--mana)}
+.mf.lettre.mot-actif input{background:#fff1c9}
+.mf.lettre.mot-actif input:focus{background:#e4dcff}
+.mf.lettre.ok input{color:var(--juste);background:#e8f5ea}
+.mf.lettre.ko input{color:var(--faux);box-shadow:inset 0 0 0 2px var(--faux)}
+.bandeau-indice{min-height:3.1em;background:#fffaf0;color:var(--encre);border-left:6px solid var(--mana);padding:8px 12px;font-size:1rem}
+.bandeau-indice b{font-family:var(--f-pixel);color:var(--or-sombre)}
+/* ----- Paires de runes (deux colonnes) ----- */
+.plateau-p{display:grid;gap:12px;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr)}
+.col-paires{display:grid;gap:8px;align-content:start}
+.carte-p{font:inherit;font-size:.95rem;line-height:1.3;text-align:left;color:var(--encre);background:#fffaf0;border:2px solid var(--encre);border-radius:3px;padding:8px 10px;cursor:pointer;min-height:48px;box-shadow:inset 0 -3px 0 rgba(43,33,67,.15)}
+.carte-p.def{font-size:.9rem}
+.carte-p.choisi{background:#efe8ff;border-color:var(--mana);box-shadow:0 0 0 3px var(--mana)}
+.carte-p.trouvee{background:#e8f5ea;border-color:var(--juste);cursor:default}
+.carte-p.rate{background:#f8e1dd;border-color:var(--faux)}
+/* ----- Sceaux, Bibliothèque, Duel, Forge, Comptoir ----- */
+.sceaux{grid-template-columns:.8fr 1.4fr 1fr}
+.noeud.oeuvre{font-size:.82rem;font-style:italic}
+.jeton.long{font-size:.86rem;max-width:min(100%,420px)}
+.carte-duel{color:var(--encre);background:#fffaf0;border:3px solid var(--encre);border-left:8px solid var(--d,var(--encre));border-radius:3px;padding:14px;display:grid;gap:6px;min-height:100px}
+.carte-duel .an{font-family:var(--f-pixel);font-size:1.4rem;color:var(--or-sombre)}
+.choix.deux{grid-template-columns:repeat(2,1fr)}
+.cond-meca{display:grid;gap:4px;background:#fffaf0;color:var(--encre);border-left:6px solid var(--or);padding:8px 12px;font-size:.95rem}
+.pourquoi{background:#fff4d6;color:var(--encre);border-left:6px solid var(--faux);padding:8px 12px}
+.etape .correction{display:block;font-size:.88rem;color:var(--juste);margin-top:4px}
+.fil-debat{margin:0;padding-left:1.2rem;display:grid;gap:4px}
+.tab-stat{border-collapse:collapse;background:#fffaf0;color:var(--encre);font-size:.95rem}
+.tab-stat caption{caption-side:top;text-align:left;font-weight:700;padding:4px 0}
+.tab-stat th,.tab-stat td{border:1px solid var(--parch-3);padding:6px 10px;text-align:right}
+.tab-stat th:first-child{text-align:left}
+.pieges{margin:0;padding-left:1.2rem;display:grid;gap:6px;font-size:.95rem}
+.pieges li.juste b{color:var(--juste)}

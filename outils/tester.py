@@ -20,9 +20,12 @@ from playwright.async_api import async_playwright
 RACINE = pathlib.Path(__file__).resolve().parent.parent
 URL = (RACINE / "index.html").as_uri()
 ROUTES = ["accueil", "loge", "echoppe", "echoppe-chapeaux", "echoppe-familiers", "quetes", "sauvegarde",
-          "atelier", "atelier-intro", "atelier-question", "atelier-dissertation", "quete", "paires-auteurs",
-          "sceaux", "bibliotheque-courants", "grille-notions", "chronique", "duel", "forge", "faussaire",
-          "enigme", "balance-valeurs", "comptoir", "codex", "archives", "ch-1-s1"]
+          "atelier", "atelier-intro", "atelier-question", "atelier-dissertation", "quete",
+          "joute-ecoles", "joute-riposte", "joute-plan", "paires-notions", "paires-dates", "sceaux",
+          "bibliotheque-idees", "bibliotheque-oeuvres", "grille-notions", "grille-auteurs", "grille-oeuvres",
+          "chronique-debats", "chronique-chapitre", "duel", "forge-ordre", "forge-faux", "faussaire", "enigme",
+          "balance-valeurs", "balance-plus-moins", "comptoir-calculs", "comptoir-lecture", "codex", "archives",
+          "ch-1-s1", "ch-t-e3", "paires-auteurs"]
 ECHECS = []
 
 
@@ -168,6 +171,43 @@ async def main():
         verifier(await page.locator(".note-finale").count() == 1, "correction affichée avec sa note")
         verifier((await page.evaluate("S.atelier[0] && S.atelier[0].note")) == 11, "note recalculée à partir du barème et gardée dans l'historique")
         verifier(not erreurs, "aucune erreur JavaScript")
+        await ctx.close()
+
+        print("5. Jeux refondus : joute, devoir de la semaine, mots fléchés, forge, lecture de tableaux")
+        ctx, page, erreurs = await nouvelle_page(nav, base, 390)
+        for mode in ("ecoles", "riposte"):
+            await aller(page, "joute-" + mode)
+            await page.locator(".joute .choix button").nth(0).click()
+            await page.wait_for_timeout(150)
+            verifier(await page.locator(".carte-debat").count() == 1, f"joute « {mode} » : carte du débat affichée après la passe")
+        await aller(page, "joute-plan")
+        for _ in range(3):
+            await page.locator(".joute .pile > .etape").nth(0).click()
+        await page.locator("button:has-text('Vérifier le plan')").click()
+        await page.wait_for_timeout(150)
+        verifier(await page.locator(".plan-debat").count() == 1, "joute « plan » : plan corrigé et logique du dépassement affichés")
+        ripostes = await page.evaluate("DEBATS.every(j=>new Set(j.positions.map(p=>p.objection)).size===j.positions.length)")
+        verifier(ripostes, "chaque objection est propre à une position")
+        devoir = await page.evaluate("""(()=>{S.qs={k:cleSemaine(),type:"dissertation",sujet:"s1",ok:0};const e0=S.ecus;
+            emit("atelier",{note:12,exo:"plan"});const apresPlan=S.qs.ok;emit("atelier",{note:12,exo:"dissertation"});
+            return [apresPlan, !!S.qs.ok, S.ecus-e0, QJ.some(q=>q.ev==="atelier")];})()""")
+        verifier(devoir[0] == 0 and devoir[1] and devoir[2] >= 150 and not devoir[3],
+                 f"devoir de la semaine : un plan ne compte pas, la dissertation oui (+{devoir[2]} écus), l'Atelier hors des quêtes du jour")
+        grilles = await page.evaluate("""(()=>{const out=[];for(const mode of ["notions","auteurs","oeuvres"])for(let i=0;i<6;i++){
+            const mots=mode==="notions"?DB.notions.filter(x=>x.mot&&x.indice&&x.mot.length<=12).map(x=>({w:x.mot,x,id:x.id,indice:x.indice})):motsAuteurs(DB.auteurs,mode);
+            const G=genFleches(tirer(mots,60),{essais:35,cible:18});const fuite=G.places.some(p=>sansAccent(p.m.indice).toUpperCase().replace(/[^A-Z]/g," ").split(" ").includes(p.w||p.m.w));
+            out.push([G.places.length,G.W,G.H,fuite,G.places.every(p=>p.n)]);}return out;})()""")
+        verifier(all(g[0] >= 10 and g[1] <= 13 and g[2] <= 13 and not g[3] and g[4] for g in grilles),
+                 f"mots fléchés : {min(g[0] for g in grilles)} à {max(g[0] for g in grilles)} mots par grille, 13 × 13 au plus, aucun indice ne contient sa réponse")
+        await aller(page, "forge-faux")
+        await page.locator(".chaine .etape").nth(0).click()
+        await page.wait_for_timeout(100)
+        verifier(await page.locator(".pourquoi").count() == 1, "forge : le maillon faux est expliqué")
+        lectures = await page.evaluate("(()=>{let ok=true;for(let i=0;i<60;i++)for(const g of LECTURES){const o=g();if(o.opts.filter(x=>x.ok).length!==1||new Set(o.opts.map(x=>x.t)).size!==4)ok=false;}return ok;})()")
+        verifier(lectures, "lecture de tableaux : une seule phrase exacte, quatre phrases distinctes")
+        duel = await page.evaluate("(()=>{for(let i=0;i<200;i++){const q=qDuel(R0,DB.auteurs.concat(DB.dates),10);if((q.oeuvre.annee<q.evt.annee?0:1)!==q.bon||q.oeuvre.annee===q.evt.annee)return false;}return true;})()")
+        verifier(duel, "duel : la réponse correspond toujours aux dates")
+        verifier(not erreurs, f"aucune erreur JavaScript {erreurs[:2] if erreurs else ''}")
         await ctx.close()
         await nav.close()
     print("\n" + ("TOUT EST BON" if not ECHECS else f"{len(ECHECS)} ÉCHEC(S)"))

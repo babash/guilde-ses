@@ -14,18 +14,20 @@ index.html               page unique ; l'ancre (#nom) choisit la vue
 css/guilde.css           thème pixel (cadres 9-slice en SVG), jeux, personnage, atelier
 js/donnees.js            GÉNÉRÉ : const DATA = {...} (ne pas modifier à la main)
 js/config.js             URL et clé publique Supabase
-js/jeux.js               état S, outils, sprites, fiches, questions, mini-jeux, accueil, chapitres
+js/jeux.js               état S, outils, sprites, fiches, fausses pistes « voisines », questions, mini-jeux, accueil, chapitres
 js/personnage.js         rendu pixel du personnage (calques, contour automatique) et des familiers
 js/economie.js           catalogue de l'échoppe, scène animée, écus, quêtes du jour, hauts faits,
                          compagnon, sauvegarde sur le compte Claude (version claude.ai)
 js/pages-personnage.js   la loge, l'échoppe, les quêtes, la carte d'aventurier·e
 js/atelier.js            sujets, pré-diagnostic, consigne de correction, import de la réponse
+js/joute.js              la Joute des écoles (débats par écoles de pensée), carte d'un débat
 js/sauvegarde.js         code de sauvegarde et synchronisation Supabase
 js/navigation.js         menu, thème jour/nuit, routage, démarrage
 donnees/*.json           le contenu : une fiche par ligne
 supabase.sql             tables et fonctions de la sauvegarde (relançable)
 outils/construire.py     regénère js/donnees.js ; --claude produit dist/guilde-ses-claude.html
 outils/tester.py         tests de bout en bout (Playwright)
+outils/formater.py       réécrit donnees/*.json avec une fiche par ligne
 ```
 
 Les scripts partagent la même portée globale et se chargent **dans cet ordre** : chacun peut utiliser ce que les précédents définissent au chargement, et n'importe quelle fonction une fois la page démarrée.
@@ -35,13 +37,16 @@ Les scripts partagent la même portée globale et se chargent **dans cet ordre**
 | Fichier | Une ligne = | Champs principaux |
 |---|---|---|
 | `auteurs.json` | une œuvre | `auteur`, `court`, `oeuvre`, `annee`, `idee`, `concept`, `courant`, `disc`, `chap`, `jury`, `src`, `verif` |
-| `notions.json` | une notion | `terme`, `mot` (forme pour la grille), `def` |
+| `notions.json` | une notion | `terme`, `def`, `mot` (réponse des mots fléchés, en capitales sans accent) et `indice` (indice court, qui ne contient pas la réponse) |
 | `dates.json` | un repère | `annee`, `date`, `evenement`, `detail` |
-| `mecanismes.json` | un mécanisme | `titre`, `etapes` (dans l'ordre) |
+| `mecanismes.json` | un mécanisme | `titre`, `etapes` (dans l'ordre), `hyp` (hypothèses), `limite`, `faux` (`{i, t, pourquoi}` : l'étape `i` remplacée par une erreur plausible, et l'explication) |
 | `chiffres.json` | un chiffre clé | `indicateur`, `valeur`, `unite`, `affichage`, `periode`, `champ`, `precision` |
+| `joutes.json` | un débat | `q` (la question), `chap`, `disc`, `positions` (`ecole`, `these`, `arg`, `objection`, `fiches` : identifiants des fiches qui la représentent), `plan` (indices thèse, antithèse, dépassement) et `logique` |
 | `programme.json` | — | `chapitres` (questions officielles), `programmes` et `officiel` (liens des textes) |
 
 Communs à toutes les fiches : `id` (unique, `a001`, `n001`, `d001`, `m01`, `c01`), `disc` (`eco`, `socio`, `sp`, `epi`), `chap` (chapitres du programme : `2-E1`, `1-S3`, `T-RC2`, `HP`…), `src` (liste de `{l, u}`), `verif` (source vérifiée), `recherche` (lien de recherche quand `verif` est faux).
+
+Chaque objection d'un débat doit viser sa seule position : sinon le mode « riposte » aurait deux bonnes réponses. `construire.py` vérifie que les fiches et chapitres cités existent et que le plan est valide.
 
 Après une modification : `python3 outils/construire.py`, puis `python3 outils/tester.py`.
 
@@ -50,12 +55,14 @@ Après une modification : `python3 outils/construire.py`, puis `python3 outils/t
 Tout tient dans un objet `S`, enregistré dans `localStorage` (clé `grimoire-lunaire-ses-v1`) à chaque changement :
 
 - `m` : maîtrise par fiche, `{b: boîte 0-4, v: vues, j: justes, t: date}` (répétition espacée : une fiche est maîtrisée à partir de la boîte 3) ;
-- `xp`, `ecus`, `inv` (objets achetés), `perso` (personnage), `hf` (hauts faits), `qj` (quêtes du jour), `st` (statistiques) ;
+- `xp`, `ecus`, `inv` (objets achetés), `perso` (personnage), `hf` (hauts faits), `qj` (quêtes du jour), `qs` (grand devoir de la semaine), `st` (statistiques) ;
 - `rituel` (quêtes du jour faites), `serie`, `best`, `theme`, `filtres` ;
 - `atelier` (10 dernières copies), `brouillons` (copies en cours, jamais envoyées) ;
 - `maj` : date de la dernière modification, qui arbitre entre deux appareils.
 
-Les jeux émettent des événements (`reponse`, `partie`, `calcul`, `mot`, `quete`, `atelier`) ; `js/economie.js` les écoute pour les écus, les quêtes du jour et les hauts faits.
+Les jeux émettent des événements (`reponse`, `partie`, `calcul`, `mot`, `quete`, `atelier`, `joute`) ; `js/economie.js` les écoute pour les écus, les quêtes du jour, le devoir de la semaine et les hauts faits.
+
+Les fausses réponses sont tirées par `voisins()` (`js/jeux.js`) : fiches du même chapitre, du même courant, d'une époque proche, ou notions qui partagent un mot du terme. Les anciennes adresses de jeux sont redirigées par `ALIAS`.
 
 ## La sauvegarde en ligne
 

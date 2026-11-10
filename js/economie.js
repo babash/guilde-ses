@@ -15,7 +15,7 @@ art("jambes","collants","Collants rayés","commun","Rayures noir et violet, visi
 [["lunettes-rondes","Lunettes rondes","commun","Fine monture dorée."],["monocle","Monocle","commun","Cerclé d'or, avec sa chaîne."],["lunettes-coeur","Lunettes cœur","hautfait","Verres roses en forme de cœur.",{hf:"sansfaute"}],["bandeau","Bandeau de pirate","hautfait","Pour les duellistes aguerri·es.",{hf:"duelliste"}]].forEach(a=>art("visage",...a));
 art("oreilles","oreilles-elfe","Oreilles d'elfe","commun","Oreilles pointues ornées d'anneaux argentés, pour toutes les espèces.");
 [["ailes-spectrales","Ailes spectrales","hautfait","Translucides, bleu pâle, contour lumineux, battement lent.",{hf:"serie7"}],["ailes-fee","Ailes de fée","rare","Quatre lobes irisés."],["ailes-chauve","Ailes de chauve-souris","rare","Membrane sombre et os fins."],["cape","Cape de voyage","base","Velours indigo bordé d'or."],["sac-livres","Sac à dos de livres","commun","Les grimoires dépassent des épaules."]].forEach(a=>art("dos",...a));
-[["bottin","Bottin mondain","hautfait","Gros annuaire rouge et or, porté sous le bras.",{hf:"annuaire"}],["grimoire","Grimoire","commun","Reliure violette, fermoir d'or."],["plume","Plume géante","hautfait","Plus haute que son porteur.",{hf:"lexicographe"}],["lanterne","Lanterne","commun","Une lueur chaude pour les veillées."],["the","Tasse de thé fumante","commun","La vapeur monte doucement."],["baton","Bâton de mage","hautfait","Cristal luminescent au sommet.",{hf:"forgeron"}],["balance","Petite balance","hautfait","Pour peser les ordres de grandeur.",{hf:"marchand"}]].forEach(a=>art("main",...a));
+[["bottin","Bottin mondain","hautfait","Gros annuaire rouge et or, porté sous le bras.",{hf:"annuaire"}],["grimoire","Grimoire","commun","Reliure violette, fermoir d'or."],["plume","Plume géante","hautfait","Plus haute que son porteur.",{hf:"lexicographe"}],["lanterne","Lanterne","commun","Une lueur chaude pour les veillées."],["the","Tasse de thé fumante","commun","La vapeur monte doucement."],["baton","Bâton de mage","hautfait","Cristal luminescent au sommet.",{hf:"forgeron"}],["balance","Petite balance","hautfait","Pour peser les ordres de grandeur.",{hf:"marchand"}],["epee","Épée de joute","hautfait","Lame d'argent et garde dorée, pour croiser le fer entre écoles.",{hf:"jouteur"}]].forEach(a=>art("main",...a));
 [["rose","Rose pastel","commun","#f4a6c8"],["lavande","Lavande","commun","#b9a3e8"],["menthe","Menthe","commun","#9fe0c4"],["ciel","Bleu ciel","commun","#9ccdf2"],["peche","Pêche","commun","#f6c29a"],["neonvert","Vert néon","rare","#5dff6a"],["fuchsia","Fuchsia néon","rare","#ff3fb4"],["electrique","Bleu électrique","rare","#3f7bff"],["neonorange","Orange néon","rare","#ff8a1f"],["arcenciel","Arc-en-ciel","epique",null]].forEach(([v,nom,rar,c])=>art("teinte",v,nom,rar,c?"Teinture pour cheveux.":"Six couleurs, mèche après mèche.",{c}));
 Object.entries(FAMILIERS).forEach(([v,F_])=>{const rar={chat:"base",chouette:"base",grenouille:"base",dragonnet:"epique",slime:"rare",axolotl:"rare",fantome:"rare",golem:"rare"}[v]||"commun";art("familier",v,F_.l,rar,"Saute de joie quand vous réussissez, se cache quand vous vous trompez.");});
 [["noeud","Nœud","Un ruban rose sur la tête."],["chapeau","Petit chapeau","Haut-de-forme miniature."],["echarpe","Écharpe","Rouge et or, pour l'hiver."]].forEach(([v,nom,d])=>art("famAcc",v,nom,"commun",d));
@@ -111,7 +111,7 @@ function normaliser(){
   if(!Array.isArray(S.inv))S.inv=[];const anc=S.perso&&!S.perso.v2;S.perso=Object.assign({},PERSO0,S.perso||{});
   if(anc&&S.perso.pronom==="iel"&&S.perso.badgePronoms)S.perso.pronom="";S.perso.v2=1;
   if(S.perso.dos==="cape-fiertes")S.perso.dos="cape";delete S.perso.drapeau;delete S.perso.badge;delete S.perso.badgePronoms;if(!S.hf)S.hf={};
-  S.st=Object.assign({jeux:[],forge:0,bonnes:0,serieMax:0,atelierMax:0},S.st||{});if(!Array.isArray(S.atelier))S.atelier=[];if(!S.brouillons)S.brouillons={};
+  S.st=Object.assign({jeux:[],forge:0,bonnes:0,serieMax:0,atelierMax:0,devoirs:0,joutes:0},S.st||{});if(!Array.isArray(S.atelier))S.atelier=[];if(!S.brouillons)S.brouillons={};
   S.st.serieMax=Math.max(S.st.serieMax||0,S.serie&&S.serie.n||0);
 }
 function gagner(n){S.ecus=(S.ecus||0)+n;}
@@ -133,6 +133,8 @@ const HF=[
   {id:"lexicographe",nom:"Lexicographe",d:"Maîtriser 30 notions.",prog:()=>[Math.min(30,nbMaitrises("notions")),30],rec:{item:"main:plume"}},
   {id:"marchand",nom:"Marchand·e",d:"Maîtriser 15 chiffres clés.",prog:()=>[Math.min(15,nbMaitrises("chiffres")),15],rec:{item:"main:balance"}},
   {id:"duelliste",nom:"Duelliste",d:"Enchaîner 10 victoires au Duel des Âges.",prog:()=>[Math.min(10,S.best.eclipse||0),10],rec:{item:"visage:bandeau"}},
+  {id:"assidu",nom:"Plume assidue",d:"Rendre quatre grands devoirs de la semaine.",prog:()=>[Math.min(4,S.st.devoirs||0),4],rec:{ecus:300}},
+  {id:"jouteur",nom:"Jouteur·se",d:"Remporter 40 passes d'armes à la Joute des écoles.",prog:()=>[Math.min(40,S.st.joutes||0),40],rec:{item:"main:epee"}},
   {id:"plumedor",nom:"Plume d'or",d:"Obtenir au moins 14 / 20 à l'Atelier de rédaction.",prog:()=>[S.st.atelierMax>=14?1:0,1],rec:{ecus:250}},
   {id:"explorateur",nom:"Explorateur·ice",d:"Jouer à 8 jeux différents.",prog:()=>[Math.min(8,S.st.jeux.length),8],rec:{ecus:100}},
   {id:"forgeron",nom:"Forgeron·ne",d:"Forger 5 mécanismes sans faute.",prog:()=>[Math.min(5,S.st.forge),5],rec:{item:"main:baton"}},
@@ -141,25 +143,37 @@ const HF=[
 const libRecompense=r=>r.ecus?`${r.ecus} écus`:ITEMS_PAR_ID[r.item].nom;
 function verifierHF(){let n=0;for(const h of HF){if(S.hf[h.id])continue;const[a,b]=h.prog();if(a<b)continue;S.hf[h.id]=Date.now();n++;if(h.rec.ecus)gagner(h.rec.ecus);if(h.rec.item&&!S.inv.includes(h.rec.item))S.inv.push(h.rec.item);toast(`Haut fait : ${h.nom}`,`Récompense : ${libRecompense(h.rec)}.`,"trophee");}return n;}
 const QJ=[
-  {id:"r-auteurs",g:"a",t:"Répondre juste à 10 questions sur les auteurs et les œuvres",ev:"reponse",f:d=>d.juste&&d.type==="auteur",n:10,lien:"paires-auteurs"},
+  {id:"r-auteurs",g:"a",t:"Répondre juste à 10 questions sur les auteurs et les œuvres",ev:"reponse",f:d=>d.juste&&d.type==="auteur",n:10,lien:"sceaux"},
   {id:"r-notions",g:"a",t:"Répondre juste à 8 questions sur les notions",ev:"reponse",f:d=>d.juste&&d.type==="notion",n:8,lien:"grille-notions"},
-  {id:"r-dates",g:"a",t:"Situer correctement 8 dates",ev:"reponse",f:d=>d.juste&&d.type==="date",n:8,lien:"chronique-evenements"},
+  {id:"r-dates",g:"a",t:"Situer correctement 8 dates",ev:"reponse",f:d=>d.juste&&d.type==="date",n:8,lien:"duel"},
   {id:"r-chiffres",g:"a",t:"Trouver 5 chiffres clés",ev:"reponse",f:d=>d.juste&&d.type==="chiffre",n:5,lien:"balance-valeurs"},
   {id:"r-mecas",g:"a",t:"Forger 2 mécanismes sans faute",ev:"partie",f:d=>d.jeu==="forge"&&d.parfait,n:2,lien:"forge"},
   {id:"r-calculs",g:"a",t:"Réussir 3 calculs au Comptoir",ev:"calcul",f:d=>d.juste,n:3,lien:"comptoir"},
-  {id:"p-paires",g:"b",t:"Terminer une partie de Paires de runes",ev:"partie",f:d=>d.jeu==="paires",n:1,lien:"paires"},
+  {id:"p-paires",g:"b",t:"Réunir sans faute les Notions jumelles d'une partie",ev:"partie",f:d=>d.jeu==="paires"&&d.parfait,n:1,lien:"paires-notions"},
   {id:"p-sceaux",g:"b",t:"Sceller au moins 4 coffres aux Trois Sceaux",ev:"partie",f:d=>d.jeu==="sceaux"&&d.score>=4,n:1,lien:"sceaux"},
-  {id:"p-biblio",g:"b",t:"Ranger au moins 6 ouvrages à leur place à la Bibliothèque",ev:"partie",f:d=>d.jeu==="bibliotheque"&&d.score>=6,n:1,lien:"bibliotheque"},
+  {id:"p-biblio",g:"b",t:"Ranger au moins 5 cartes chez le bon auteur à la Bibliothèque",ev:"partie",f:d=>d.jeu==="bibliotheque"&&d.score>=5,n:1,lien:"bibliotheque-idees"},
   {id:"p-grille",g:"b",t:"Trouver 6 mots dans la Grille du Scribe",ev:"mot",f:d=>d.juste,n:6,lien:"grille"},
-  {id:"p-chronique",g:"b",t:"Vérifier deux Chroniques",ev:"partie",f:d=>d.jeu==="chronique",n:2,lien:"chronique"},
+  {id:"p-chronique",g:"b",t:"Remettre en ordre la généalogie de deux débats",ev:"partie",f:d=>d.jeu==="chronique"&&d.mode==="debats",n:2,lien:"chronique-debats"},
   {id:"p-duel",g:"b",t:"Atteindre 5 victoires d'affilée au Duel des Âges",ev:"partie",f:d=>d.jeu==="duel"&&d.serie>=5,n:1,lien:"duel"},
   {id:"p-faussaire",g:"b",t:"Voir juste sur 4 parchemins du Faussaire",ev:"partie",f:d=>d.jeu==="faussaire"&&d.score,n:4,lien:"faussaire"},
   {id:"p-enigme",g:"b",t:"Résoudre 3 énigmes de la Tour",ev:"partie",f:d=>d.jeu==="enigme"&&d.score,n:3,lien:"enigme"},
   {id:"c-quete",g:"c",t:"Accomplir la quête du jour",ev:"quete",f:()=>true,n:1,lien:"quete"},
-  {id:"c-atelier",g:"c",t:"Rendre un exercice à l'Atelier de rédaction",ev:"atelier",f:()=>true,n:1,lien:"atelier"},
+  {id:"c-joute",g:"c",t:"Remporter 4 passes d'armes à la Joute des écoles",ev:"joute",f:d=>d.juste,n:4,lien:"joute"},
 ];
 const QJ_ID=Object.fromEntries(QJ.map(q=>[q.id,q]));
-function quetesDuJour(){const k=cleJour();if(!S.qj||S.qj.k!==k){const r=mulberry32(Number(k.replace(/-/g,""))*7+3);const pick=g=>{const L=QJ.filter(q=>q.g===g);return L[Math.floor(r()*L.length)].id;};S.qj={k,ids:[pick("a"),pick("b"),r()<.7?"c-quete":"c-atelier"],p:[0,0,0],ok:[0,0,0],bonus:0};}return S.qj;}
+function quetesDuJour(){const k=cleJour();if(!S.qj||S.qj.k!==k){const r=mulberry32(Number(k.replace(/-/g,""))*7+3);const pick=g=>{const L=QJ.filter(q=>q.g===g);return L[Math.floor(r()*L.length)].id;};S.qj={k,ids:[pick("a"),pick("b"),r()<.65?"c-quete":"c-joute"],p:[0,0,0],ok:[0,0,0],bonus:0};}
+  S.qj.ids=S.qj.ids.map(id=>QJ_ID[id]?id:"c-quete");return S.qj;}
+/* ----- Grand devoir de la semaine : un seul gros exercice par semaine ----- */
+function cleSemaine(d=new Date()){const t=new Date(Date.UTC(d.getFullYear(),d.getMonth(),d.getDate()));const j=t.getUTCDay()||7;t.setUTCDate(t.getUTCDate()+4-j);const a=t.getUTCFullYear();const n=Math.ceil(((t-Date.UTC(a,0,1))/864e5+1)/7);return `${a}-S${String(n).padStart(2,"0")}`;}
+const DEVOIRS={
+  dissertation:{exo:"dissertation",t:"Composer une dissertation complète",d:"Quatre heures, dans les conditions de l'épreuve : introduction, plan démonstratif, conclusion.",ecus:150,xp:120},
+  question:{exo:"question",t:"Traiter une question courte",d:"Environ une heure : question d'histoire de la pensée, d'épistémologie ou du domaine mineur.",ecus:90,xp:70},
+};
+function devoirSemaine(){const k=cleSemaine();if(!S.qs||S.qs.k!==k){const n=Number(k.slice(0,4))*53+Number(k.slice(-2));const r=mulberry32(n*13+5);const type=n%3===2?"question":"dissertation";
+    const L=(typeof SUJETS!=="undefined"?SUJETS:[]).filter(s=>s.type===(type==="question"?"q":"d")&&s.ep!=="prog");S.qs={k,type,sujet:L.length?L[Math.floor(r()*L.length)].id:null,ok:0};}
+  return S.qs;}
+function finDeSemaine(){const d=new Date();d.setDate(d.getDate()+(7-(d.getDay()||7)));return d.toLocaleDateString("fr-FR",{weekday:"long",day:"numeric",month:"long"});}
+function commencerDevoir(){const q=devoirSemaine();const exo=DEVOIRS[q.type].exo;S.brouillons[exo]=Object.assign({sujet:null,libre:"",champs:{},filtre:"tous"},S.brouillons[exo]||{},{sujet:q.sujet,filtre:"tous"});sauver();location.hash="#atelier-"+exo;}
 function avancerQJ(ev,d){const q=quetesDuJour();let chg=false;q.ids.forEach((id,i)=>{const def=QJ_ID[id];if(q.ok[i]||!def||def.ev!==ev||!def.f(d))return;q.p[i]=Math.min(def.n,q.p[i]+1);chg=true;
   if(q.p[i]>=def.n){q.ok[i]=1;gagner(20);S.xp=(S.xp||0)+30;toast("Quête du jour accomplie",`${def.t} · +20 écus, +30 XP`,"epee");}});
   if(chg&&!q.bonus&&q.ok.every(Boolean)){q.bonus=1;gagner(40);toast("Les trois quêtes du jour !","Prime de 40 écus.","piece");}return chg;}
@@ -167,7 +181,9 @@ on("reponse",d=>{if(d.juste){gagner(2);S.st.bonnes++;}});
 on("calcul",d=>{if(d.juste){gagner(2);S.st.bonnes++;}});
 on("partie",d=>{if(d.jeu&&!S.st.jeux.includes(d.jeu))S.st.jeux.push(d.jeu);if(d.jeu==="forge"&&d.parfait)S.st.forge++;});
 on("quete",d=>{if(!S.st.jeux.includes("quete"))S.st.jeux.push("quete");S.st.serieMax=Math.max(S.st.serieMax,S.serie.n||0);if(d.premier)gagner(10);});
-on("atelier",d=>{if(!S.st.jeux.includes("atelier"))S.st.jeux.push("atelier");if(typeof d.note==="number")S.st.atelierMax=Math.max(S.st.atelierMax,d.note);});
+on("atelier",d=>{if(!S.st.jeux.includes("atelier"))S.st.jeux.push("atelier");if(typeof d.note==="number")S.st.atelierMax=Math.max(S.st.atelierMax,d.note);
+  const q=devoirSemaine(),D=DEVOIRS[q.type];if(!q.ok&&d.exo===D.exo){q.ok=Date.now();S.st.devoirs++;gagner(D.ecus);S.xp=(S.xp||0)+D.xp;toast("Grand devoir de la semaine rendu",`+${D.ecus} écus, +${D.xp} XP`,"trophee");}});
+on("joute",d=>{if(!S.st.jeux.includes("joute"))S.st.jeux.push("joute");if(d.juste){gagner(2);S.st.bonnes++;S.st.joutes++;}});
 let _sauvAtt=null;
 function apresEvenement(t,d){avancerQJ(t,d);verifierHF();clearTimeout(_sauvAtt);_sauvAtt=setTimeout(()=>{sauver();majHud();},30);}
 

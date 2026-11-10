@@ -110,14 +110,25 @@ function vEchoppe(main,cat){
 function vQuetes(main){
   const q=quetesDuJour();const auj=new Date().toLocaleDateString("fr-FR",{weekday:"long",day:"numeric",month:"long"});
   main.append(el("section",{class:"cadre pile"},el("div",{class:"titre rangee"},sprite("trophee",36),el("div",{},el("span",{class:"oeil"},"Le tableau d'honneur"),el("h1",{},"Quêtes du jour et hauts faits"))),
-    el("p",{},"Trois quêtes nouvelles chaque jour : chacune rapporte 20 écus et 30 XP, et les trois ensemble une prime de 40 écus. Les hauts faits récompensent la régularité et la maîtrise, parfois par un objet introuvable à l'échoppe."),
+    el("p",{},"Trois quêtes courtes chaque jour : chacune rapporte 20 écus et 30 XP, et les trois ensemble une prime de 40 écus. Les exercices longs de l'Atelier n'en font pas partie : ils forment un grand devoir par semaine, mieux récompensé. Les hauts faits récompensent la régularité et la maîtrise, parfois par un objet introuvable à l'échoppe."),
     el("div",{class:"rangee"},el("span",{class:"ecus"},sprite("piece",18),` ${fr(S.ecus)} écus`),el("span",{class:"pix"},`Série : ${serieActuelle()} jour${serieActuelle()>1?"s":""} d'affilée`),el("a",{class:"btn",href:"#echoppe"},sprite("coffre",20),"L'échoppe"))));
   main.append(el("section",{class:"cadre pile"},el("h2",{},`Quêtes du ${auj}`),el("div",{class:"quetes-j"},q.ids.map((id,i)=>{const d=QJ_ID[id];const ok=q.ok[i];
       return el("div",{class:"qj"+(ok?" fait":"")},sprite(ok?"gemme":"gemme0",28),el("div",{},el("b",{},d.t),el("div",{class:"jauge"},el("i",{style:`width:${Math.round(100*q.p[i]/d.n)}%`})),el("span",{class:"petit doux"},`${q.p[i]} / ${d.n}`)),el("div",{class:"gain-q"},ok?"Accomplie":el("a",{class:"btn mini",href:"#"+d.lien},"Y aller"),el("div",{},"+20 écus · +30 XP")));})),
     el("p",{class:"pix petit"},q.bonus?"Prime des trois quêtes obtenue (+40 écus).":"Prime de 40 écus quand les trois quêtes sont accomplies.")));
+  main.append(blocDevoir());
   main.append(el("section",{class:"cadre pile"},el("h2",{},"Hauts faits"),el("p",{class:"petit doux"},`${Object.keys(S.hf).length} sur ${HF.length} obtenus.`),
     el("div",{class:"hauts-faits"},HF.map(h=>{const ob=S.hf[h.id];const[a,b]=h.prog();return el("div",{class:"hf"+(ob?" obtenu":"")},sprite("trophee",30),el("div",{class:"pile",style:"gap:4px"},el("b",{},h.nom),el("p",{},h.d),el("p",{class:"pix petit"},ob?`Obtenu le ${new Date(ob).toLocaleDateString("fr-FR")}`:`${fr(a)} / ${fr(b)}`),el("p",{class:"petit"},"Récompense : ",el("strong",{},libRecompense(h.rec)))));}))));
 }
+
+/* ---------- grand devoir de la semaine ---------- */
+function blocDevoir(compact){const q=devoirSemaine(),D=DEVOIRS[q.type],s=q.sujet&&typeof SUJ_ID!=="undefined"?SUJ_ID[q.sujet]:null;
+  const go=el("button",{class:"btn or",type:"button"},sprite("plume",20),q.ok?"Refaire un devoir":"Commencer ce devoir");go.onclick=commencerDevoir;
+  return el("section",{class:"cadre pile devoir-semaine"+(q.ok?" fait":"")},el("span",{class:"oeil"},"Grand devoir de la semaine"),
+    el("h2",{},D.t),el("p",{class:"petit"},D.d),
+    s?el("p",{class:"sujet-choisi"},`« ${s.t} »`,el("small",{},`${EP_SUJ[s.ep]||""} · ${s.an}`)):null,
+    el("p",{class:"pix petit"},q.ok?`Rendu le ${new Date(q.ok).toLocaleDateString("fr-FR")} : +${D.ecus} écus, +${D.xp} XP.`:`À rendre d'ici ${finDeSemaine()} · +${D.ecus} écus, +${D.xp} XP. Le sujet proposé n'est pas imposé : tout exercice de ce type rendu à l'Atelier compte.`),
+    compact?null:el("p",{class:"petit doux"},"Le type alterne : deux semaines sur trois une dissertation complète, la troisième une question courte."),
+    el("div",{class:"rangee"},go));}
 
 /* ---------- carte du personnage (accueil) ---------- */
 function carteAventurier(){const r=rang(),q=quetesDuJour();const{cv,sc}=sceneCanvas(S.perso,{W:56,H:68,s:2,cx:14,cy:2,fx:0,fy:52,fond:false,sol:false,label:"Votre personnage : "+descPerso()});cv.style.cursor="pointer";cv.onclick=()=>sc.jouer("attitude",S.perso.attitude);
@@ -125,6 +136,6 @@ function carteAventurier(){const r=rang(),q=quetesDuJour();const{cv,sc}=sceneCan
   return el("section",{class:"cadre-nuit pile",style:"padding:14px"},el("span",{class:"oeil"},"Votre fiche d'aventurier·e"),
     el("div",{class:"carte-perso"},cv,el("div",{class:"pile",style:"gap:6px"},el("div",{class:"nom-perso"},S.perso.nom||"Sans nom"),el("div",{class:"pix",style:"color:#aab5dd"},`${nomRang(r.nom)} · ${r.xp} XP${r.suivant?` · encore ${r.reste} XP pour devenir ${nomRang(r.suivant)}`:""}`),
       el("div",{class:"barre-xp"},el("i",{style:`width:${Math.round(100*r.ratio)}%`})),el("span",{class:"ecus"},sprite("piece",16),` ${fr(S.ecus)} écus`),
-      el("div",{class:"mini-quetes"},q.ids.map((id,i)=>el("span",{},sprite(q.ok[i]?"gemme":"gemme0",14),`${QJ_ID[id].t} (${q.p[i]}/${QJ_ID[id].n})`))))),
+      el("div",{class:"mini-quetes"},q.ids.map((id,i)=>el("span",{},sprite(q.ok[i]?"gemme":"gemme0",14),`${QJ_ID[id].t} (${q.p[i]}/${QJ_ID[id].n})`)),(()=>{const w=devoirSemaine();return el("span",{},sprite(w.ok?"gemme":"gemme0",14),`Devoir de la semaine : ${DEVOIRS[w.type].t.toLowerCase()}${w.ok?" (rendu)":""}`);})()))),
     el("p",{class:"pix",style:"font-size:.92rem"},`Quête du jour : ${fait?`accomplie, ${fait.score} / ${fait.total}`:"à accomplir"}${serieActuelle()?` · ${serieActuelle()} jour${serieActuelle()>1?"s":""} d'affilée`:""}`),
     el("div",{class:"rangee"},el("a",{class:"btn or",href:"#quete"},sprite("epee",20),fait?"Revoir la quête":"Partir en quête"),el("a",{class:"btn",href:"#loge"},sprite("miroir",20),"Personnage"),el("a",{class:"btn",href:"#echoppe"},sprite("coffre",20),"Échoppe"),el("a",{class:"btn",href:"#quetes"},sprite("trophee",20),"Hauts faits"),supaActif()&&!SAUVE.code?el("a",{class:"btn",href:"#sauvegarde"},sprite("cle",20),"Sauvegarder en ligne"):null));}
