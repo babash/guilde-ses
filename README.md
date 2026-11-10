@@ -27,7 +27,7 @@ Pensé pour un niveau concours : relier un auteur à son œuvre et à sa thèse,
 
 Les pièges sont plausibles : les fausses réponses viennent du même chapitre, du même courant ou de la même époque que la bonne, comme les confusions que relève le jury. Chaque jeu dit ce qu'il fait réviser et pour quelle épreuve. Les fiches sont rangées par chapitre du programme officiel de seconde, première et terminale, plus l'histoire de la pensée et l'épistémologie (programme du concours). Une **quête du jour** de 7 questions mélange tout, avec une série de jours d'affilée.
 
-**Sources : 540 fiches, dont 503 (93 %) vérifiées une à une** sur une source consultable en ligne (éditeurs, revues, Insee, Banque de France, BO, Wikipédia, cours universitaires). Les 37 autres portent la mention « source à confirmer » et un lien de recherche. Les chiffres clés datent de novembre 2026.
+**Sources : les 540 fiches sont vérifiées une à une** sur une source consultable en ligne (éditeurs, revues, Insee, Banque de France, BO, Wikipédia, cours universitaires). Les fiches auteurs et mécanismes, et les notions les plus récemment sourcées, indiquent en plus **le passage précis à lire** : une citation courte et un lien qui ouvre la source sur cette phrase (ou sur la bonne page d'un PDF). Les chiffres clés datent de novembre 2026.
 
 | | |
 |---|---|

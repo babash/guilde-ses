@@ -44,7 +44,7 @@ Les scripts partagent la même portée globale et se chargent **dans cet ordre**
 | `joutes.json` | un débat | `q` (la question), `chap`, `disc`, `positions` (`ecole`, `these`, `arg`, `objection`, `fiches` : identifiants des fiches qui la représentent), `plan` (indices thèse, antithèse, dépassement) et `logique` |
 | `programme.json` | — | `chapitres` (questions officielles), `programmes` et `officiel` (liens des textes) |
 
-Communs à toutes les fiches : `id` (unique, `a001`, `n001`, `d001`, `m01`, `c01`), `disc` (`eco`, `socio`, `sp`, `epi`), `chap` (chapitres du programme : `2-E1`, `1-S3`, `T-RC2`, `HP`…), `src` (liste de `{l, u}`), `verif` (source vérifiée), `recherche` (lien de recherche quand `verif` est faux).
+Communs à toutes les fiches : `id` (unique, `a001`, `n001`, `d001`, `m01`, `c01`), `disc` (`eco`, `socio`, `sp`, `epi`), `chap` (chapitres du programme : `2-E1`, `1-S3`, `T-RC2`, `HP`…), `src` (liste de `{l, u}`), `verif` (source vérifiée), `recherche` (lien de recherche quand `verif` est faux), `cible` (facultatif : `{u, x, s}`, le passage à lire — lien avec fragment `#:~:text=` ou `#page=N`, citation de 14 mots au plus, section de la source).
 
 Chaque objection d'un débat doit viser sa seule position : sinon le mode « riposte » aurait deux bonnes réponses. `construire.py` vérifie que les fiches et chapitres cités existent et que le plan est valide.
 
